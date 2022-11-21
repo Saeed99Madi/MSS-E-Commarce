@@ -95,6 +95,7 @@ Now you can view the app live in the Browser!
 ## **Team Members** 
 
 - [Said Madi](https://github.com/Saeed99Madi)
+- [Nada S Ayesh](https://github.com/nadasuhailAyesh12)
 
 ## **Resources** 
 
