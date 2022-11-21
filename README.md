@@ -25,7 +25,7 @@
 
 [Dashboard Prototype](https://www.figma.com/file/jMM3JqqxqMw90P7Xau6vmO/3me-Jamal-Dashboard?node-id=0%3A1&t=1vg9StpNOpTXAoRE-1)
 ## **SQL Scheme**
-![](https://imgur.com/LEc2X2f)
+![](https://i.imgur.com/LEc2X2f.png)
 
 
 ## **How to Launch App Locally** :-
