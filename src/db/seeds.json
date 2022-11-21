@@ -1,0 +1,103 @@
+{
+  "User": [
+    {
+      "name": "Ahmed Shaheen",
+      "email": "shaheen@gazaskygeeks.com",
+      "password": "$2a$15$V8W8dLCuFuAIPhQY.vEZ9uHSphY5xr.t0d/Jq7JTCwpPLyn8cpARW",
+      "role": "ADMIN"
+    },
+    
+    {
+      "name": "saeed",
+      "email": "saeed@gmail.com",
+      "password": "$2a$15$V8W8dLCuFuAIPhQY.vEZ9uHSphY5xr.t0d/Jq7JTCwpPLyn8cpARW",
+      "role": "ADMIN"
+    },
+    {
+      "name": "Niveen Lubbad",
+      "email": "niveen.lubbad@gmail.com",
+      "password": "$2a$15$V8W8dLCuFuAIPhQY.vEZ9uHSphY5xr.t0d/Jq7JTCwpPLyn8cpARW",
+      "role": "ADMIN"
+    }
+  ],
+ 
+  "Visitor": [
+    {
+      "name": "jmajem",
+      "phoneNumber": "0599266293",
+      "day": "2022-10-26",
+      "hourForm": "2022-10-26",
+      "hourTo": "2022-10-26",
+      "UserId": 1
+    },
+    {
+      "content": "Post 222",
+      "image": "https://i.pinimg.com/736x/01/6f/72/016f72c5812e1b8f71bdbf19d8c7558b.jpg",
+      "TagId": 2,
+      "AnimalId": 2,
+      "UserId": 2
+    },
+    {
+      "content": "Post 222",
+      "image": "https://i.pinimg.com/originals/bd/59/14/bd5914df69a865b3f3169a36c8507005.jpg",
+      "TagId": 2,
+      "AnimalId": 2,
+      "UserId": 2
+    },
+    {
+      "content": "Post 222",
+      "image": "https://img-9gag-fun.9cache.com/photo/aeg6L6B_460swp.webp",
+      "TagId": 2,
+      "AnimalId": 2,
+      "UserId": 2
+    },
+    {
+      "content": "Post 222",
+      "image": "http://iheartcats.com/wp-content/uploads/2015/02/shutterstock_150585071.jpg",
+      "TagId": 2,
+      "AnimalId": 2,
+      "UserId": 2
+    },
+    {
+      "content": "Post for saeed",
+      "image": "http://iheartcats.com/wp-content/uploads/2015/02/shutterstock_150585071.jpg",
+      "TagId": 2,
+      "AnimalId": 2,
+      "UserId": 8
+    }
+  ],
+  "Like": [
+    {
+      "UserId": 2,
+      "PostId": 1
+    },
+    {
+      "UserId": 1,
+      "PostId": 2
+    },
+    {
+      "UserId": 3,
+      "PostId": 1
+    }
+  ],
+  "Booking": [
+    {
+      "DoctorId": 6,
+      "UserId": 2,
+      "title": "test",
+      "description": "hehehehehhehe",
+      "start": "2022-10-26T20:00:00+03:00",
+      "end": "2022-10-26T20:00:00+03:00",
+      "status": "ACCEPTED"
+    },
+    {
+      "DoctorId": 6,
+      "UserId": 2,
+      "title": "test",
+      "description": "hehehehehhehe",
+      "start": "2022-10-26T20:00:00+03:00",
+      "end": "2022-10-26T20:00:00+03:00",
+      "status": "PENDING"
+    }
+  ]
+}

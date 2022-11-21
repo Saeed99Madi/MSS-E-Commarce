@@ -1,0 +1,30 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "skipLibCheck": true,
+    "strict": true,
+    "noFallthroughCasesInSwitch": true,
+    "isolatedModules": true,
+    "target": "es2021",
+    "lib": [
+      "es2021"
+    ],
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "commonjs",
+    "declaration": true,
+    "outDir": "dist",
+    "rootDir": "src",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+  },
+  "include": [
+    "src",
+  ],
+  "files": [
+    "src/types/express/index.d.ts"
+  ],
+}
