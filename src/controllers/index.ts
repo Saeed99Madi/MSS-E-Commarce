@@ -1,1 +1,3 @@
-export default {};
+import AuthController from './AuthController';
+
+export default { AuthController };
