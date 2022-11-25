@@ -5,9 +5,8 @@ class Product extends Model {
   declare id: number;
   declare title: string;
   declare description: string;
-  declare cover: string;
-  declare price: number;
-  declare salePrice?: number;
+  declare cover?: string;
+  declare active?: boolean;
 }
 Product.init(
   {
@@ -19,18 +18,17 @@ Product.init(
     title: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true,
     },
     description: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
     },
     cover: {
       type: DataTypes.STRING,
     },
-    price: {
-      type: DataTypes.DOUBLE,
-    },
-    salePrice: {
-      type: DataTypes.DOUBLE,
+    active: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
     },
   },
   {
