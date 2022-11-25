@@ -15,8 +15,8 @@ import sequelize from './connection';
 User.hasMany(Product);
 Product.belongsTo(User);
 
-Slider.hasMany(Product);
-Product.belongsTo(Slider);
+Product.hasOne(Slider);
+Slider.belongsTo(Product);
 
 Product.hasMany(ProductGalary);
 ProductGalary.belongsTo(Product);
