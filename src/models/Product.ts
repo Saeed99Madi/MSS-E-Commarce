@@ -6,8 +6,7 @@ class Product extends Model {
   declare title: string;
   declare description: string;
   declare cover: string;
-  declare price: number;
-  declare salePrice?: number;
+  declare catalog?: string;
 }
 Product.init(
   {
@@ -21,16 +20,13 @@ Product.init(
       allowNull: false,
     },
     description: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
     },
     cover: {
       type: DataTypes.STRING,
     },
-    price: {
-      type: DataTypes.DOUBLE,
-    },
-    salePrice: {
-      type: DataTypes.DOUBLE,
+    catalog: {
+      type: DataTypes.STRING,
     },
   },
   {
