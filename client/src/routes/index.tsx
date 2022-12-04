@@ -3,13 +3,18 @@ import { MainDashboard } from '../components/dashboard';
 import { ProductsList } from '../components/dashboard/Products';
 import Dashboard from '../pages/dashboard';
 
+import useProducts from '../hooks/getProducts';
+
 const Routes = [
   {
     path: '/admin/dashboard',
     element: <Dashboard />,
     children: [
       { index: true, element: <MainDashboard /> },
-      { path: 'products', element: <ProductsList /> },
+      {
+        path: 'products',
+        element: <ProductsList />,
+      },
     ],
   },
   {
