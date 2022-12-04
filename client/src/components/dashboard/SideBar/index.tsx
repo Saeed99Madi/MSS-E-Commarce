@@ -62,7 +62,10 @@ export const SideBar = (props: Props) => {
       </DrawerHeader>
       <Divider />
       <List>
-        <Link style={{ color: '#FFFFFF', textDecoration: 'none' }} to="/">
+        <Link
+          style={{ color: '#FFFFFF', textDecoration: 'none' }}
+          to="/admin/dashboard"
+        >
           <ListItem key="home" disablePadding>
             <ListItemButton>
               <ListItemIcon sx={{ color: '#FFFFFF' }}>
@@ -74,7 +77,7 @@ export const SideBar = (props: Props) => {
         </Link>
         <Link
           style={{ color: '#FFFFFF', textDecoration: 'none' }}
-          to="/categories"
+          to="/admin/dashboard/categories"
         >
           <ListItem key="categories" disablePadding>
             <ListItemButton>
@@ -87,7 +90,7 @@ export const SideBar = (props: Props) => {
         </Link>
         <Link
           style={{ color: '#FFFFFF', textDecoration: 'none' }}
-          to="/products"
+          to="/admin/dashboard/products"
         >
           <ListItem key="products" disablePadding>
             <ListItemButton>
@@ -100,7 +103,7 @@ export const SideBar = (props: Props) => {
         </Link>
         <Link
           style={{ color: '#FFFFFF', textDecoration: 'none' }}
-          to="/contacts"
+          to="/admin/dashboard/contacts"
         >
           <ListItem key="contacts" disablePadding>
             <ListItemButton>
