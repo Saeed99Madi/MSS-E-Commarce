@@ -8,6 +8,16 @@ import { productSchema } from '../schemes';
 
 // ProductController.ts file
 export default class ProductController {
+  // get All Products
+  public static async index(req: Request, res: Response) {
+    const products = await Product.findAll();
+
+    res.status(200).json({
+      status: 200,
+      data: products,
+    });
+  }
+
   // create Product
   public static async create(req: Request, res: Response) {
     const { title, description, cover, active, images } = req.body;

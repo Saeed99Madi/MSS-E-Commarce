@@ -6,6 +6,7 @@ class Product extends Model {
   declare title: string;
   declare description: string;
   declare cover: string;
+  declare active?: boolean;
   declare catalog?: string;
 }
 Product.init(
@@ -28,6 +29,10 @@ Product.init(
     },
     catalog: {
       type: DataTypes.STRING,
+    },
+    active: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
     },
   },
   {
