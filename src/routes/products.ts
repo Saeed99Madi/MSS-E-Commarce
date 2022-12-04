@@ -17,4 +17,6 @@ router.post(
   errorWrapper(ProductController.create),
 );
 
+router.get('/products', errorWrapper(ProductController.index));
+
 export default router;
