@@ -8,7 +8,8 @@ const router = Router();
 router
   .route('/categories')
   .get(errorWrapper(CategoriesController.catIndex))
-  .post(errorWrapper(CategoriesController.create));
+  .post(errorWrapper(CategoriesController.create))
+  .delete(errorWrapper(CategoriesController.delete));
 
 router.get(
   '/subcategories/:categoryId',

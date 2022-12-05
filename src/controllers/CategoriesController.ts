@@ -75,4 +75,20 @@ export default class CategoriesController {
       });
     }
   }
+
+  // delete categories
+  public static async delete(req: Request, res: Response) {
+    const { id } = req.body;
+
+    const category = await Category.findOne({ where: { id } });
+    if (!category) {
+      throw new CustomError(404, 'CATEGORY NOT FOUND');
+    }
+    const count = await Category.destroy({ where: { id } });
+    console.log(count);
+    res.status(202).json({
+      status: 202,
+      msg: 'deleted successfully',
+    });
+  }
 }
