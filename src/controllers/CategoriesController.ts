@@ -40,7 +40,7 @@ export default class CategoriesController {
 
   // create categories
   public static async create(req: Request, res: Response) {
-    const { title, description, cover, parentId } = req.body;
+    const { id, title, description, cover, parentId } = req.body;
 
     await categoriesSchema({ title, description, cover });
 
@@ -90,5 +90,42 @@ export default class CategoriesController {
       status: 202,
       msg: 'deleted successfully',
     });
+  }
+
+  // create categories
+  public static async update(req: Request, res: Response) {
+    const { id, title, description, cover, parentId } = req.body;
+
+    await categoriesSchema({ title, description, cover });
+
+    const category = await Category.findOne({ where: { title } });
+    if (category) {
+      throw new CustomError(422, 'The category was added previously !');
+    }
+
+    if (!parentId) {
+      await Category.upsert({
+        id,
+        title,
+        description,
+      });
+
+      res.status(200).json({
+        status: 200,
+        msg: 'updated successfully',
+      });
+    } else {
+      await Category.upsert({
+        id,
+        title,
+        description,
+        isChild: true,
+      });
+
+      res.status(200).json({
+        status: 200,
+        msg: 'updated successfully',
+      });
+    }
   }
 }

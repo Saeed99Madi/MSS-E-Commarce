@@ -9,7 +9,8 @@ router
   .route('/categories')
   .get(errorWrapper(CategoriesController.catIndex))
   .post(errorWrapper(CategoriesController.create))
-  .delete(errorWrapper(CategoriesController.delete));
+  .delete(errorWrapper(CategoriesController.delete))
+  .put(errorWrapper(CategoriesController.update));
 
 router.get(
   '/subcategories/:categoryId',
