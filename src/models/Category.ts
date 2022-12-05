@@ -24,6 +24,9 @@ Category.init(
     cover: {
       type: DataTypes.STRING,
     },
+    isChild: {
+      type: DataTypes.BOOLEAN,
+    },
   },
   {
     sequelize,
