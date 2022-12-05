@@ -16,7 +16,16 @@ router.post(
   upload.fields(productFields),
   errorWrapper(ProductController.create),
 );
-
+router.put('/products/unpublish', errorWrapper(ProductController.unPublish));
+router.put('/products/publish', errorWrapper(ProductController.publish));
 router.get('/products', errorWrapper(ProductController.index));
+router.get(
+  '/category/products/:CategoryId',
+  errorWrapper(ProductController.categoryProducts),
+);
+router.get(
+  '/products/:search/:CategoryId?',
+  errorWrapper(ProductController.search),
+);
 
 export default router;
