@@ -12,20 +12,20 @@
       "title": "jmajem",
       "description": "Jmajem is the best category",
       "cover": "1234sassasa",
-      "isChild": true
+      "isChild": false
     },
     {
       "title": "Aliens",
       "description": "Aliens is the best  Mode category",
       "cover": "1234sassasa",
-      "CategoryId": 1,
-      "isChild": false
+      "parentId": 1,
+      "isChild": true
     },
     {
       "title": "IceAge",
       "description": "IceAge is the best Admiral category",
       "cover": "1234sassasa",
-      "isChild": true
+      "isChild": false
     }
   ],
   "Product": [

@@ -24,8 +24,11 @@ ProductGalary.belongsTo(Product);
 Product.hasMany(ProductAttripute);
 ProductAttripute.belongsTo(Product);
 
-Category.hasMany(Category);
-Category.belongsTo(Category);
+Category.hasMany(Category, { as: 'chields' });
+Category.belongsTo(Category, {
+  foreignKey: 'parentId',
+  as: 'parent',
+});
 
 Category.hasMany(Product);
 Product.belongsTo(Category);
