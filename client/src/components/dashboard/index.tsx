@@ -1,12 +1,12 @@
-import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import { useDashboard } from '../../pages/dashboard';
+import { useContext } from 'react';
+import { DashboardContext } from '../../context/DashboardContext';
+
 import { DrawerHeader, Main } from './components.styled';
 
 export const MainDashboard = () => {
-  const { open } = useDashboard();
-
+  const { openSideBar } = useContext(DashboardContext);
   return (
     <Box
       sx={{
@@ -15,7 +15,7 @@ export const MainDashboard = () => {
         color: '#FFFFFF',
       }}
     >
-      <Main open={open} sx={{ background: '#141417', color: '#FFFFFF' }}>
+      <Main open={openSideBar} sx={{ background: '#141417', color: '#FFFFFF' }}>
         <DrawerHeader />
         <Typography paragraph>Recently Added Category</Typography>
         <Typography paragraph>

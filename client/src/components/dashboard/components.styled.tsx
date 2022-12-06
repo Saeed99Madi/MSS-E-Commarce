@@ -1,6 +1,7 @@
 import { styled } from '@mui/material/styles';
 
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
+import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
 
 const drawerWidth = 240;
 
@@ -56,4 +57,9 @@ const Main = styled('main', { shouldForwardProp: prop => prop !== 'open' })<{
   }),
   height: '100%',
 }));
-export { AppBar, DrawerHeader, Main };
+
+const arrowIcon = styled(KeyboardDoubleArrowDownIcon)({
+  color: '#FFFFFF !important',
+});
+
+export { AppBar, DrawerHeader, Main, arrowIcon };
