@@ -1,32 +1,33 @@
-// import * as React from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 import { Box, Typography } from '@mui/material';
-import { ChangeEvent, useEffect, useState } from 'react';
 import AddIcon from '@mui/icons-material/Add';
+
 import { ProductCard } from './Card';
 import useProducts from '../../../hooks/getProducts';
-import { IProduct } from '../../../interfaces/IProduct';
 import { DrawerHeader, Main } from '../components.styled';
-import { useDashboard } from '../../../pages/dashboard';
 
-// type Props = {
-//   // eslint-disable-next-line react/require-default-props, react/no-unused-prop-types
-//   products: Array<Product>;
-// };
+import { Actions } from '../Search';
+import { IProduct } from '../../../interfaces/IProduct';
+
+import { DashboardContext } from '../../../context/DashboardContext';
 
 export const ProductsList = () => {
   const [products, setProducts] = useState<IProduct[]>([]);
-  const [checkedProducts, setIsCheckedProducts] = useState<Array<number>>([]);
+
+  const { openSideBar } = useContext(DashboardContext);
+
   const productsfetch = useProducts();
-  const { open } = useDashboard();
   useEffect(() => {
     (async () => {
       setProducts(await productsfetch());
     })();
   }, []);
+
   return (
-    <Main open={open} sx={{ background: '#141417' }}>
+    <Main open={openSideBar} sx={{ background: '#141417' }}>
       <DrawerHeader />
+      <Actions />
       <Box
         sx={{
           textAlign: 'center',
@@ -56,13 +57,7 @@ export const ProductsList = () => {
 
         {products ? (
           products.map(product => {
-            return (
-              <ProductCard
-                key={product.id}
-                product={product}
-                setIsCheckedProducts={setIsCheckedProducts}
-              />
-            );
+            return <ProductCard key={product.id} product={product} />;
           })
         ) : (
           <h1>seeded</h1>

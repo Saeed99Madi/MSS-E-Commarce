@@ -1,28 +1,31 @@
-// import * as React from 'react';
+import { ChangeEvent, useContext, useState } from 'react';
 
 import { Box, Typography } from '@mui/material';
-import { ChangeEvent, Dispatch, SetStateAction, useState } from 'react';
+
+import { DashboardContext } from '../../../../context/DashboardContext';
 import { IProduct } from '../../../../interfaces/IProduct';
 
 type Props = {
   product: IProduct;
-  setIsCheckedProducts: Dispatch<SetStateAction<Array<number>>>;
 };
 
 export const ProductCard = (props: Props) => {
-  const { product, setIsCheckedProducts } = props;
+  const { product } = props;
   const [isChecked, setIsChecked] = useState(false);
+
+  const { setIsCheckedProducts } = useContext(DashboardContext);
+
   const handleIsChecked = (e: ChangeEvent<HTMLInputElement>) => {
     const { checked, value } = e.target;
     const productId = +value;
     if (checked) {
-      setIsCheckedProducts(prev => {
+      setIsCheckedProducts((prev: Array<number>) => {
         console.log(prev);
 
         return [...prev, productId];
       });
     } else if (!checked) {
-      setIsCheckedProducts(prev => {
+      setIsCheckedProducts((prev: Array<number>) => {
         console.log(prev);
 
         return prev.filter(ele => ele !== productId);
