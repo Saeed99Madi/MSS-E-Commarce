@@ -1,34 +1,39 @@
+import { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import Drawer from '@mui/material/Drawer';
 
 import List from '@mui/material/List';
-
 import Divider from '@mui/material/Divider';
-import IconButton from '@mui/material/IconButton';
+import ListItemText from '@mui/material/ListItemText';
 
+import IconButton from '@mui/material/IconButton';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
 
 import StorefrontIcon from '@mui/icons-material/Storefront';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import InventoryIcon from '@mui/icons-material/Inventory';
+
 import ForumIcon from '@mui/icons-material/Forum';
-import { Link } from 'react-router-dom';
+
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+
 import { DrawerHeader } from '../components.styled';
+import { DashboardContext } from '../../../context/DashboardContext';
 
 const drawerWidth = 240;
 
 type Props = {
-  open: boolean;
-  handleDrawerClose: any;
   theme: any;
 };
 export const SideBar = (props: Props) => {
-  const { theme, open, handleDrawerClose } = props;
-
+  const { openSideBar, setOpenSideBar } = useContext(DashboardContext);
+  const { theme } = props;
+  const handleCloseSide = () => {
+    setOpenSideBar(false);
+  };
   return (
     <Drawer
       sx={{
@@ -44,7 +49,7 @@ export const SideBar = (props: Props) => {
       }}
       variant="persistent"
       anchor="left"
-      open={open}
+      open={openSideBar}
     >
       <DrawerHeader>
         <img
@@ -52,7 +57,7 @@ export const SideBar = (props: Props) => {
           alt="logo"
           style={{ marginRight: 'auto', paddingLeft: '0.7rem' }}
         />
-        <IconButton sx={{ color: '#FFFFFF' }} onClick={handleDrawerClose}>
+        <IconButton sx={{ color: '#FFFFFF' }} onClick={handleCloseSide}>
           {theme.direction === 'ltr' ? (
             <ChevronLeftIcon />
           ) : (
