@@ -7,6 +7,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { useContext } from 'react';
 import { AppBar } from '../components.styled';
 import { DashboardContext } from '../../../context/DashboardContext';
+import AddProduct from '../Products/AddProduct';
 
 export const NavBar = () => {
   const { openSideBar, setOpenSideBar } = useContext(DashboardContext);
@@ -25,9 +26,11 @@ export const NavBar = () => {
         >
           <MenuIcon />
         </IconButton>
+
         <Typography variant="h6" noWrap component="div">
           Good Afternoon, Jamal
         </Typography>
+        <AddProduct />
       </Toolbar>
     </AppBar>
   );
