@@ -15,7 +15,10 @@ export const MainDashboard = () => {
         color: '#FFFFFF',
       }}
     >
-      <Main open={open} sx={{ background: '#141417', color: '#FFFFFF' }}>
+      <Main
+        open={open}
+        sx={{ background: '#141417', color: '#FFFFFF', height: '100vh' }}
+      >
         <DrawerHeader />
         <Typography paragraph>Recently Added Category</Typography>
         <Typography paragraph>
