@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useState, useEffect } from 'react';
 import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -6,16 +6,62 @@ import ListItemText from '@mui/material/ListItemText';
 import Collapse from '@mui/material/Collapse';
 import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
+import Alert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import SubLIstItem from './SubLIstItem';
+import { ICategories } from '../../../../interfaces/ICategories';
+import useSubcategories from '../../../../hooks/getSubcategories';
 
-const ListItem = ({ open }: { open: boolean }) => {
-  const [openList, setOpenList] = React.useState(true);
+const theme = createTheme({
+  palette: {
+    info: {
+      main: '#F6CD06',
+    },
+  },
+});
+
+declare module '@mui/material/styles' {
+  interface Palette {
+    neutral: Palette['primary'];
+  }
+
+  // allow configuration using `createTheme`
+  interface PaletteOptions {
+    neutral?: PaletteOptions['primary'];
+  }
+}
+
+declare module '@mui/material/Button' {
+  interface ButtonPropsColorOverrides {
+    neutral: true;
+  }
+}
+
+interface Props {
+  open: boolean;
+  categoryItem: ICategories | undefined;
+  id: number;
+}
+const ListItem = ({ open, categoryItem, id }: Props) => {
+  const [openList, setOpenList] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState('');
+  const [subCategory, setSubCategory] = useState<ICategories[]>();
+  const fetchSubcategories = useSubcategories(selectedCategory);
+  useEffect(() => {
+    (async () => {
+      const data = await fetchSubcategories(selectedCategory);
+      console.log({ data });
+
+      setSubCategory(data);
+    })();
+    console.log({ selectedCategory });
+  }, [selectedCategory]);
 
   const handleClick = (e: any) => {
     e.stopPropagation();
-
     console.log('handleClick now is running');
-
+    setSelectedCategory(e.currentTarget.id);
     setOpenList(!openList);
   };
 
@@ -40,9 +86,14 @@ const ListItem = ({ open }: { open: boolean }) => {
         background:
           'linear-gradient(130.79deg, rgba(255, 255, 255, 0.08) -37.1%, rgba(255, 255, 255, 0) 134.47%)',
         borderRadius: '12px',
+        borderTop: '2px solid #424244',
       }}
     >
-      <ListItemButton onClick={handleClick} style={{ height: '54px' }}>
+      <ListItemButton
+        onClick={handleClick}
+        style={{ height: '54px' }}
+        id={`${id}`}
+      >
         <ListItemIcon sx={{ pl: 2 }}>
           {openList ? (
             <div
@@ -66,7 +117,7 @@ const ListItem = ({ open }: { open: boolean }) => {
         </ListItemIcon>
         <ListItemText>
           <p>
-            Category Name{' '}
+            {categoryItem?.title}
             <span
               style={{
                 color: '#FFFFFF',
@@ -85,11 +136,28 @@ const ListItem = ({ open }: { open: boolean }) => {
         />
         <DeleteOutlinedIcon onClick={handleDeleteBtn} />
       </ListItemButton>
+
       <Collapse in={openList} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
-          <SubLIstItem />
-          <SubLIstItem />
-          <SubLIstItem />
+          {subCategory?.length ? (
+            subCategory?.map(ele => {
+              return <SubLIstItem key={ele.id} ele={ele} />;
+            })
+          ) : (
+            <Stack>
+              <ThemeProvider theme={theme}>
+                <Alert
+                  sx={{ pl: 3.8 }}
+                  style={{ backgroundColor: 'inherit', color: '#fff' }}
+                  severity="info"
+                >
+                  There is no data !
+                </Alert>
+              </ThemeProvider>
+            </Stack>
+          )}
+          {/* <SubLIstItem />
+          <SubLIstItem /> */}
         </List>
       </Collapse>
     </List>

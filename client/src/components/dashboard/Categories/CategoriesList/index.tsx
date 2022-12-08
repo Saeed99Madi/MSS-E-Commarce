@@ -1,6 +1,19 @@
+import { useEffect, useState } from 'react';
 import ListItem from './ListItem';
+import useCategories from '../../../../hooks/getCategories';
+import { ICategories } from '../../../../interfaces/ICategories';
 
 const CategoriesList = ({ open }: { open: boolean }) => {
+  const [category, setCategory] = useState<ICategories[]>();
+
+  const fetchCategories = useCategories();
+
+  useEffect(() => {
+    (async () => {
+      setCategory(await fetchCategories());
+    })();
+  }, []);
+
   return (
     <div
       style={{
@@ -9,8 +22,16 @@ const CategoriesList = ({ open }: { open: boolean }) => {
         gap: '1rem',
       }}
     >
-      <ListItem open={open} />
-      <ListItem open={open} />
+      {category?.map((categoryItem: ICategories) => {
+        return (
+          <ListItem
+            id={categoryItem.id}
+            key={categoryItem.id}
+            open={open}
+            categoryItem={categoryItem}
+          />
+        );
+      })}
     </div>
   );
 };

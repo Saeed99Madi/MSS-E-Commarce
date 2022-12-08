@@ -1,14 +1,13 @@
-import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import { List } from '@mui/material';
-import { useDashboard } from '../../../pages/dashboard';
+import { useContext } from 'react';
 import { DrawerHeader, Main } from '../components.styled';
 import CategoriesList from './CategoriesList';
+import { DashboardContext } from '../../../context/DashboardContext';
 
 export const Categories = () => {
-  const { open } = useDashboard();
-  console.log(open);
+  const { openSideBar } = useContext(DashboardContext);
+
   return (
     <Box
       sx={{
@@ -19,7 +18,7 @@ export const Categories = () => {
       className="wrapper"
     >
       <Main
-        open={open}
+        open={openSideBar}
         sx={{
           background: '#141417',
           color: '#FFFFFF',
@@ -27,11 +26,11 @@ export const Categories = () => {
         }}
       >
         <DrawerHeader />
-        <CategoriesList open={open} />
+        <CategoriesList open={openSideBar} />
       </Main>
 
       <Main
-        open={open}
+        open={openSideBar}
         sx={{
           background: '#141417',
           color: '#FFFFFF',

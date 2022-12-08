@@ -1,11 +1,11 @@
 .wrapper main:first-child {
-    border: 1px solid red;
+    /* border: 1px solid red; */
     flex: 3;
     /* padding: 50px 100px; */
     margin-right: 32px;
 }
 .wrapper main:nth-child(2) {
-    border: 1px solid green;
+    /* border: 1px solid green; */
     flex: 1;
 }
 
