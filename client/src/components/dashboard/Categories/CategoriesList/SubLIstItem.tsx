@@ -22,7 +22,6 @@ const SubLIstItem = ({ ele }: { ele: ICategories }) => {
     <div style={{ borderTop: '2px solid #424244' }}>
       <ListItemButton sx={{ pl: 4.5 }}>
         <ListItemIcon>
-          {/* <StarBorder /> */}
           <img src="/timeline.svg" alt="logo" />
         </ListItemIcon>
         <p style={{ marginLeft: '-20px' }}> {ele.title}</p>

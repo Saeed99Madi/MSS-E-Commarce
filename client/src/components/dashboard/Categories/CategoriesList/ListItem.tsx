@@ -156,8 +156,6 @@ const ListItem = ({ open, categoryItem, id }: Props) => {
               </ThemeProvider>
             </Stack>
           )}
-          {/* <SubLIstItem />
-          <SubLIstItem /> */}
         </List>
       </Collapse>
     </List>
