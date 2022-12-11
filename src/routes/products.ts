@@ -8,6 +8,7 @@ const router = Router();
 
 const productFields = [
   { name: 'cover', maxCount: 1 },
+  { name: 'catalog', maxCount: 1 },
   { name: 'gallery', maxCount: 8 },
 ];
 

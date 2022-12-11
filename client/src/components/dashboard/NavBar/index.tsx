@@ -25,6 +25,7 @@ export const NavBar = () => {
         >
           <MenuIcon />
         </IconButton>
+
         <Typography variant="h6" noWrap component="div">
           Good Afternoon, Jamal
         </Typography>

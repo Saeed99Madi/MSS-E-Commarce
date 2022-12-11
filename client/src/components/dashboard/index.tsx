@@ -4,6 +4,7 @@ import { useContext } from 'react';
 import { DashboardContext } from '../../context/DashboardContext';
 
 import { DrawerHeader, Main } from './components.styled';
+import AddProduct from './Products/AddProduct';
 
 export const MainDashboard = () => {
   const { openSideBar } = useContext(DashboardContext);
@@ -21,6 +22,7 @@ export const MainDashboard = () => {
       >
         <DrawerHeader />
         <Typography paragraph>Recently Added Category</Typography>
+
         <Typography paragraph>
           Consequat mauris nunc congue nisi vitae suscipit. Fringilla est
           ullamcorper eget nulla facilisi etiam dignissim diam. Pulvinar

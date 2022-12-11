@@ -117,9 +117,11 @@ export default class ProductController {
 
   // create Product
   public static async create(req: Request, res: Response) {
-    const { title, description, cover, active, images } = req.body;
-
-    await productSchema({ title, description, cover });
+    console.log(req.files, 'files');
+    console.log(req.file, 'file');
+    const { title, description, cover, active, images, formData } = req.body;
+    console.log('body', req.body, 'body');
+    await productSchema({ title, description });
 
     const product = await Product.findOne({ where: { title } });
     if (product) {
@@ -129,6 +131,7 @@ export default class ProductController {
       title,
       description,
     });
+
     if (images) {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       images.forEach((image: any) => {

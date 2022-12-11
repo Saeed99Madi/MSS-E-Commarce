@@ -1,8 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 
-import { Box, Typography } from '@mui/material';
-import AddIcon from '@mui/icons-material/Add';
-
+import { Box } from '@mui/material';
 import { ProductCard } from './Card';
 import useProducts from '../../../hooks/getProducts';
 import { DrawerHeader, Main } from '../components.styled';
@@ -11,10 +9,11 @@ import { Actions } from '../Search';
 import { IProduct } from '../../../interfaces/IProduct';
 
 import { DashboardContext } from '../../../context/DashboardContext';
+import AddProduct from './AddProduct';
 
 export const ProductsList = () => {
   const [products, setProducts] = useState<IProduct[]>([]);
-
+  const [openAddProduct, setOpenAddProduct] = useState(false);
   const { openSideBar } = useContext(DashboardContext);
 
   const productsfetch = useProducts();
@@ -22,6 +21,7 @@ export const ProductsList = () => {
     (async () => {
       setProducts(await productsfetch());
     })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -37,30 +37,17 @@ export const ProductsList = () => {
           flexWrap: 'wrap',
           gap: '1rem',
           alignItems: 'center',
-          justifyContent: 'flex-start',
+          justifyContent: 'center',
         }}
       >
-        <Box
-          sx={{
-            width: '15rem',
-            height: 'auto',
-            background:
-              'linear-gradient(125.86deg, rgba(255, 255, 255, 0.18) -267.85%, rgba(255, 255, 255, 0) 138.29%)',
-            backdropFilter: 'blur(5.73932px)',
-            borderRadius: '12px',
-            color: '#FFFFFF',
-          }}
-        >
-          <AddIcon />
-          <Typography>Add Product</Typography>
-        </Box>
+        <AddProduct open={openAddProduct} setOpen={setOpenAddProduct} />
 
         {products ? (
           products.map(product => {
             return <ProductCard key={product.id} product={product} />;
           })
         ) : (
-          <h1>seeded</h1>
+          <h3>No Products</h3>
         )}
       </Box>
     </Main>
