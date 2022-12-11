@@ -7,6 +7,16 @@ import { Op } from 'sequelize';
 // CategoriesController.ts file
 export default class CategoriesController {
   // get All Categories
+  public static async all(req: Request, res: Response) {
+    const categories = await Category.findAll({ attributes: ['id', 'title'] });
+
+    res.status(200).json({
+      status: 200,
+      data: categories,
+    });
+  }
+
+  // get all parents Categories
   public static async catIndex(req: Request, res: Response) {
     const categories = await Category.findAll({
       where: {
