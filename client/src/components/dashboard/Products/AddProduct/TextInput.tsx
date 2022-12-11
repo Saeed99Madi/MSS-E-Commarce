@@ -1,20 +1,13 @@
 import { TextField } from '@mui/material';
 import { ChangeEventHandler } from 'react';
-// import { IProduct } from '../../../../interfaces/IProduct';
+import { IProduct } from '../../../../interfaces/IProduct';
 
-type Product = {
-  title: string;
-  cover: string;
-  description: string;
-  CategoryId: string;
-  catalog: string;
-};
 type Props = {
   handleProductChange: ChangeEventHandler<
     HTMLInputElement | HTMLTextAreaElement
   >;
   name: string;
-  newProduct: Product;
+  newProduct: IProduct;
   label: string;
 };
 const TextInput = (props: Props) => {
@@ -31,7 +24,7 @@ const TextInput = (props: Props) => {
           'linear-gradient(130.79deg, rgba(255, 255, 255, 0.08) -37.1%, rgba(255, 255, 255, 0) 134.47%)',
       }}
       onChange={handleProductChange}
-      value={newProduct[name as keyof Product]}
+      value={newProduct[name as keyof IProduct]}
       id="standard-basic"
       label={label}
       variant="standard"
