@@ -1,11 +1,12 @@
 export interface IProduct {
-  id: number;
+  id?: number;
   title: string;
   active: boolean;
   description: string;
-  categoryId: number;
-  cover: string;
-  catalog?: string;
-  createdAt: string;
-  updatedAt: string;
+  CategoryId: string;
+  cover?: File;
+  gallery: File[];
+  catalog?: File;
+  createdAt?: string;
+  updatedAt?: string;
 }

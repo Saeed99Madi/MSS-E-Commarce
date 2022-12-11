@@ -2,7 +2,7 @@ import ApiServices from '../servises/ApiService';
 import { ICategories } from '../interfaces/ICategories';
 
 ApiServices.init();
-console.log(ApiServices.init());
+
 const useCategories = () => {
   return async (): Promise<ICategories[]> => {
     const { data } = await ApiServices.get('categories');
