@@ -17,6 +17,8 @@ router.get(
   errorWrapper(CategoriesController.subCatIndex),
 );
 
+router.get('/categories/all', errorWrapper(CategoriesController.all));
+
 // router.post('/categories');
 
 export default router;
