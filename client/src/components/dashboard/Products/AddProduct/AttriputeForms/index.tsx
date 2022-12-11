@@ -1,8 +1,8 @@
 // import { Dispatch, SetStateAction } from 'react';
-import { Box, Button, Divider, Typography } from '@mui/material';
+import { Button, Divider, Typography } from '@mui/material';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import NoteAddIcon from '@mui/icons-material/NoteAdd';
-import uuid from 'react-uuid';
+
 import { IProductattripute } from '../../../../../interfaces/IAttripute';
 import { DescriptionInput } from '../components.styled';
 
