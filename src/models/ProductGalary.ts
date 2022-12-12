@@ -4,6 +4,7 @@ import { Model, DataTypes } from 'sequelize';
 class ProductGalary extends Model {
   declare id: number;
   declare image: string;
+  declare ProductId?: number;
 }
 ProductGalary.init(
   {
