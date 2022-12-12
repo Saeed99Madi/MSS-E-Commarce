@@ -10,8 +10,6 @@ export default class ApiServices {
       baseURL: process.env.REACT_APP_BASE_URL,
       headers: {
         Authorization: `Bearer ${JwtService.getToken()}`,
-        accept: 'application/json',
-        'Content-Type': 'application/json',
       },
     });
   }

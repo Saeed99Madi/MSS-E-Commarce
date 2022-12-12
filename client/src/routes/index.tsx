@@ -4,6 +4,8 @@ import { ProductsList } from '../components/dashboard/Products';
 import Dashboard from '../pages/dashboard';
 
 import useProducts from '../hooks/getProducts';
+import DashboardLayout from '../layouts/DashboardLayout';
+import { Categories } from '../components/dashboard/Categories';
 
 const Routes = [
   {
@@ -14,6 +16,14 @@ const Routes = [
       {
         path: 'products',
         element: <ProductsList />,
+      },
+      {
+        path: 'categories',
+        element: (
+          <DashboardLayout>
+            <Categories />
+          </DashboardLayout>
+        ),
       },
     ],
   },

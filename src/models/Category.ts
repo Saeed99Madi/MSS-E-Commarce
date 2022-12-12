@@ -5,7 +5,7 @@ class Category extends Model {
   declare id: number;
   declare title: string;
   declare description: string;
-  declare cover: string;
+  declare cover?: string;
 }
 Category.init(
   {
@@ -23,6 +23,9 @@ Category.init(
     },
     cover: {
       type: DataTypes.STRING,
+    },
+    isChild: {
+      type: DataTypes.BOOLEAN,
     },
   },
   {

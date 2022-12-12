@@ -12,6 +12,10 @@ const errorWrapper = (controller: RequestHandler) => {
         error.status = 422;
       } else if (error.name === 'Unauthorized') {
         error.status = 401;
+      } else if (error.name === 'CATEGORY NOT FOUND') {
+        error.status = 404;
+      } else if (error.name === 'PRODUCTS NOT FOUND') {
+        error.status = 404;
       } else if (
         error.name ===
         "The email address you entered isn't connected to an account"
