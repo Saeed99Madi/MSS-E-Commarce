@@ -1,33 +1,44 @@
-import { ChangeEvent, useContext } from 'react';
+import { ChangeEvent, useContext, useEffect, useState } from 'react';
 
 import Box from '@mui/material/Box';
 import { MenuItem, Select, SelectChangeEvent, TextField } from '@mui/material';
-import { arrowIcon } from '../components.styled';
-import { DashboardContext } from '../../../context/DashboardContext';
+import { arrowIcon } from '../../components.styled';
+import { DashboardContext } from '../../../../context/DashboardContext';
+import depounce from '../../../../servises/debounce';
+import getAllCategories from '../../../../hooks/getAllCategories';
+import { ICategories } from '../../../../interfaces/ICategories';
 
-export const Actions = () => {
+export const Search = () => {
   const {
     searchFilterCategory,
     setSearchFilterCategory,
     productSearch,
     setProductSearch,
   } = useContext(DashboardContext);
-
+  const [searchInput, setSearchInput] = useState('');
   const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setProductSearch(event.target.value);
+    setSearchInput(event.target.value);
   };
+  const [categories, setcategories] = useState<ICategories[]>([]);
   const handleFilterCategoryChange = (event: SelectChangeEvent) => {
     setSearchFilterCategory(event.target.value);
   };
   // change Context value
-  //   useEffect(() => {
-  //     depounce(() => {
-  //       if (setFilter) {
-  //         setFilter({ ...filter, content: searchInput });
-  //       }
-  //     }, 1500);
-  //     // eslint-disable-next-line react-hooks/exhaustive-deps
-  //   }, [searchInput]);
+  useEffect(() => {
+    depounce(() => {
+      if (setProductSearch) {
+        setProductSearch(searchInput);
+      }
+    }, 1500);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchInput]);
+  const allCategories = getAllCategories();
+  useEffect(() => {
+    (async () => {
+      setcategories(await allCategories());
+    })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <Box
       sx={{
@@ -48,7 +59,7 @@ export const Actions = () => {
           marginLeft: '1rem',
         }}
         onChange={handleSearchChange}
-        value={productSearch}
+        value={searchInput}
         id="standard-basic"
         label="Search Products..."
         variant="standard"
@@ -71,20 +82,13 @@ export const Actions = () => {
         <MenuItem value="">
           <em>Category</em>
         </MenuItem>
-        <MenuItem value="10">Ten</MenuItem>
-        <MenuItem value="20">Twenty</MenuItem>
-        <MenuItem value="30">Thirty</MenuItem>
-        <MenuItem value="10">Ten</MenuItem>
-        <MenuItem value="20">Twenty</MenuItem>
-        <MenuItem value="30">Thirty</MenuItem>
-        <MenuItem value="10">Ten</MenuItem>
-        <MenuItem value="20">Twenty</MenuItem>
-        <MenuItem value="30">Thirty</MenuItem>
-        <MenuItem value="20">Twenty</MenuItem>
-        <MenuItem value="30">Thirty</MenuItem>
-        <MenuItem value="10">Ten</MenuItem>
-        <MenuItem value="20">Twenty</MenuItem>
-        <MenuItem value="30">Thirty</MenuItem>
+        {categories.map((ele: ICategories) => {
+          return (
+            <MenuItem key={ele.id} value={`${ele.id}`}>
+              {ele.title}
+            </MenuItem>
+          );
+        })}
       </Select>
     </Box>
   );
