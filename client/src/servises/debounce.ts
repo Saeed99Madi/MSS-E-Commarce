@@ -1,8 +1,8 @@
-const depounce = (fn: Function, delay: number): Function => {
+const depounce = (fn: Function, delay: number): NodeJS.Timeout => {
   const timer = setTimeout(() => {
     fn();
   }, delay);
 
-  return () => clearTimeout(timer);
+  return timer;
 };
 export default depounce;
