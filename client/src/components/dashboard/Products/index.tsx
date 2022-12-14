@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 
 import { Box } from '@mui/material';
 import { ProductCard } from './Card';
@@ -6,7 +6,6 @@ import { ProductCard } from './Card';
 import { DrawerHeader, Main } from '../components.styled';
 
 import { Actions } from '../Actions';
-import { IProduct } from '../../../interfaces/IProduct';
 
 import { DashboardContext } from '../../../context/DashboardContext';
 import AddProduct from './AddProduct';
@@ -14,36 +13,8 @@ import ApiServices from '../../../servises/ApiService';
 
 ApiServices.init();
 export const ProductsList = () => {
-  const [products, setProducts] = useState<IProduct[]>([]);
   const [openAddProduct, setOpenAddProduct] = useState(false);
-  const { openSideBar, productSearch, searchFilterCategory } =
-    useContext(DashboardContext);
-
-  // const productsfetch = useProducts();
-  useEffect(() => {
-    (async () => {
-      if (productSearch && searchFilterCategory) {
-        const { data } = await ApiServices.get(
-          `products/${productSearch}/${searchFilterCategory}`,
-        );
-        setProducts(data.data);
-      } else if (searchFilterCategory && !productSearch) {
-        const { data } = await ApiServices.get(
-          `/category/products/${searchFilterCategory}`,
-        );
-        setProducts(data.data);
-      } else if (!searchFilterCategory && productSearch) {
-        const { data } = await ApiServices.get(
-          `products/${productSearch}/${searchFilterCategory}`,
-        );
-        setProducts(data.data);
-      } else {
-        const { data } = await ApiServices.get(`products`);
-        setProducts(data.data);
-      }
-    })();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [productSearch, searchFilterCategory]);
+  const { openSideBar, products } = useContext(DashboardContext);
 
   return (
     <Main open={openSideBar} sx={{ background: '#141417' }}>
