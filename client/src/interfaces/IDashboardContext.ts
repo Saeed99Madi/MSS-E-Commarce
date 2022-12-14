@@ -1,6 +1,9 @@
 import { Dispatch, SetStateAction } from 'react';
+import { IProduct } from './IProduct';
 
 interface IDashboardContext {
+  products: IProduct[];
+  setProducts: Dispatch<SetStateAction<IProduct[]>>;
   searchFilterCategory: string;
   setSearchFilterCategory: Dispatch<SetStateAction<string>>;
   productSearch: string;
