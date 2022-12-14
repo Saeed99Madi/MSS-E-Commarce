@@ -4,7 +4,7 @@ import { Product, ProductAttripute, ProductGalary } from '../models';
 import CustomError from '../helpers/errorHandler/CustomError';
 import { productSchema } from '../schemes';
 import { sequelize } from '../db';
-import PublishProduct from '../helpers/products/unPublishProduct';
+import ProductHelpers from '../helpers/products/ProductHelpers';
 import { IAttripute } from '../interfaces/IAttripute';
 
 // import environment from '../config/environment';
@@ -89,7 +89,7 @@ export default class ProductController {
 
     await Promise.all(
       products.map(async (productId: number | undefined) => {
-        return await PublishProduct.unPublish(productId);
+        return await ProductHelpers.unPublish(productId);
       }),
     );
     res.status(200).json({
@@ -106,13 +106,32 @@ export default class ProductController {
 
     await Promise.all(
       products.map(async (productId: number | undefined) => {
-        return await PublishProduct.publish(productId);
+        return await ProductHelpers.publish(productId);
       }),
     );
 
     res.status(200).json({
       status: 200,
       message: 'products has been Published successfully',
+    });
+  }
+
+  public static async destroy(req: Request, res: Response) {
+    const { productsIds } = req.params;
+    const products = JSON.parse(productsIds);
+    if (!products) {
+      throw new CustomError(404, 'PRODUCTS NOT FOUND');
+    }
+
+    await Promise.all(
+      products.map(async (productId: number | undefined) => {
+        return await ProductHelpers.delete(productId);
+      }),
+    );
+
+    res.status(200).json({
+      status: 200,
+      message: 'products has been dleted successfully',
     });
   }
 
