@@ -9,4 +9,5 @@ export interface IProduct {
   catalog?: File;
   createdAt?: string;
   updatedAt?: string;
+  checked?: boolean;
 }
