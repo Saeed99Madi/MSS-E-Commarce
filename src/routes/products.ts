@@ -20,6 +20,10 @@ router.post(
 router.put('/products/unpublish', errorWrapper(ProductController.unPublish));
 router.put('/products/publish', errorWrapper(ProductController.publish));
 router.get('/products', errorWrapper(ProductController.index));
+router.delete(
+  '/products/delete/:productsIds',
+  errorWrapper(ProductController.destroy),
+);
 router.get(
   '/category/products/:CategoryId',
   errorWrapper(ProductController.categoryProducts),
