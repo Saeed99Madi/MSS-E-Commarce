@@ -30,6 +30,7 @@ class App {
     this.app.use(cookieParser());
     this.app.use(express.urlencoded({ extended: false }));
     this.app.use('/api/v1', router);
+    this.app.use(express.static(join(__dirname, 'images')));
     if (environment.nodeEnv === 'production') {
       this.app.use(express.static(join(__dirname, '..', 'client', 'build')));
 
