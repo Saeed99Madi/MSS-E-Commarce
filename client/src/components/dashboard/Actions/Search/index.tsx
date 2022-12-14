@@ -9,12 +9,8 @@ import getAllCategories from '../../../../hooks/getAllCategories';
 import { ICategories } from '../../../../interfaces/ICategories';
 
 export const Search = () => {
-  const {
-    searchFilterCategory,
-    setSearchFilterCategory,
-    productSearch,
-    setProductSearch,
-  } = useContext(DashboardContext);
+  const { searchFilterCategory, setSearchFilterCategory, setProductSearch } =
+    useContext(DashboardContext);
   const [searchInput, setSearchInput] = useState('');
   const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchInput(event.target.value);
@@ -25,13 +21,16 @@ export const Search = () => {
   };
   // change Context value
   useEffect(() => {
-    depounce(() => {
+    const timer = depounce(() => {
       if (setProductSearch) {
         setProductSearch(searchInput);
       }
     }, 1500);
+
+    return () => clearTimeout(timer);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchInput]);
+
   const allCategories = getAllCategories();
   useEffect(() => {
     (async () => {

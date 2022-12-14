@@ -1,8 +1,11 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 
 import { Box, MenuItem } from '@mui/material';
 import { arrowIcon } from '../../components.styled';
 import { SelectCats } from '../../Products/AddProduct/components.styled';
+import ApiServices from '../../../../servises/ApiService';
+import { DashboardContext } from '../../../../context/DashboardContext';
+import { IProduct } from '../../../../interfaces/IProduct';
 // type Props = {
 // };
 const actions = [
@@ -12,11 +15,51 @@ const actions = [
   { id: 4, name: 'Select All' },
   { id: 5, name: 'un Select All' },
 ];
+ApiServices.init();
 
 export const MarkAs = () => {
+  const { checkedProducts, setIsCheckedProducts, products, setProducts } =
+    useContext(DashboardContext);
   const [markas, setmarkAs] = useState<Array<string>>([]);
   const handleMarkAs = (e: any) => {
+    const { value } = e.target;
     setmarkAs(e.target.value);
+    switch (value) {
+      case '1':
+        ApiServices.put('products/publish', [...checkedProducts]);
+        break;
+      case '2':
+        ApiServices.put('products/unpublish', [...checkedProducts]);
+        break;
+      case '3':
+        ApiServices.destroy(`products/delete/${[...checkedProducts]}`);
+        break;
+      case '4':
+        // eslint-disable-next-line no-case-declarations
+        const newproduct = products.map(ele => {
+          // eslint-disable-next-line no-param-reassign
+          ele.checked = true;
+          return { ...ele };
+        });
+        setProducts([...newproduct]);
+        setIsCheckedProducts(products.map(ele => ele.id ?? 0));
+        console.log(checkedProducts);
+
+        break;
+      case '5':
+        setProducts(
+          products.map(ele => {
+            // eslint-disable-next-line no-param-reassign
+            ele.checked = false;
+            return { ...ele };
+          }),
+        );
+        setIsCheckedProducts([]);
+
+        break;
+      default:
+        throw new Error('error in Mark As actions');
+    }
   };
   return (
     <Box
