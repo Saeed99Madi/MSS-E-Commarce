@@ -5,9 +5,7 @@ import { arrowIcon } from '../../components.styled';
 import { SelectCats } from '../../Products/AddProduct/components.styled';
 import ApiServices from '../../../../servises/ApiService';
 import { DashboardContext } from '../../../../context/DashboardContext';
-import { IProduct } from '../../../../interfaces/IProduct';
-// type Props = {
-// };
+
 const actions = [
   { id: 1, name: 'Puplish' },
   { id: 2, name: 'Un Puplish' },
