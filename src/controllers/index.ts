@@ -1,3 +1,5 @@
 import AuthController from './AuthController';
 import CategoriesController from './CategoriesController';
-export default { AuthController, CategoriesController };
+import ServicesController from './ServicesController';
+
+export { ServicesController, AuthController, CategoriesController };
