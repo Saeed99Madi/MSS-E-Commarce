@@ -184,5 +184,27 @@
       "description": "Product 2 attripute 2",
       "ProductId": 2
     }
+  ],
+  "Service": [
+    {
+      "title": "jmajem",
+      "description": "Jmajem is the best category",
+      "cover": "download.jpeg"
+    },
+    {
+      "title": "Aliens",
+      "description": "Aliens is the best  Mode category",
+      "cover": "download.jpeg"
+    },
+    {
+      "title": "Test1",
+      "description": "Test1 Test1 Test1 Test1",
+      "cover": "download.jpeg"
+    },
+    {
+      "title": "Test2",
+      "description": "Test2 Test2 Test2 Test2",
+      "cover": "download.jpeg"
+    }
   ]
 }
