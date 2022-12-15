@@ -1,6 +1,13 @@
 import environment from '../config/environment';
 
-import { sequelize, Product, ProductAttripute, Category, User } from '.';
+import {
+  sequelize,
+  Product,
+  ProductAttripute,
+  Category,
+  User,
+  Settings,
+} from '.';
 
 import data from './seeds.json';
 
@@ -11,6 +18,7 @@ const buildDB = async () => {
   await Category.bulkCreate(data.Category);
   await Product.bulkCreate(data.Product);
   await ProductAttripute.bulkCreate(data.ProductAttripute);
+  await Settings.bulkCreate(data.Settings);
 };
 
 if (environment.nodeEnv !== 'test') {

@@ -54,7 +54,7 @@ Settings.init(
       type: DataTypes.STRING,
     },
     bio: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
     },
   },
   {

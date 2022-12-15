@@ -2,5 +2,12 @@ import SignInSchema from './auth/signIn';
 import SignUpSchema from './auth/signup';
 import productSchema from './product';
 import categoriesSchema from './categories';
+import SettingsValid from './settings';
 
-export { SignInSchema, SignUpSchema, productSchema, categoriesSchema };
+export {
+  SettingsValid,
+  SignInSchema,
+  SignUpSchema,
+  productSchema,
+  categoriesSchema,
+};

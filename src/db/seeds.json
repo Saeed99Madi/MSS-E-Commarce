@@ -184,5 +184,20 @@
       "description": "Product 2 attripute 2",
       "ProductId": 2
     }
+  ],
+  "Settings": [
+    {
+      "email": "Saed.dev9@gmail.com",
+      "phone": "+970599266293",
+      "phone2": "+970567266293",
+      "address": "",
+      "facebook": "",
+      "instagram": "",
+      "linkedIn": "",
+      "youtupe": "",
+      "bio": "hello i am Seaid Madi i like to devlop we application, i have experiance in nodeJS, Express as BackEnd, and HTML CSS ES6, React as FrontEnd",
+      "logo": "",
+      "logo2": ""
+    }
   ]
 }
