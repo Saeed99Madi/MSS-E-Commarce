@@ -6,6 +6,7 @@ class Service extends Model {
   declare title: string;
   declare description: string;
   declare cover: string;
+  declare active?: boolean;
 }
 Service.init(
   {
@@ -24,6 +25,10 @@ Service.init(
     },
     cover: {
       type: DataTypes.STRING,
+    },
+    active: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
     },
   },
   {

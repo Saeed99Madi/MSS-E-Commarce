@@ -185,6 +185,7 @@
       "ProductId": 2
     }
   ],
+<<<<<<< HEAD
   "Settings": [
     {
       "email": "Saed.dev9@gmail.com",
@@ -198,6 +199,28 @@
       "bio": "hello i am Seaid Madi i like to devlop we application, i have experiance in nodeJS, Express as BackEnd, and HTML CSS ES6, React as FrontEnd",
       "logo": "",
       "logo2": ""
+=======
+  "Service": [
+    {
+      "title": "jmajem",
+      "description": "Jmajem is the best category",
+      "cover": "download.jpeg"
+    },
+    {
+      "title": "Aliens",
+      "description": "Aliens is the best  Mode category",
+      "cover": "download.jpeg"
+    },
+    {
+      "title": "Test1",
+      "description": "Test1 Test1 Test1 Test1",
+      "cover": "download.jpeg"
+    },
+    {
+      "title": "Test2",
+      "description": "Test2 Test2 Test2 Test2",
+      "cover": "download.jpeg"
+>>>>>>> 84f0dec3fd9eb705489face4edaa9f2531c3b86d
     }
   ]
 }

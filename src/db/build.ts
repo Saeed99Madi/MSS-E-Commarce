@@ -7,6 +7,7 @@ import {
   Category,
   User,
   Settings,
+  Service,
 } from '.';
 
 import data from './seeds.json';
@@ -19,6 +20,7 @@ const buildDB = async () => {
   await Product.bulkCreate(data.Product);
   await ProductAttripute.bulkCreate(data.ProductAttripute);
   await Settings.bulkCreate(data.Settings);
+  await Service.bulkCreate(data.Service);
 };
 
 if (environment.nodeEnv !== 'test') {
