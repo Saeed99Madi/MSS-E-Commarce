@@ -118,7 +118,10 @@ export default class ProductController {
 
   public static async destroy(req: Request, res: Response) {
     const { productsIds } = req.params;
-    const products = JSON.parse(productsIds);
+    const products = productsIds.split(',').map(function (item) {
+      return parseInt(item, 10);
+    });
+
     if (!products) {
       throw new CustomError(404, 'PRODUCTS NOT FOUND');
     }
