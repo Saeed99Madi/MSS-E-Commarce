@@ -60,105 +60,105 @@
     {
       "title": "Ahmed 1",
       "description": "IceAge is the best Admiral category IceAge is the best Admiral category",
-      "cover": "dsfrdfdfgjdfgafgh",
+      "cover": "download.jpeg",
       "CategoryId": 1,
       "UserId": 1
     },
     {
       "title": "Ahmed Shaheen2",
       "description": "IceAge is the best Admiral category IceAge is the best Admiral category",
-      "cover": "dsfrdfdfgjdfgafgh",
+      "cover": "download.jpeg",
       "CategoryId": 1,
       "UserId": 1
     },
     {
       "title": "Ahmed Shaheen3",
       "description": "IceAge is the best Admiral category IceAge is the best Admiral category",
-      "cover": "dsfrdfdfgjdfgafgh",
+      "cover": "download.jpeg",
       "CategoryId": 1,
       "UserId": 1
     },
     {
       "title": "Ahmed Shaheen4",
       "description": "2IceAge is the best Admiral category IceAge is the best Admiral category",
-      "cover": "dsfrdfdfgjdfgafgh",
+      "cover": "download.jpeg",
       "CategoryId": 2,
       "UserId": 1
     },
     {
       "title": "Ahmed Shaheen5",
       "description": "2IceAge is the best Admiral category IceAge is the best Admiral category",
-      "cover": "dsfrdfdfgjdfgafgh",
+      "cover": "download.jpeg",
       "CategoryId": 2,
       "UserId": 1
     },
     {
       "title": "Ahmed 2",
       "description": "IceAge is the best Admiral category IceAge is the best Admiral category",
-      "cover": "dsfrdfdfgjdfgafgh",
+      "cover": "download.jpeg",
       "CategoryId": 1,
       "UserId": 1
     },
     {
       "title": "Ahmed Shaheen7",
       "description": "IceAge is the best Admiral category IceAge is the best Admiral category",
-      "cover": "dsfrdfdfgjdfgafgh",
+      "cover": "download.jpeg",
       "CategoryId": 1,
       "UserId": 1
     },
     {
       "title": "Ahmed Shaheen8",
       "description": "IceAge is the best Admiral category IceAge is the best Admiral category",
-      "cover": "dsfrdfdfgjdfgafgh",
+      "cover": "download.jpeg",
       "CategoryId": 1,
       "UserId": 1
     },
     {
       "title": "Ahmed Shaheen9",
       "description": "2IceAge is the best Admiral category IceAge is the best Admiral category",
-      "cover": "dsfrdfdfgjdfgafgh",
+      "cover": "download.jpeg",
       "CategoryId": 2,
       "UserId": 1
     },
     {
       "title": "Ahmed Shaheen10",
       "description": "2IceAge is the best Admiral category IceAge is the best Admiral category",
-      "cover": "dsfrdfdfgjdfgafgh",
+      "cover": "download.jpeg",
       "CategoryId": 2,
       "UserId": 1
     },
     {
       "title": "Ahmed 3",
       "description": "IceAge is the best Admiral category IceAge is the best Admiral category",
-      "cover": "dsfrdfdfgjdfgafgh",
+      "cover": "download.jpeg",
       "CategoryId": 1,
       "UserId": 1
     },
     {
       "title": "Ahmed Shaheen12",
       "description": "IceAge is the best Admiral category IceAge is the best Admiral category",
-      "cover": "dsfrdfdfgjdfgafgh",
+      "cover": "download.jpeg",
       "CategoryId": 1,
       "UserId": 1
     },
     {
       "title": "Ahmed Shaheen13",
       "description": "IceAge is the best Admiral category IceAge is the best Admiral category",
-      "cover": "dsfrdfdfgjdfgafgh",
+      "cover": "download.jpeg",
       "CategoryId": 1,
       "UserId": 1
     },
     {
       "title": "Ahmed Shaheen14",
       "description": "2IceAge is the best Admiral category IceAge is the best Admiral category",
-      "cover": "dsfrdfdfgjdfgafgh",
+      "cover": "download.jpeg",
       "CategoryId": 2,
       "UserId": 1
     },
     {
       "title": "Ahmed Shaheen15",
       "description": "2IceAge is the best Admiral category IceAge is the best Admiral category",
-      "cover": "dsfrdfdfgjdfgafgh",
+      "cover": "download.jpeg",
       "CategoryId": 2,
       "UserId": 1
     }
@@ -183,6 +183,28 @@
       "title": "Product 2",
       "description": "Product 2 attripute 2",
       "ProductId": 2
+    }
+  ],
+  "Service": [
+    {
+      "title": "jmajem",
+      "description": "Jmajem is the best category",
+      "cover": "download.jpeg"
+    },
+    {
+      "title": "Aliens",
+      "description": "Aliens is the best  Mode category",
+      "cover": "download.jpeg"
+    },
+    {
+      "title": "Test1",
+      "description": "Test1 Test1 Test1 Test1",
+      "cover": "download.jpeg"
+    },
+    {
+      "title": "Test2",
+      "description": "Test2 Test2 Test2 Test2",
+      "cover": "download.jpeg"
     }
   ]
 }

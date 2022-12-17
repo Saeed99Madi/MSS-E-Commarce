@@ -16,6 +16,17 @@ export default class CategoriesController {
     });
   }
 
+  // get All Categories
+  public static async show(req: Request, res: Response) {
+    const { id } = req.params;
+    const category = await Category.findByPk(id);
+
+    res.status(200).json({
+      status: 200,
+      data: category,
+    });
+  }
+
   // get all parents Categories
   public static async catIndex(req: Request, res: Response) {
     const categories = await Category.findAll({

@@ -18,6 +18,7 @@ router.get(
 );
 
 router.get('/categories/all', errorWrapper(CategoriesController.all));
+router.get('/categories/show/:id', errorWrapper(CategoriesController.show));
 
 // router.post('/categories');
 

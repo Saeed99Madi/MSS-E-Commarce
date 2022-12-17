@@ -4,7 +4,9 @@ import { Box, Typography } from '@mui/material';
 
 import { DashboardContext } from '../../../../context/DashboardContext';
 import { IProduct } from '../../../../interfaces/IProduct';
+import ApiServices from '../../../../servises/ApiService';
 
+ApiServices.init();
 type Props = {
   product: IProduct;
 };
@@ -14,9 +16,16 @@ export const ProductCard = (props: Props) => {
   // console.log('product');
 
   const [isChecked, setIsChecked] = useState(false);
+  const [categoryName, setCategoryName] = useState('');
 
   const { setIsCheckedProducts } = useContext(DashboardContext);
   useEffect(() => {
+    (async () => {
+      const { data } = await ApiServices.get(
+        `categories/show/${product.CategoryId}`,
+      );
+      setCategoryName(data.data.title);
+    })();
     if (product.checked) {
       setIsChecked(product.checked);
     } else {
@@ -78,7 +87,7 @@ export const ProductCard = (props: Props) => {
             sx={{ color: '#F6CD06', fontSize: '12px', margin: '0' }}
             paragraph
           >
-            Category name
+            {categoryName}
           </Typography>
         </Box>
         <img
@@ -90,7 +99,7 @@ export const ProductCard = (props: Props) => {
             borderRadius: '12px',
             boxSizing: 'border-box',
           }}
-          src="https://images.unsplash.com/photo-1594818379496-da1e345b0ded?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1032&q=80"
+          src={`${process.env.REACT_APP_BASEE_URL}/products/${product.cover}`}
           alt="Renewable energy"
           loading="lazy"
         />
