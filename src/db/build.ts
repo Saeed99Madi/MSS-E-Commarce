@@ -6,6 +6,7 @@ import {
   ProductAttripute,
   Category,
   User,
+  Settings,
   Service,
 } from '.';
 
@@ -18,6 +19,7 @@ const buildDB = async () => {
   await Category.bulkCreate(data.Category);
   await Product.bulkCreate(data.Product);
   await ProductAttripute.bulkCreate(data.ProductAttripute);
+  await Settings.bulkCreate(data.Settings);
   await Service.bulkCreate(data.Service);
 };
 
