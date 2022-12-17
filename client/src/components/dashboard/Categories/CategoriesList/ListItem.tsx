@@ -51,11 +51,8 @@ const ListItem = ({ open, categoryItem, id }: Props) => {
   useEffect(() => {
     (async () => {
       const data = await fetchSubcategories(selectedCategory);
-      console.log({ data });
-
       setSubCategory(data);
     })();
-    console.log({ selectedCategory });
   }, [selectedCategory]);
 
   const handleClick = (e: any) => {

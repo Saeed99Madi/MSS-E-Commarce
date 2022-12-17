@@ -50,15 +50,20 @@ export default class CategoriesController {
 
   // create categories
   public static async create(req: Request, res: Response) {
-    const { id, title, description, cover, parentId } = req.body;
-
-    await categoriesSchema({ title, description, cover });
-
+    console.log('888888888888888888', req);
+    const { title, description, parentId } = req.body;
+    console.log({ title, description, parentId });
+    await categoriesSchema({ title, description });
+    console.log('............................');
     const category = await Category.findOne({ where: { title } });
     if (category) {
+      console.log('000000000000000000000');
+
       throw new CustomError(422, 'The category was added previously !');
     }
     if (!parentId) {
+      console.log('11111111111111111');
+
       const newCategory = Category.build({
         title,
         description,
@@ -71,6 +76,7 @@ export default class CategoriesController {
         data: newCategory,
       });
     } else {
+      console.log('2222222222222222222');
       const newSubCategory = Category.build({
         title,
         description,
