@@ -61,9 +61,9 @@ export default class CategoriesController {
 
   // create categories
   public static async create(req: Request, res: Response) {
-    console.log('888888888888888888', req);
-    const { title, description, parentId } = req.body;
-    console.log({ title, description, parentId });
+    console.log('88888888888888888', req);
+    const { title, description, parentId, cover } = req.body;
+    console.log({ title, description, parentId, cover });
     await categoriesSchema({ title, description });
     console.log('............................');
     const category = await Category.findOne({ where: { title } });

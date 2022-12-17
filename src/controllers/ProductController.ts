@@ -137,6 +137,9 @@ export default class ProductController {
 
   // create Product
   public static async create(req: Request, res: Response) {
+    console.log('*************************************');
+    console.log(req.body);
+    console.log('*************************************');
     const files = req.files as { [fieldname: string]: Express.Multer.File[] };
     const { gallery, cover, catalog } = files;
     const catalogInstance = catalog[0];
