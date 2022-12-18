@@ -10,6 +10,7 @@ const SettingsFields = [
   { name: 'logo', maxCount: 1 },
   { name: 'logo2', maxCount: 1 },
 ];
+router.get('/settings', errorWrapper(SettingsController.index));
 router.put(
   '/settings/update',
   upload.fields(SettingsFields),

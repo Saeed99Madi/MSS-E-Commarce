@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 import { Box, Button, Typography } from '@mui/material';
 
@@ -29,6 +29,12 @@ export const SettingsManagement = () => {
     logo: '',
     logo2: '',
   });
+  useEffect(() => {
+    (async () => {
+      const { data } = await ApiServices.get('settings');
+      setSettings(data.data);
+    })();
+  }, []);
 
   const handleSettingsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -185,5 +191,3 @@ export const SettingsManagement = () => {
     </Main>
   );
 };
-
-// id
