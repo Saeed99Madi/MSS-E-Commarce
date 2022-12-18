@@ -28,8 +28,6 @@ const AddCategory = () => {
     parentId: '',
   };
 
-  // **********************
-
   // getting the event handlers
   const { onChange, values } = useForm(initialState);
   const [categories, setCategories] = useState<ICategories[]>([]);
@@ -60,15 +58,14 @@ const AddCategory = () => {
 
   // "Async"  function to send the data
   ApiServices.init();
-  const AddCategoryCB = () => {
+  const AddCategoryCB = async () => {
     const data = new FormData();
     if (!values.cover) return;
     data.append('title', values.title);
     data.append('description', values.description);
     data.append('cover', values.cover);
     data.append('parentId', values.parentId);
-    console.log({ data });
-    console.log({ values });
+
     ApiServices.post('/categories', data);
   };
 
@@ -80,16 +77,12 @@ const AddCategory = () => {
         color: '#FFFFFF',
         height: '100vh',
       }}
-      style={{
-        border: '1px solid red',
-      }}
     >
       <DrawerHeader />
       <div
         style={{
-          border: '1px solid green',
           height: '95.6%',
-          padding: '36px',
+          padding: '25px',
           background: '#1E1E21',
           borderTopLeftRadius: '2rem',
           minWidth: '420px',

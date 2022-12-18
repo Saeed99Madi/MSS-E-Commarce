@@ -3,15 +3,8 @@
     overflow: hidden !important;
 }
 
-/* .css-1ojv1sp {
-  
-  width: 87vw;
-  overflow: hidden !important;
-} */
-
 .wrapper main:first-child {
     flex: 3;
-    margin-right: 32px;
 }
 .wrapper main:nth-child(2) {
     flex: 1;
