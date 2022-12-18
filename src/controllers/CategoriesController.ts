@@ -3,7 +3,7 @@ import { Category } from '../models';
 import CustomError from '../helpers/errorHandler/CustomError';
 import { categoriesSchema } from '../schemes';
 import { Op } from 'sequelize';
-
+import * as fs from 'fs';
 // CategoriesController.ts file
 export default class CategoriesController {
   // get All Categories
@@ -61,24 +61,28 @@ export default class CategoriesController {
 
   // create categories
   public static async create(req: Request, res: Response) {
-    console.log('88888888888888888', req);
-    const { title, description, parentId, cover } = req.body;
-    console.log({ title, description, parentId, cover });
+    const files = req.files as { [fieldName: string]: Express.Multer.File[] };
+    const { cover } = files;
+    const coverInstance = cover[0];
+    const { title, description, parentId } = req.body;
     await categoriesSchema({ title, description });
-    console.log('............................');
     const category = await Category.findOne({ where: { title } });
+
     if (category) {
-      console.log('000000000000000000000');
-
+      // remove image if the category is already exist
+      try {
+        fs.unlinkSync(coverInstance.path);
+        // file removed
+      } catch (err) {
+        console.error(err);
+      }
       throw new CustomError(422, 'The category was added previously !');
-    }
-    if (!parentId) {
-      console.log('11111111111111111');
-
+    } else if (!parentId) {
       const newCategory = Category.build({
         title,
         description,
         isChild: false,
+        cover: coverInstance.filename,
       });
 
       await newCategory.save();
@@ -87,11 +91,11 @@ export default class CategoriesController {
         data: newCategory,
       });
     } else {
-      console.log('2222222222222222222');
       const newSubCategory = Category.build({
         title,
         description,
         isChild: true,
+        cover: coverInstance.filename,
         parentId,
       });
 
@@ -119,7 +123,7 @@ export default class CategoriesController {
     });
   }
 
-  // create categories
+  // update categories
   public static async update(req: Request, res: Response) {
     const { id, title, description, cover, parentId } = req.body;
 
