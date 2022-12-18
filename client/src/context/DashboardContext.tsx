@@ -1,20 +1,26 @@
 import { createContext, ReactNode, useEffect, useMemo, useState } from 'react';
 import IDashboardContext from '../interfaces/IDashboardContext';
 import { IProduct } from '../interfaces/IProduct';
+import { IService } from '../interfaces/IService';
 import ApiServices from '../servises/ApiService';
 
 ApiServices.init();
 const DashboardContext = createContext({} as IDashboardContext);
 const ProvideDashboard = ({ children }: { children: ReactNode }) => {
-  // fgfg
+  // Begen Products Managment States
   const [checkedProducts, setIsCheckedProducts] = useState<Array<number>>([]);
-
   const [searchFilterCategory, setSearchFilterCategory] = useState<string>('');
-
   const [productSearch, setProductSearch] = useState<string>('');
-
   const [openSideBar, setOpenSideBar] = useState(false);
   const [products, setProducts] = useState<IProduct[]>([]);
+  // Begen Products Managment States
+
+  // Begen Services Managment States
+  const [checkedServices, setIsCheckedServices] = useState<Array<number>>([]);
+  const [servicesSearch, setServicesSearch] = useState<string>('');
+  const [openAddService, setOpenAddService] = useState(false);
+  const [services, setServices] = useState<IService[]>([]);
+  // End Services Managment States
 
   useEffect(() => {
     (async () => {
@@ -38,11 +44,44 @@ const ProvideDashboard = ({ children }: { children: ReactNode }) => {
         setProducts(data.data);
       }
     })();
+    (async () => {
+      if (servicesSearch) {
+        const { data } = await ApiServices.get(
+          `products/${productSearch}/${searchFilterCategory}`,
+        );
+        setProducts(data.data);
+      }
+    })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [productSearch, searchFilterCategory]);
+  }, [productSearch, searchFilterCategory, servicesSearch]);
+
+  useEffect(() => {
+    (async () => {
+      if (servicesSearch !== '') {
+        const { data } = await ApiServices.get(
+          `/services/search/${servicesSearch}`,
+        );
+        setServices(data.data);
+      } else {
+        const { data } = await ApiServices.get(`/services`);
+        setServices(data.data);
+      }
+    })();
+  }, [servicesSearch]);
 
   const dashboardValues = useMemo(
     () => ({
+      // Begen Services Managment States
+      checkedServices,
+      setIsCheckedServices,
+      servicesSearch,
+      setServicesSearch,
+      openAddService,
+      setOpenAddService,
+      services,
+      setServices,
+      // End Services Managment States
+      // Begen Products Managment States
       products,
       setProducts,
       checkedProducts,
@@ -53,13 +92,18 @@ const ProvideDashboard = ({ children }: { children: ReactNode }) => {
       setProductSearch,
       openSideBar,
       setOpenSideBar,
+      // End Products Managment States
     }),
     [
-      checkedProducts,
-      openSideBar,
-      productSearch,
-      searchFilterCategory,
+      checkedServices,
+      servicesSearch,
+      openAddService,
+      services,
       products,
+      checkedProducts,
+      searchFilterCategory,
+      productSearch,
+      openSideBar,
     ],
   );
   return (
