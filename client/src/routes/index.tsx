@@ -3,9 +3,9 @@ import { MainDashboard } from '../components/dashboard';
 import { ProductsList } from '../components/dashboard/Products';
 import Dashboard from '../pages/dashboard';
 
-import useProducts from '../hooks/getProducts';
 import DashboardLayout from '../layouts/DashboardLayout';
 import { Categories } from '../components/dashboard/Categories';
+import { ServicesList } from '../components/dashboard/Services';
 
 const Routes = [
   {
@@ -16,6 +16,10 @@ const Routes = [
       {
         path: 'products',
         element: <ProductsList />,
+      },
+      {
+        path: 'services',
+        element: <ServicesList />,
       },
       {
         path: 'categories',
