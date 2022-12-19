@@ -99,7 +99,7 @@ const AddProduct = (props: Props) => {
     data.append('description', newProduct.description);
     const AttriputesStr = JSON.stringify(attriputes);
     data.append('attriputes', AttriputesStr);
-
+    console.log(data);
     ApiServices.post('products', data);
   };
 
