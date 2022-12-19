@@ -8,6 +8,8 @@ import { Categories } from '../components/dashboard/Categories';
 import { ServicesList } from '../components/dashboard/Services';
 import { SettingsManagement } from '../components/dashboard/SettingsManage';
 
+import { LoginDashboard } from '../components/dashboard/Login';
+
 const Routes = [
   {
     path: '/admin/dashboard',
@@ -37,8 +39,13 @@ const Routes = [
     ],
   },
   {
-    path: '/',
+    path: '',
     element: <App />,
+    // children: [{ index: true, element: <App /> }],
+  },
+  {
+    path: '/admin/login',
+    element: <LoginDashboard />,
     // children: [{ index: true, element: <App /> }],
   },
 ];
