@@ -1,14 +1,14 @@
 import sequelize from '../db/connection';
 import { Model, DataTypes } from 'sequelize';
 
-class Service extends Model {
+class Contact extends Model {
   declare id: number;
   declare name: string;
   declare phone: string;
   declare address: string;
   declare content: string;
 }
-Service.init(
+Contact.init(
   {
     id: {
       primaryKey: true,
@@ -35,4 +35,4 @@ Service.init(
     sequelize,
   },
 );
-export default Service;
+export default Contact;
