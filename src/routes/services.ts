@@ -12,10 +12,7 @@ router.delete(
   '/services/delete/:servicesIds',
   errorWrapper(ServicesController.destroy),
 );
-router.get(
-  '/services/:search/:CategoryId?',
-  errorWrapper(ServicesController.search),
-);
+router.get('/services/search/:search', errorWrapper(ServicesController.search));
 
 router.post(
   '/services',

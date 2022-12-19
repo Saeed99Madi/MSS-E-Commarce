@@ -108,6 +108,19 @@ export const SideBar = (props: Props) => {
         </Link>
         <Link
           style={{ color: '#FFFFFF', textDecoration: 'none' }}
+          to="/admin/dashboard/services"
+        >
+          <ListItem key="services" disablePadding>
+            <ListItemButton>
+              <ListItemIcon sx={{ color: '#FFFFFF' }}>
+                <InventoryIcon />
+              </ListItemIcon>
+              <ListItemText primary="Services" />
+            </ListItemButton>
+          </ListItem>
+        </Link>
+        <Link
+          style={{ color: '#FFFFFF', textDecoration: 'none' }}
           to="/admin/dashboard/contacts"
         >
           <ListItem key="contacts" disablePadding>

@@ -79,7 +79,10 @@ export default class ServicesController {
 
   public static async destroy(req: Request, res: Response) {
     const { servicesIds } = req.params;
-    const services = JSON.parse(servicesIds);
+
+    const services = servicesIds.split(',').map(function (item) {
+      return parseInt(item, 10);
+    });
     if (!services) {
       throw new CustomError(404, 'PRODUCTS NOT FOUND');
     }

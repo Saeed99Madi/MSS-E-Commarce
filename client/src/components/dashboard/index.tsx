@@ -4,7 +4,6 @@ import { useContext } from 'react';
 import { DashboardContext } from '../../context/DashboardContext';
 
 import { DrawerHeader, Main } from './components.styled';
-import AddProduct from './Products/AddProduct';
 
 export const MainDashboard = () => {
   const { openSideBar } = useContext(DashboardContext);
