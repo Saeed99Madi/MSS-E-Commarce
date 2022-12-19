@@ -6,6 +6,7 @@ import Dashboard from '../pages/dashboard';
 import useProducts from '../hooks/getProducts';
 import DashboardLayout from '../layouts/DashboardLayout';
 import { Categories } from '../components/dashboard/Categories';
+import { SettingsManagement } from '../components/dashboard/SettingsManage';
 
 const Routes = [
   {
@@ -24,6 +25,10 @@ const Routes = [
             <Categories />
           </DashboardLayout>
         ),
+      },
+      {
+        path: 'edit/settings',
+        element: <SettingsManagement />,
       },
     ],
   },

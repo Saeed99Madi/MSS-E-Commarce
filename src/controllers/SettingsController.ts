@@ -6,6 +6,15 @@ import { Settings } from '../db';
 
 // SettingsController.ts file
 export default class SettingsController {
+  public static async index(req: Request, res: Response) {
+    const webSitSettings = await Settings.findByPk(1);
+
+    res.status(200).json({
+      status: 200,
+      data: webSitSettings,
+    });
+  }
+
   // update Settings
   public static async update(req: Request, res: Response) {
     const files = req.files as { [fieldname: string]: Express.Multer.File[] };
