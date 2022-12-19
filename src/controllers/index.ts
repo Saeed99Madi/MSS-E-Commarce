@@ -1,5 +1,11 @@
 import AuthController from './AuthController';
 import CategoriesController from './CategoriesController';
 import ServicesController from './ServicesController';
+import SettingsController from './SettingsController';
 
-export { ServicesController, AuthController, CategoriesController };
+export {
+  SettingsController,
+  ServicesController,
+  AuthController,
+  CategoriesController,
+};

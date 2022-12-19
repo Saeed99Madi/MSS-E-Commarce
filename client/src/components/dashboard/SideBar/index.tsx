@@ -132,6 +132,19 @@ export const SideBar = (props: Props) => {
             </ListItemButton>
           </ListItem>
         </Link>
+        <Link
+          style={{ color: '#FFFFFF', textDecoration: 'none' }}
+          to="/admin/dashboard/edit/settings"
+        >
+          <ListItem key="settings" disablePadding>
+            <ListItemButton>
+              <ListItemIcon sx={{ color: '#FFFFFF' }}>
+                <ForumIcon />
+              </ListItemIcon>
+              <ListItemText primary="Settings Management" />
+            </ListItemButton>
+          </ListItem>
+        </Link>
       </List>
       <Divider />
     </Drawer>

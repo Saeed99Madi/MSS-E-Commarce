@@ -7,6 +7,21 @@
       "password": "123456789"
     }
   ],
+  "Settings": [
+    {
+      "logo": "Logo.png",
+      "logo2": "Logo.png",
+      "phone": "+970599266293",
+      "email": "saed.dev@gmail.com",
+      "phone2": "+970567266293",
+      "address": "hello from her",
+      "facebook": "https: //www.facebook.com/saed.madi.94/",
+      "instagram": "https: //www.facebook.com/saed.madi.94/",
+      "linkedIn": "linkedin.com/in/saedmadi/",
+      "youtupe": "linkedin.com/in/saedmadi/",
+      "bio": "Jmajem is the best category"
+    }
+  ],
   "Category": [
     {
       "title": "jmajem",
