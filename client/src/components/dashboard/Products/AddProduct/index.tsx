@@ -99,7 +99,6 @@ const AddProduct = (props: Props) => {
     data.append('description', newProduct.description);
     const AttriputesStr = JSON.stringify(attriputes);
     data.append('attriputes', AttriputesStr);
-    console.log(data);
     ApiServices.post('products', data);
   };
 
@@ -148,6 +147,7 @@ const AddProduct = (props: Props) => {
               Add Product
             </Typography>
             <Button
+              sx={{ background: '#E52535' }}
               autoFocus
               color="inherit"
               onClick={() => {
@@ -161,7 +161,7 @@ const AddProduct = (props: Props) => {
         </AppBar>
 
         <InputsList>
-          <Typography sx={{ marginRight: 'auto', color: '#FFFFFF' }}>
+          <Typography variant="h4" sx={{ color: '#FFFFFF' }}>
             Add New Product
           </Typography>
           <TextInput

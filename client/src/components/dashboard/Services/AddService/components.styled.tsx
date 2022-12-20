@@ -17,6 +17,7 @@ const DescriptionInput = styled(TextField)({
   },
   label: { color: '#b1a9a9' },
   width: '50%',
+  textarea: { color: '#FFFFFF' },
 
   background:
     'linear-gradient(130.79deg, rgba(255, 255, 255, 0.08) -37.1%, rgba(255, 255, 255, 0) 134.47%)',

@@ -18,7 +18,8 @@ const TextInput = (props: Props) => {
       name={name}
       sx={{
         borderRadius: '0.5rem',
-        input: { color: '#FFFFFF' },
+        input: { paddingLeft: '0.9rem', color: '#FFFFFF' },
+        textarea: { paddingLeft: '0.9rem', color: '#FFFFFF' },
         label: { color: '#b1a9a9', marginLeft: '1rem' },
         width: '50%',
         background:
