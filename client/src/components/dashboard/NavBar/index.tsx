@@ -13,6 +13,7 @@ export const NavBar = () => {
   const handleOpenside = () => {
     setOpenSideBar(true);
   };
+
   return (
     <AppBar position="fixed" open={openSideBar}>
       <Toolbar>
