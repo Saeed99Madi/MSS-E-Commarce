@@ -10,6 +10,12 @@ import environment from '../config/environment';
 
 // AuthController.ts file
 export default class AuthController {
+  public static async isAuthenticated(req: Request, res: Response) {
+    res.json({
+      user: req.user,
+    });
+  }
+
   // login based on user providing a series of specific user information
   public static async signin(req: Request, res: Response) {
     const { secretKey } = environment;

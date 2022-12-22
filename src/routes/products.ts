@@ -2,6 +2,7 @@ import { Router } from 'express';
 
 import ProductController from '../controllers/ProductController';
 import errorWrapper from '../helpers/errorHandler/errorWrapper';
+import { isAuth } from '../middlwares/IsAuth';
 import upload from '../middlwares/uploadFile';
 
 const router = Router();
@@ -14,14 +15,24 @@ const productFields = [
 
 router.post(
   '/products',
+  errorWrapper(isAuth),
   upload.fields(productFields),
   errorWrapper(ProductController.create),
 );
-router.put('/products/unpublish', errorWrapper(ProductController.unPublish));
-router.put('/products/publish', errorWrapper(ProductController.publish));
+router.put(
+  '/products/unpublish',
+  errorWrapper(isAuth),
+  errorWrapper(ProductController.unPublish),
+);
+router.put(
+  '/products/publish',
+  errorWrapper(isAuth),
+  errorWrapper(ProductController.publish),
+);
 router.get('/products', errorWrapper(ProductController.index));
 router.delete(
   '/products/delete/:productsIds',
+  errorWrapper(isAuth),
   errorWrapper(ProductController.destroy),
 );
 router.get(
