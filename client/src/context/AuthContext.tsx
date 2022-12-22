@@ -2,10 +2,11 @@ import {
   createContext,
   ReactNode,
   useCallback,
-  useEffect,
   useMemo,
   useState,
 } from 'react';
+// import { useNavigate } from 'react-router-dom';
+
 import IAuthGaurd, { ISignIn } from '../interfaces/IAuthGaurd';
 import { IUser } from '../interfaces/IUser';
 
@@ -15,8 +16,8 @@ import JwtService from '../servises/JwtService';
 const AuthGaurdContext = createContext({} as IAuthGaurd);
 const ProvideAuthGaurd = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<IUser | null>(null);
-
-  const signIn = useCallback(async ({ email, password }: ISignIn) => {
+  // const navigate = useNavigate();
+  const signIn = async ({ email, password }: ISignIn) => {
     try {
       const { data } = await ApiServices.post('/sign-in', {
         email,
@@ -32,28 +33,11 @@ const ProvideAuthGaurd = ({ children }: { children: ReactNode }) => {
     } catch (err: any) {
       console.error(err);
     }
-  }, []);
+  };
 
   const signOut = useCallback(() => {
     JwtService.destroyToken();
     setUser(null);
-  }, []);
-
-  useEffect(() => {
-    (async () => {
-      try {
-        ApiServices.init();
-        const { data } = await ApiServices.get('/user/me');
-
-        setUser({
-          name: data?.user?.name,
-          role: data?.user?.role,
-          email: data?.user?.email,
-        });
-      } catch (error: any) {
-        console.error(error);
-      }
-    })();
   }, []);
 
   const authGaurdValues = useMemo(
@@ -63,7 +47,7 @@ const ProvideAuthGaurd = ({ children }: { children: ReactNode }) => {
       signOut,
       signIn,
     }),
-    [signIn, signOut, user],
+    [signOut, user],
   );
 
   return (

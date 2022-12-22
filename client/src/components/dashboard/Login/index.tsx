@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { Box, Button, Typography } from '@mui/material';
@@ -9,6 +9,7 @@ import TextInput from './LoginTextInput';
 import { DrawerHeader } from '../components.styled';
 
 import { AuthGaurdContext } from '../../../context/AuthContext';
+import ApiServices from '../../../servises/ApiService';
 
 export const LoginDashboard = () => {
   const [signInData, setSignInData] = useState({
@@ -16,7 +17,7 @@ export const LoginDashboard = () => {
     password: '',
   });
 
-  const { signIn } = useContext(AuthGaurdContext);
+  const { signIn, setUser } = useContext(AuthGaurdContext);
   const navigate = useNavigate();
 
   const handleUserChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -33,6 +34,25 @@ export const LoginDashboard = () => {
       console.log(error);
     }
   };
+  useEffect(() => {
+    (async () => {
+      try {
+        ApiServices.init();
+        const { data } = await ApiServices.get('/user/me');
+
+        setUser({
+          name: data?.user?.name,
+          role: data?.user?.role,
+          email: data?.user?.email,
+        });
+        if (data) {
+          navigate('/admin/dashboard', { replace: true });
+        }
+      } catch (error: any) {
+        console.error(error);
+      }
+    })();
+  }, []);
 
   return (
     <Box

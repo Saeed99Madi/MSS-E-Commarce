@@ -12,7 +12,6 @@ import Dashboard from '../pages/dashboard';
 
 import { LoginDashboard } from '../components/dashboard/Login';
 import NotFound from '../pages/NotFound';
-import App from '../App';
 
 const Routes = [
   {
@@ -47,19 +46,12 @@ const Routes = [
     path: '',
     element: <Navigate to="/admin/dashboard" />,
     errorElement: <NotFound />,
-    // children: [{ index: true, element: <App /> }],
   },
   {
     path: '/admin/login',
     element: <LoginDashboard />,
     errorElement: <NotFound />,
-    // children: [{ index: true, element: <App /> }],
   },
-  // {
-  //   path: '*',
-  //   element: <AuthGaurdDashboard />,
-  //   // children: [{ index: true, element: <App /> }],
-  // },
 ];
 
 export { Routes };
