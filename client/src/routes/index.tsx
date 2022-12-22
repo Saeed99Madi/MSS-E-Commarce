@@ -6,8 +6,12 @@ import DashboardLayout from '../layouts/DashboardLayout';
 import { Categories } from '../components/dashboard/Categories';
 import { ServicesList } from '../components/dashboard/Services';
 import { SettingsManagement } from '../components/dashboard/SettingsManage';
-import { SignIn } from '../pages/Login';
+
 import Dashboard from '../pages/dashboard';
+
+import { LoginDashboard } from '../components/dashboard/Login';
+import NotFound from '../pages/NotFound';
+import App from '../App';
 
 const Routes = [
   {
@@ -36,10 +40,18 @@ const Routes = [
         element: <SettingsManagement />,
       },
     ],
+    errorElement: <NotFound />,
+  },
+  {
+    path: '',
+    element: <App />,
+    errorElement: <NotFound />,
+    // children: [{ index: true, element: <App /> }],
   },
   {
     path: '/admin/login',
-    element: <SignIn />,
+    element: <LoginDashboard />,
+    errorElement: <NotFound />,
     // children: [{ index: true, element: <App /> }],
   },
   // {

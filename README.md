@@ -107,7 +107,7 @@ Now you can view the app live in the Browser!
 
 - [Said Madi](https://github.com/Saeed99Madi)
 - [Mahmoud Hammad](https://github.com/mahmoudhammad309)
-- [Abdalhakim Abumusameh] (https://github.com/hkmusameh01)
+- [Abdalhakim Abumusameh](https://github.com/hkmusameh01)
 
 ## **Resources**
 
