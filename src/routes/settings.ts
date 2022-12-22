@@ -2,6 +2,7 @@ import { Router } from 'express';
 
 import { SettingsController } from '../controllers/';
 import errorWrapper from '../helpers/errorHandler/errorWrapper';
+import { isAuth } from '../middlwares/IsAuth';
 import upload from '../middlwares/uploadFile';
 
 const router = Router();
@@ -13,6 +14,7 @@ const SettingsFields = [
 router.get('/settings', errorWrapper(SettingsController.index));
 router.put(
   '/settings/update',
+  errorWrapper(isAuth),
   upload.fields(SettingsFields),
   errorWrapper(SettingsController.update),
 );

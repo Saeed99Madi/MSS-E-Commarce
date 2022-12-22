@@ -2,6 +2,7 @@ import { Router } from 'express';
 
 import CategoriesController from '../controllers/CategoriesController';
 import errorWrapper from '../helpers/errorHandler/errorWrapper';
+import { isAuth } from '../middlwares/IsAuth';
 import upload from '../middlwares/uploadCategoryFile';
 
 const router = Router();
@@ -10,9 +11,13 @@ const categoryField = [{ name: 'cover', maxCount: 1 }];
 router
   .route('/categories')
   .get(errorWrapper(CategoriesController.catIndex))
-  .post(upload.fields(categoryField), errorWrapper(CategoriesController.create))
-  .delete(errorWrapper(CategoriesController.delete))
-  .put(errorWrapper(CategoriesController.update));
+  .post(
+    errorWrapper(isAuth),
+    upload.fields(categoryField),
+    errorWrapper(CategoriesController.create),
+  )
+  .delete(errorWrapper(isAuth), errorWrapper(CategoriesController.delete))
+  .put(errorWrapper(isAuth), errorWrapper(CategoriesController.update));
 
 router.get(
   '/subcategories/:categoryId',
