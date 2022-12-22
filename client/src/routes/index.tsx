@@ -1,14 +1,13 @@
-import App from '../App';
 import { MainDashboard } from '../components/dashboard';
 import { ProductsList } from '../components/dashboard/Products';
-import Dashboard from '../pages/dashboard';
+// import Dashboard from '../pages/dashboard';
 
 import DashboardLayout from '../layouts/DashboardLayout';
 import { Categories } from '../components/dashboard/Categories';
 import { ServicesList } from '../components/dashboard/Services';
 import { SettingsManagement } from '../components/dashboard/SettingsManage';
-
-import { LoginDashboard } from '../components/dashboard/Login';
+import { SignIn } from '../pages/Login';
+import Dashboard from '../pages/dashboard';
 
 const Routes = [
   {
@@ -39,14 +38,15 @@ const Routes = [
     ],
   },
   {
-    path: '',
-    element: <App />,
-    // children: [{ index: true, element: <App /> }],
-  },
-  {
     path: '/admin/login',
-    element: <LoginDashboard />,
+    element: <SignIn />,
     // children: [{ index: true, element: <App /> }],
   },
+  // {
+  //   path: '*',
+  //   element: <AuthGaurdDashboard />,
+  //   // children: [{ index: true, element: <App /> }],
+  // },
 ];
+
 export { Routes };
