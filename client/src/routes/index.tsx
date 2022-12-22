@@ -1,3 +1,4 @@
+import { Navigate } from 'react-router-dom';
 import { MainDashboard } from '../components/dashboard';
 import { ProductsList } from '../components/dashboard/Products';
 // import Dashboard from '../pages/dashboard';
@@ -44,7 +45,7 @@ const Routes = [
   },
   {
     path: '',
-    element: <App />,
+    element: <Navigate to="/admin/dashboard" />,
     errorElement: <NotFound />,
     // children: [{ index: true, element: <App /> }],
   },
