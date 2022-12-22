@@ -9,6 +9,7 @@ import { ServicesList } from '../components/dashboard/Services';
 import { SettingsManagement } from '../components/dashboard/SettingsManage';
 
 import { LoginDashboard } from '../components/dashboard/Login';
+import NotFound from '../pages/NotFound';
 
 const Routes = [
   {
@@ -37,15 +38,18 @@ const Routes = [
         element: <SettingsManagement />,
       },
     ],
+    errorElement: <NotFound />,
   },
   {
     path: '',
     element: <App />,
+    errorElement: <NotFound />,
     // children: [{ index: true, element: <App /> }],
   },
   {
     path: '/admin/login',
     element: <LoginDashboard />,
+    errorElement: <NotFound />,
     // children: [{ index: true, element: <App /> }],
   },
 ];
