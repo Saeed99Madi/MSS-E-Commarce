@@ -87,7 +87,7 @@ export const ServiceCard = (props: Props) => {
             borderRadius: '12px',
             boxSizing: 'border-box',
           }}
-          src={`${process.env.REACT_APP_BASEE_URL}/products/${service.cover}`}
+          src={`${process.env.REACT_APP_BASEE_URL}/services/${service.cover}`}
           alt="Renewable energy"
           loading="lazy"
         />
