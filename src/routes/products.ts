@@ -16,7 +16,7 @@ const productFields = [
 router.post(
   '/products',
   errorWrapper(isAuth),
-  upload.fields(productFields),
+  upload('products').fields(productFields),
   errorWrapper(ProductController.create),
 );
 router.put(
