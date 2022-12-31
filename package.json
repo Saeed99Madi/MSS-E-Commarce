@@ -13,7 +13,7 @@
     "lint": "eslint src/** --ext .ts",
     "lint-fix": "eslint src/**/*.ts --fix --max-warnings=0",
     "prepare": "husky install",
-    "postinstall": "cd client && npm i && cd .. && cd client-landing && npm i"
+    "postinstall": "cd client && npm i && cd .. && cd dashboard && npm i"
   },
   "author": "",
   "license": "ISC",

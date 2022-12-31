@@ -41,7 +41,6 @@ export const MarkAs = () => {
         });
         setProducts([...newproduct]);
         setIsCheckedProducts(products.map(ele => ele.id ?? 0));
-        console.log(checkedProducts);
 
         break;
       case '5':
