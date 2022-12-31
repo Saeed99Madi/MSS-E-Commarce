@@ -13,6 +13,7 @@
     },
     "editor.formatOnSave": true,
     "eslint.workingDirectories": [
-        "client"
+        "client",
+        "client-landing"
     ]
 }
