@@ -17,7 +17,7 @@ export const LoginDashboard = () => {
     password: '',
   });
 
-  const { signIn, setUser } = useContext(AuthGaurdContext);
+  const { signIn } = useContext(AuthGaurdContext);
   const navigate = useNavigate();
 
   const handleUserChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -34,25 +34,6 @@ export const LoginDashboard = () => {
       console.log(error);
     }
   };
-  useEffect(() => {
-    (async () => {
-      try {
-        ApiServices.init();
-        const { data } = await ApiServices.get('/user/me');
-
-        setUser({
-          name: data?.user?.name,
-          role: data?.user?.role,
-          email: data?.user?.email,
-        });
-        if (data) {
-          navigate('/admin/dashboard', { replace: true });
-        }
-      } catch (error: any) {
-        console.error(error);
-      }
-    })();
-  }, []);
 
   return (
     <Box
