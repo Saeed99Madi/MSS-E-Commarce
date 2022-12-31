@@ -26,7 +26,7 @@ router.delete(
 router.post(
   '/services',
   errorWrapper(isAuth),
-  upload.single('cover'),
+  upload('services').single('cover'),
   errorWrapper(ServicesController.create),
 );
 

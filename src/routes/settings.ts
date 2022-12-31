@@ -15,7 +15,7 @@ router.get('/settings', errorWrapper(SettingsController.index));
 router.put(
   '/settings/update',
   errorWrapper(isAuth),
-  upload.fields(SettingsFields),
+  upload('settings').fields(SettingsFields),
   errorWrapper(SettingsController.update),
 );
 
