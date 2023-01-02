@@ -16,6 +16,9 @@ export const Categories = () => {
         color: '#FFFFFF',
       }}
       className="wrapper"
+      style={{
+        maxWidth: '100%',
+      }}
     >
       <Main
         open={openSideBar}
