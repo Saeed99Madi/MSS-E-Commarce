@@ -1,4 +1,5 @@
 import { Response, Request } from 'express';
+import CustomError from '../helpers/errorHandler/CustomError';
 
 import { Contact } from '../models';
 import { contentSchema } from '../schemes';
@@ -20,5 +21,25 @@ export default class ContactController {
     const newContact = await Contact.create({ name, email, content });
 
     res.status(201).json({ data: newContact });
+  }
+
+  // Delete Contact
+  public static async destory(req: Request, res: Response) {
+    const { contactId } = req.body;
+
+    const isContactExist = await Contact.findOne({ where: { id: contactId } });
+    if (!isContactExist) {
+      throw new CustomError(400, 'Contact You Want To Delete Does Not Exist!');
+    }
+
+    await Contact.destroy({
+      where: {
+        id: contactId,
+      },
+    });
+
+    res.json({
+      message: 'Contact deleted successfully!',
+    });
   }
 }

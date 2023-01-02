@@ -9,4 +9,6 @@ router.get('/contacts', errorWrapper(ContactController.index));
 
 router.post('/contacts', errorWrapper(ContactController.create));
 
+router.delete('/contacts', errorWrapper(ContactController.destory));
+
 export default router;
