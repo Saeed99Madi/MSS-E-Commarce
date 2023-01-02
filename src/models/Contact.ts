@@ -4,8 +4,7 @@ import { Model, DataTypes } from 'sequelize';
 class Contact extends Model {
   declare id: number;
   declare name: string;
-  declare phone: string;
-  declare address: string;
+  declare email: string;
   declare content: string;
 }
 Contact.init(
@@ -19,11 +18,7 @@ Contact.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    phone: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    address: {
+    email: {
       type: DataTypes.STRING,
       allowNull: false,
     },
