@@ -113,5 +113,6 @@ Now you can view the app live in the Browser!
 
 - [Node Js](https://nodejs.org/en/)
 - [React Js](https://reactjs.org/)
+- [Next Js](https://nextjs.org/)
 - [Express](http://expressjs.com/)
 - [Material UI](https://mui.com/)
