@@ -97,7 +97,9 @@ Now you can view the app live in the Browser!
 ## **Technologies** :computer: :-
 
 - BackEnd: **Node JS & Express JS**
-- FrontEnd: **React JS**
+- FrontEnd Dashoard: **React JS**
+- FrontEnd Landing Page: **Next Js**
+- Localisation: **Next Translate**
 - Middlewares: **Axios**
 - Database: **PostgreSQL**
 - ORM library: **Sequalize**
