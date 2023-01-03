@@ -1,5 +1,7 @@
 import { ReactNode } from 'react';
+import useTranslation from 'next-translate/useTranslation';
 import { GetServerSideProps } from 'next';
+import Link from 'next/link';
 import Layout from '../layouts/main';
 import ApiServices from '../services/ApiService';
 import { IProduct } from '../interfaces/IProduct';
@@ -10,9 +12,17 @@ type Props = {
 };
 
 const Home = (props: Props) => {
+  const { t } = useTranslation('home');
   const { products, error } = props;
   return (
     <div>
+      <h1>{t('title')}</h1>
+      <Link locale="en" href="/">
+        English
+      </Link>
+      <Link locale="ar" href="/">
+        Arabic
+      </Link>
       {error ? (
         <h1>{error.error}</h1>
       ) : (
