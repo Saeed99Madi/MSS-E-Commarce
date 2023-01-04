@@ -19,6 +19,12 @@ router
   .delete(errorWrapper(isAuth), errorWrapper(CategoriesController.delete))
   .put(errorWrapper(isAuth), errorWrapper(CategoriesController.update));
 
+router.delete(
+  '/categories/:categoryId',
+  errorWrapper(isAuth),
+  errorWrapper(CategoriesController.delete),
+);
+
 router.get(
   '/subcategories/:categoryId',
   errorWrapper(CategoriesController.subCatIndex),

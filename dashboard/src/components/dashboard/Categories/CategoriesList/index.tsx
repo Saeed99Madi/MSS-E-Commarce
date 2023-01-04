@@ -24,6 +24,7 @@ const CategoriesList = ({ open }: { open: boolean }) => {
             key={categoryItem.id}
             open={open}
             categoryItem={categoryItem}
+            setCategory={setCategory}
           />
         );
       })}

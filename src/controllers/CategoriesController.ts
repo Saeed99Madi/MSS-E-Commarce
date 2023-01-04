@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
-import { Category } from '../models';
+import { Category, Product } from '../models';
 import CustomError from '../helpers/errorHandler/CustomError';
 import { categoriesSchema } from '../schemes';
-import { Op } from 'sequelize';
+import { Op, where } from 'sequelize';
 import * as fs from 'fs';
 // CategoriesController.ts file
 export default class CategoriesController {
@@ -109,18 +109,40 @@ export default class CategoriesController {
 
   // delete categories
   public static async delete(req: Request, res: Response) {
-    const { id } = req.body;
-
-    const category = await Category.findOne({ where: { id } });
+    const { categoryId } = req.params;
+    const category = await Category.findOne({ where: { id: categoryId } });
     if (!category) {
       throw new CustomError(404, 'CATEGORY NOT FOUND');
     }
-    const count = await Category.destroy({ where: { id } });
-    console.log(count);
-    res.status(202).json({
-      status: 202,
-      msg: 'deleted successfully',
-    });
+
+    const { isChild }: { isChild: boolean } = category.dataValues;
+
+    if (isChild) {
+      await Category.destroy({ where: { id: categoryId } });
+      await Product.destroy({ where: { CategoryId: categoryId } });
+      res.status(202).json({
+        status: 202,
+        msg: 'deleted successfully',
+      });
+    } else {
+      const allCategories = await Category.findAll({
+        where: { parentId: categoryId },
+      });
+      await Promise.all(
+        allCategories.map(async category => {
+          return await Category.update(
+            { isChild: false, parentId: null },
+            { where: { id: category.dataValues.id } },
+          );
+        }),
+      );
+      await Category.destroy({ where: { id: categoryId } });
+      await Product.destroy({ where: { CategoryId: categoryId } });
+      res.status(202).json({
+        status: 202,
+        msg: 'deleted successfully',
+      });
+    }
   }
 
   // update categories

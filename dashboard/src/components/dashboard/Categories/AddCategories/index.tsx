@@ -92,6 +92,7 @@ const AddCategory = () => {
           progress: undefined,
           theme: 'dark',
         });
+        window.location.reload();
       }
     } catch (err: any) {
       toast.error(`${err?.response?.data?.msg}`, {
