@@ -3,6 +3,8 @@ import Typography from '@mui/material/Typography';
 import { CreateNewFolderOutlined } from '@mui/icons-material';
 import { TextField, Button, Checkbox } from '@mui/material';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { DrawerHeader, Main } from '../../components.styled';
 import { DashboardContext } from '../../../../context/DashboardContext';
 import {
@@ -60,13 +62,49 @@ const AddCategory = () => {
   ApiServices.init();
   const AddCategoryCB = async () => {
     const data = new FormData();
-    if (!values.cover) return;
+    if (!values.cover) {
+      toast.error('you should add cover image', {
+        position: 'bottom-left',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: 'dark',
+      });
+      return;
+    }
     data.append('title', values.title);
     data.append('description', values.description);
     data.append('cover', values.cover);
     data.append('parentId', values.parentId);
-
-    ApiServices.post('/categories', data);
+    try {
+      const res = await ApiServices.post('/categories', data);
+      if (res.status === 201) {
+        toast.success(`added category successfully`, {
+          position: 'bottom-left',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+          theme: 'dark',
+        });
+      }
+    } catch (err: any) {
+      toast.error(`${err?.response?.data?.msg}`, {
+        position: 'bottom-left',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: 'dark',
+      });
+    }
   };
 
   return (
@@ -184,6 +222,7 @@ const AddCategory = () => {
           <AddCategoryButton onClick={AddCategoryCB}>
             <CreateNewFolderOutlined />
           </AddCategoryButton>
+          <ToastContainer />
         </CategoryDetailsWrapper>
       </div>
     </Main>

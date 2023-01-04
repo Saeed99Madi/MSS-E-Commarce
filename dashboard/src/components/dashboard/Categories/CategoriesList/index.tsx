@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import ListItem from './ListItem';
 import useCategories from '../../../../hooks/getCategories';
 import { ICategories } from '../../../../interfaces/ICategories';
+import { CategoriesListWrapper } from './component.style';
 
 const CategoriesList = ({ open }: { open: boolean }) => {
   const [category, setCategory] = useState<ICategories[]>();
@@ -15,13 +16,7 @@ const CategoriesList = ({ open }: { open: boolean }) => {
   }, []);
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '1rem',
-      }}
-    >
+    <CategoriesListWrapper>
       {category?.map((categoryItem: ICategories) => {
         return (
           <ListItem
@@ -32,7 +27,7 @@ const CategoriesList = ({ open }: { open: boolean }) => {
           />
         );
       })}
-    </div>
+    </CategoriesListWrapper>
   );
 };
 
