@@ -2,6 +2,8 @@ import * as Joi from 'joi';
 
 const contentSchema = (data: object) => {
   const schema = Joi.object({
+    name: Joi.string().min(4).max(50).required(),
+    email: Joi.string().email({ minDomainSegments: 2 }).required(),
     content: Joi.string().min(50).max(5000).required(),
   });
 
