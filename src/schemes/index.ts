@@ -4,6 +4,7 @@ import productSchema from './product';
 import categoriesSchema from './categories';
 import SettingsValid from './settings';
 import servicesSchema from './services';
+import contentSchema from './contacts';
 
 export {
   SettingsValid,
@@ -12,4 +13,5 @@ export {
   SignUpSchema,
   productSchema,
   categoriesSchema,
+  contentSchema,
 };

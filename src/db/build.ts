@@ -8,6 +8,7 @@ import {
   User,
   Settings,
   Service,
+  Contact,
 } from '.';
 
 import data from './seeds.json';
@@ -21,6 +22,7 @@ const buildDB = async () => {
   await ProductAttripute.bulkCreate(data.ProductAttripute);
   await Settings.bulkCreate(data.Settings);
   await Service.bulkCreate(data.Service);
+  await Contact.bulkCreate(data.Contact);
 };
 
 if (environment.nodeEnv !== 'test') {
