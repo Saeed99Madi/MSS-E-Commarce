@@ -126,7 +126,11 @@ const ListItem = ({ open, categoryItem, id, setCategory }: Props) => {
                   flexDirection: 'column',
                 }}
               >
-                Subcategory - 5
+                {`${
+                  subCategory?.length
+                    ? `Subcategory - ${subCategory?.length}`
+                    : 'Subcategory'
+                }`}
               </span>
             </p>
           </ListItemText>
