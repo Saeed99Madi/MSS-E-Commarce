@@ -9,11 +9,11 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
 import { TransitionProps } from '@mui/material/transitions';
 import LoadingButton from '@mui/lab/LoadingButton';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import ApiServices from '../../../servises/ApiService';
-import 'react-toastify/dist/ReactToastify.css';
 import useSubcategories from '../../../hooks/getSubcategories';
 import useCategories from '../../../hooks/getCategories';
+import ToastMessage from '../ToastContainer';
 
 const Transition = React.forwardRef(
   (
@@ -63,41 +63,14 @@ const AlertDialogSlide = ({
       if (res.status === 202 && isSubcategory) {
         const data = await fetchSubcategories(selectedCategory);
         setSubCategory(data);
-        toast.success(`deleted category successfully`, {
-          position: 'bottom-left',
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: false,
-          draggable: true,
-          progress: undefined,
-          theme: 'dark',
-        });
+        toast.success(`deleted category successfully`);
       } else if (res.status === 202 && !isSubcategory) {
         const data = await fetchCategories();
         setSubCategory(data);
-        toast.success(`deleted category successfully`, {
-          position: 'bottom-left',
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: false,
-          draggable: true,
-          progress: undefined,
-          theme: 'dark',
-        });
+        toast.success(`deleted category successfully`);
       }
     } catch (err: any) {
-      toast.error(`${err?.response?.data?.msg}`, {
-        position: 'bottom-left',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-        theme: 'dark',
-      });
+      toast.error(`${err?.response?.data?.msg}`);
     }
     setConfirmDelete(false);
     setOpen(false);
@@ -151,7 +124,7 @@ const AlertDialogSlide = ({
           </LoadingButton>
         </DialogActions>
       </Dialog>
-      <ToastContainer />
+      <ToastMessage />
     </div>
   );
 };

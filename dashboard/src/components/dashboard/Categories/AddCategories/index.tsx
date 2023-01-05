@@ -3,8 +3,7 @@ import Typography from '@mui/material/Typography';
 import { CreateNewFolderOutlined } from '@mui/icons-material';
 import { TextField, Button, Checkbox } from '@mui/material';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 import { DrawerHeader, Main } from '../../components.styled';
 import { DashboardContext } from '../../../../context/DashboardContext';
 import {
@@ -33,7 +32,6 @@ const AddCategory = () => {
   // getting the event handlers
   const { onChange, values } = useForm(initialState);
   const [categories, setCategories] = useState<ICategories[]>([]);
-
   const handleCategory = (event: any) => {
     event.preventDefault();
     const { value } = event.target;
@@ -82,29 +80,11 @@ const AddCategory = () => {
     try {
       const res = await ApiServices.post('/categories', data);
       if (res.status === 201) {
-        toast.success(`added category successfully`, {
-          position: 'bottom-left',
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: false,
-          draggable: true,
-          progress: undefined,
-          theme: 'dark',
-        });
+        toast.success(`added category successfully`);
         window.location.reload();
       }
     } catch (err: any) {
-      toast.error(`${err?.response?.data?.msg}`, {
-        position: 'bottom-left',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-        theme: 'dark',
-      });
+      toast.error(`${err?.response?.data?.msg}`);
     }
   };
 
@@ -181,7 +161,6 @@ const AddCategory = () => {
               onChange={onChange}
             />
           )}
-
           <CategoryDescriptionInput
             key="Category Description"
             name="description"
@@ -198,7 +177,6 @@ const AddCategory = () => {
                 'linear-gradient(130.79deg, rgba(255, 255, 255, 0.08) -37.1%, rgba(255, 255, 255, 0) 134.47%)',
             }}
           />
-
           <Button
             sx={{
               borderRadius: '0.5rem',
@@ -223,7 +201,6 @@ const AddCategory = () => {
           <AddCategoryButton onClick={AddCategoryCB}>
             <CreateNewFolderOutlined />
           </AddCategoryButton>
-          <ToastContainer />
         </CategoryDetailsWrapper>
       </div>
     </Main>

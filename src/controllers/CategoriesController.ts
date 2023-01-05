@@ -4,6 +4,7 @@ import CustomError from '../helpers/errorHandler/CustomError';
 import { categoriesSchema } from '../schemes';
 import { Op, where } from 'sequelize';
 import * as fs from 'fs';
+import * as path from 'path';
 // CategoriesController.ts file
 export default class CategoriesController {
   // get All Categories
@@ -115,11 +116,17 @@ export default class CategoriesController {
       throw new CustomError(404, 'CATEGORY NOT FOUND');
     }
 
-    const { isChild }: { isChild: boolean } = category.dataValues;
+    const { isChild, cover }: { isChild: boolean; cover: string } =
+      category.dataValues;
+
+    console.log('ssssssssssssssssssssssssssssss');
+    const imagePath = path.join(__dirname, '..', 'images', 'categories', cover);
+    console.log('ssssssssssssssssssssssssssssss');
 
     if (isChild) {
       await Category.destroy({ where: { id: categoryId } });
       await Product.destroy({ where: { CategoryId: categoryId } });
+      fs.unlinkSync(imagePath);
       res.status(202).json({
         status: 202,
         msg: 'deleted successfully',
@@ -138,6 +145,7 @@ export default class CategoriesController {
       );
       await Category.destroy({ where: { id: categoryId } });
       await Product.destroy({ where: { CategoryId: categoryId } });
+      fs.unlinkSync(imagePath);
       res.status(202).json({
         status: 202,
         msg: 'deleted successfully',
