@@ -1,5 +1,18 @@
+import { Logo } from './Logo';
+import { Actions } from './Actions';
+
+import { NavHeader } from './NavHeader';
+
+import { StyledHeader } from './components.styled';
+
 const Header = () => {
-  return <h1>Hello Header</h1>;
+  return (
+    <StyledHeader>
+      <Logo />
+      <NavHeader />
+      <Actions />
+    </StyledHeader>
+  );
 };
 
 export default Header;
