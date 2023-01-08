@@ -15,14 +15,9 @@ const Home = (props: Props) => {
   const { t } = useTranslation('home');
   const { products, error } = props;
   return (
-    <div>
+    <div style={{ margin: '0' }}>
       <h1>{t('title')}</h1>
-      <Link locale="en" href="/">
-        English
-      </Link>
-      <Link locale="ar" href="/">
-        Arabic
-      </Link>
+
       {error ? (
         <h1>{error.error}</h1>
       ) : (
