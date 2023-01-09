@@ -1,11 +1,10 @@
 import { MenuItem, Select } from '@mui/material';
-import axios from 'axios';
-// import { GetServerSideProps } from 'next';
+
 import useTranslation from 'next-translate/useTranslation';
 import { useEffect, useState } from 'react';
+
 import Axios from '../../../config';
 import { ICategory } from '../../../interfaces/ICategory';
-import ApiServices from '../../../services/ApiService';
 
 import {
   AppsIconNav,
@@ -27,15 +26,8 @@ const categoryItem = {
 };
 
 export const NavHeader = () => {
-  // const { categories } = props;
   const [active, setActive] = useState(false);
   const [categories, setCategories] = useState<ICategory[]>([]);
-
-  // useEffect(() => {
-  //   const { data } = await Axios.get('/me').then(() => {
-  //     console.log('Hell');
-  //   });
-  // }, []);
 
   useEffect(() => {
     (async () => {
@@ -45,11 +37,7 @@ export const NavHeader = () => {
     })();
   }, []);
 
-  useEffect(() => {
-    console.log(process.env.BASE_UEL, 'React Base Url');
-
-    console.log(categories);
-  }, [categories]);
+  useEffect(() => {}, [categories]);
   const menuDisActive = () => {
     setActive(false);
   };
@@ -117,21 +105,3 @@ export const NavHeader = () => {
     </>
   );
 };
-
-// export const getServerSideProps: GetServerSideProps = async context => {
-//   try {
-//     // ApiServices.init();
-//     const { data } = await ApiServices.get('/products');
-//     return {
-//       props: {
-//         products: data.data,
-//       },
-//     };
-//   } catch (error: unknown) {
-//     return {
-//       props: {
-//         error: { error: 'somthing went wrong' },
-//       },
-//     };
-//   }
-// };

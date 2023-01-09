@@ -1,9 +1,7 @@
 import { ReactNode } from 'react';
 import useTranslation from 'next-translate/useTranslation';
 import { GetServerSideProps } from 'next';
-// import Link from 'next/link';
 import Layout from '../layouts/main';
-import ApiServices from '../services/ApiService';
 import { IProduct } from '../interfaces/IProduct';
 import Axios from '../config';
 
@@ -30,6 +28,7 @@ const Home = (props: Props) => {
   );
 };
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const getServerSideProps: GetServerSideProps = async context => {
   try {
     const { data } = await Axios.get('/products');

@@ -1,6 +1,5 @@
 /* eslint-disable no-console */
 import useTranslation from 'next-translate/useTranslation';
-import NativeSelect from '@mui/material/NativeSelect';
 import setLanguage from 'next-translate/setLanguage';
 import {
   AuthButtonsBox,
