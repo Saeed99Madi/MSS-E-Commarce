@@ -2,6 +2,7 @@ import { ReactNode } from 'react';
 // import { GetStaticProps } from 'next';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
+import { ICategory } from '../interfaces/ICategory';
 
 type Props = {
   children: ReactNode;

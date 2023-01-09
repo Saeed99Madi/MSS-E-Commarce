@@ -5,7 +5,7 @@ export default class ApiServices {
 
   public static init(): void {
     this.axios = axios.create({
-      baseURL: process.env.REACT_APP_BASE_URL,
+      baseURL: process.env.BASE_URL,
     });
   }
 

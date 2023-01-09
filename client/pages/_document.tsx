@@ -4,11 +4,12 @@ const Document = () => {
   return (
     <Html lang="en">
       <Head />
-      <body>
+      <body style={{ fontSize: '16bx', margin: '0' }}>
         <Main />
         <NextScript />
       </body>
     </Html>
   );
 };
+
 export default Document;
