@@ -44,22 +44,18 @@ const UpdateCategory = ({ open, setOpenUpdateCategory, id }: Props) => {
     const inputName = e.target.name;
     const inputValue = e.target.value;
     const { files } = e.target;
-    console.log(inputValue);
+
     if (inputName === 'title') {
       setCategory({ ...category, title: inputValue });
     } else if (inputName === 'description') {
       setCategory({ ...category, description: inputValue });
     } else if (inputName === 'cover') {
-      console.log('on cover block');
       setCategory({ ...category, cover: (files as any)[0] });
     }
-    console.log('fffffffffffffffffffffffffffffffffffff');
-    console.log(category);
-    console.log('fffffffffffffffffffffffffffffffffffff');
   };
 
   // "Async"  function to send the data
-  // ApiServices.init();
+
   const AddCategoryCB = async () => {
     const data = new FormData();
     data.append('title', category?.title);
