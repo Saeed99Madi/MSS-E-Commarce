@@ -28,6 +28,18 @@ export default class CategoriesController {
     });
   }
 
+  // get specific category
+  public static async category(req: Request, res: Response) {
+    const { categoryId } = req.params;
+
+    const category = await Category.findByPk(categoryId);
+
+    res.status(200).json({
+      status: 200,
+      data: category,
+    });
+  }
+
   // get all parents Categories
   public static async catIndex(req: Request, res: Response) {
     const categories = await Category.findAll({
@@ -119,9 +131,7 @@ export default class CategoriesController {
     const { isChild, cover }: { isChild: boolean; cover: string } =
       category.dataValues;
 
-    console.log('ssssssssssssssssssssssssssssss');
     const imagePath = path.join(__dirname, '..', 'images', 'categories', cover);
-    console.log('ssssssssssssssssssssssssssssss');
 
     if (isChild) {
       await Category.destroy({ where: { id: categoryId } });
@@ -155,38 +165,59 @@ export default class CategoriesController {
 
   // update categories
   public static async update(req: Request, res: Response) {
-    const { id, title, description, cover, parentId } = req.body;
-
-    await categoriesSchema({ title, description, cover });
-
+    const files = req.files as { [fieldName: string]: Express.Multer.File[] };
+    const { cover } = files;
+    const { id, title, description } = req.body;
+    await categoriesSchema({ title, description });
     const category = await Category.findOne({ where: { title } });
+
     if (category) {
       throw new CustomError(422, 'The category was added previously !');
     }
 
-    if (!parentId) {
-      await Category.upsert({
-        id,
-        title,
-        description,
-      });
+    if (!cover) {
+      try {
+        await Category.upsert({
+          id,
+          title,
+          description,
+        });
 
-      res.status(200).json({
-        status: 200,
-        msg: 'updated successfully',
-      });
+        res.status(200).json({
+          status: 200,
+          msg: 'updated successfully',
+        });
+      } catch (error) {
+        throw new CustomError(501, 'something went wrong !');
+      }
     } else {
-      await Category.upsert({
-        id,
-        title,
-        description,
-        isChild: true,
-      });
+      const category = await Category.findOne({ where: { id } });
+      const coverInstance = cover[0];
+      const imagePath = path.join(
+        __dirname,
+        '..',
+        'images',
+        'categories',
+        category?.dataValues?.cover,
+      );
+      try {
+        fs.unlinkSync(imagePath);
 
-      res.status(200).json({
-        status: 200,
-        msg: 'updated successfully',
-      });
+        await Category.upsert({
+          id,
+          title,
+          description,
+          cover: coverInstance.filename,
+        });
+
+        res.status(200).json({
+          status: 200,
+          msg: 'updated successfully',
+        });
+      } catch (error) {
+        fs.unlinkSync(imagePath);
+        throw new CustomError(501, 'something went wrong !');
+      }
     }
   }
 }

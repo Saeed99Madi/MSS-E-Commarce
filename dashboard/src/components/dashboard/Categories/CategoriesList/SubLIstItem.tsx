@@ -7,6 +7,7 @@ import { useState } from 'react';
 import { ICategories } from '../../../../interfaces/ICategories';
 import ApiServices from '../../../../servises/ApiService';
 import AlertDialogSlide from '../../DeleteDialog';
+import UpdateCategory from '../UpdateCategory';
 
 interface Props {
   ele: ICategories;
@@ -18,6 +19,7 @@ interface Props {
 const SubLIstItem = ({ ele, id, setSubCategory, selectedCategory }: Props) => {
   const [open, setOpen] = useState(false);
   const [selectItemToDelete, setSelectItemToDelete] = useState('');
+  const [openUpdateCategory, setOpenUpdateCategory] = useState(false);
 
   ApiServices.init();
   const handleDeleteBtn = (e: any) => {
@@ -27,8 +29,7 @@ const SubLIstItem = ({ ele, id, setSubCategory, selectedCategory }: Props) => {
   };
   const handleEditBtn = (e: any) => {
     e.stopPropagation();
-
-    console.log('handleEditBtn in subcategories now is running');
+    setOpenUpdateCategory(true);
   };
 
   return (
@@ -54,6 +55,11 @@ const SubLIstItem = ({ ele, id, setSubCategory, selectedCategory }: Props) => {
         setSubCategory={setSubCategory}
         selectedCategory={selectedCategory}
         isSubcategory
+      />
+      <UpdateCategory
+        open={openUpdateCategory}
+        setOpenUpdateCategory={setOpenUpdateCategory}
+        id={id}
       />
     </>
   );

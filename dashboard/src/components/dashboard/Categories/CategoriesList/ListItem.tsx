@@ -13,6 +13,7 @@ import SubLIstItem from './SubLIstItem';
 import { ICategories } from '../../../../interfaces/ICategories';
 import useSubcategories from '../../../../hooks/getSubcategories';
 import AlertDialogSlide from '../../DeleteDialog';
+import UpdateCategory from '../UpdateCategory';
 
 const theme = createTheme({
   palette: {
@@ -50,7 +51,9 @@ const ListItem = ({ open, categoryItem, id, setCategory }: Props) => {
   const [selectedCategory, setSelectedCategory] = useState('');
   const [subCategory, setSubCategory] = useState<ICategories[]>();
   const [openDeleteConfirmation, setOpenDeleteConfirmation] = useState(false);
+  const [openUpdateCategory, setOpenUpdateCategory] = useState(false);
   const fetchSubcategories = useSubcategories(selectedCategory);
+
   useEffect(() => {
     (async () => {
       const data = await fetchSubcategories(selectedCategory);
@@ -66,8 +69,7 @@ const ListItem = ({ open, categoryItem, id, setCategory }: Props) => {
 
   const handleEditBtn = (e: any) => {
     e.stopPropagation();
-
-    console.log('handleEditBtn now is running');
+    setOpenUpdateCategory(true);
   };
 
   const handleDeleteBtn = (e: any) => {
@@ -178,6 +180,11 @@ const ListItem = ({ open, categoryItem, id, setCategory }: Props) => {
         setSubCategory={setCategory}
         selectedCategory={selectedCategory}
         isSubcategory={false}
+      />
+      <UpdateCategory
+        open={openUpdateCategory}
+        setOpenUpdateCategory={setOpenUpdateCategory}
+        id={id}
       />
     </>
   );

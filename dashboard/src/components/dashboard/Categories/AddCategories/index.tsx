@@ -61,22 +61,13 @@ const AddCategory = () => {
   const AddCategoryCB = async () => {
     const data = new FormData();
     if (!values.cover) {
-      toast.error('you should add cover image', {
-        position: 'bottom-left',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-        theme: 'dark',
-      });
+      toast.error('you should add cover image');
       return;
     }
-    data.append('title', values.title);
+    data.append('title', values?.title);
     data.append('description', values.description);
     data.append('cover', values.cover);
-    data.append('parentId', values.parentId);
+    data.append('parentId', values.parentId as string);
     try {
       const res = await ApiServices.post('/categories', data);
       if (res.status === 201) {
