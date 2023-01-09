@@ -2,7 +2,11 @@
 import useTranslation from 'next-translate/useTranslation';
 import NativeSelect from '@mui/material/NativeSelect';
 import setLanguage from 'next-translate/setLanguage';
-import { AuthButtonsBox, LoginButton } from '../../components.styled';
+import {
+  AuthButtonsBox,
+  LoginButton,
+  SelectLang,
+} from '../../components.styled';
 
 export const AuthButtons = () => {
   const { t } = useTranslation('home');
@@ -13,7 +17,7 @@ export const AuthButtons = () => {
   };
   return (
     <AuthButtonsBox>
-      <NativeSelect
+      <SelectLang
         disableUnderline
         sx={{ background: '#FFFFFF' }}
         defaultValue={10}
@@ -24,7 +28,7 @@ export const AuthButtons = () => {
       >
         <option value="en">En</option>
         <option value="fr">Fr</option>
-      </NativeSelect>
+      </SelectLang>
       <LoginButton
         onClick={(event: any) => {
           console.log(event);

@@ -1,6 +1,13 @@
 import { styled } from '@mui/system';
 
-import { Avatar, Box, Button, Input, Typography } from '@mui/material';
+import {
+  Avatar,
+  Box,
+  Button,
+  Input,
+  NativeSelect,
+  Typography,
+} from '@mui/material';
 
 import PhoneForwardedIcon from '@mui/icons-material/PhoneForwarded';
 import SearchIcon from '@mui/icons-material/Search';
@@ -76,11 +83,17 @@ const StyledHeader = styled('header')({
 
 const NavigationAnchor = styled(Link)({
   color: '#000116',
-  fontSize: '1em',
+  fontSize: '0.9em',
   textDecoration: 'none',
   marginLeft: '50px',
-  fontWeight: 'bold',
+  fontWeight: '550',
   '@media screen and (max-width: 850px)': {
+    display: 'flex',
+    flexWrap: 'noWrap',
+    textAlign: 'center',
+    verticalAlign: 'central',
+    // alienItems: 'center',
+    gap: '1rem',
     color: '#222',
     fontSize: '1em',
     margin: '15px 50px',
@@ -97,7 +110,8 @@ const Navigations = styled(Box)({
     background: 'rgba(223, 219, 219, 0.5)',
     width: '100%',
     height: '100vh',
-    top: '0',
+    top: '-30%',
+    // bottom: '50px',
     left: '0',
     display: 'flex',
     justifyContent: 'center',
@@ -241,12 +255,21 @@ const AuthButtonsBox = styled(Box)({
 
 const LoginButton = styled(Button)({
   color: '#FFFFFF',
+  fontSize: '0.7em',
   background: 'linear-gradient(90deg, #FF5362 0%, #E52535 100%)',
   borderColor: '#E52535',
   '@media screen and (max-width:450px)': {
     fontSize: '0.45rem',
     padding: '0.1rem',
     margin: '0',
+  },
+});
+const SelectLang = styled(NativeSelect)({
+  background: '#FFFFFF',
+  borderColor: '#E52535',
+  '@media screen and (max-width:450px)': {
+    fontSize: '0.45rem',
+    width: '2rem',
   },
 });
 
@@ -280,4 +303,5 @@ export {
   AuthButtonsBox,
   LoginButton,
   SignUpButton,
+  SelectLang,
 };

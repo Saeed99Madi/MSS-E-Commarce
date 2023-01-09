@@ -1,9 +1,11 @@
 import { MenuItem, Select } from '@mui/material';
+import axios from 'axios';
 // import { GetServerSideProps } from 'next';
 import useTranslation from 'next-translate/useTranslation';
-import { useState } from 'react';
-// import { ICategory } from '../../../interfaces/ICategory';
-// import ApiServices from '../../../services/ApiService';
+import { useEffect, useState } from 'react';
+import Axios from '../../../config';
+import { ICategory } from '../../../interfaces/ICategory';
+import ApiServices from '../../../services/ApiService';
 
 import {
   AppsIconNav,
@@ -16,21 +18,38 @@ import {
   NavItems,
 } from '../components.styled';
 
-const category = {
+const categoryItem = {
   fontStyle: 'italic',
   fontWeight: 'bold',
   margin: '5px 0px',
   color: '#000000',
   opacity: '1 !important',
 };
-// type Props = {
-//   categories?: ICategory[];
-// };
 
 export const NavHeader = () => {
   // const { categories } = props;
   const [active, setActive] = useState(false);
+  const [categories, setCategories] = useState<ICategory[]>([]);
 
+  // useEffect(() => {
+  //   const { data } = await Axios.get('/me').then(() => {
+  //     console.log('Hell');
+  //   });
+  // }, []);
+
+  useEffect(() => {
+    (async () => {
+      const response = await Axios.get('/categories');
+
+      setCategories(response.data.data);
+    })();
+  }, []);
+
+  useEffect(() => {
+    console.log(process.env.BASE_UEL, 'React Base Url');
+
+    console.log(categories);
+  }, [categories]);
   const menuDisActive = () => {
     setActive(false);
   };
@@ -50,22 +69,34 @@ export const NavHeader = () => {
             disableUnderline
             variant="standard"
             sx={{
+              fontSize: '0.9em',
               border: 0,
+              color: '#000000',
               boxShadow: 'none',
               '.MuiOutlinedInput-notchedOutline': { border: 0 },
             }}
             defaultValue={0}
           >
-            <MenuItem value={0} sx={category}>
+            <MenuItem value={0} sx={categoryItem}>
               {t('Categories')}
             </MenuItem>
-            <MenuItem value={4} sx={category}>
-              Category 1
-            </MenuItem>
-            <MenuItem value={1}>Option 1</MenuItem>
-            <MenuItem value={2}>Option 2</MenuItem>
-            <MenuItem sx={category}>Category 2</MenuItem>
-            <MenuItem value={3}>Option 3</MenuItem>
+            {categories ? (
+              categories.map((category: ICategory) => {
+                return (
+                  <MenuItem
+                    key={category.id}
+                    value={category.id}
+                    sx={categoryItem}
+                  >
+                    {category.title}
+                  </MenuItem>
+                );
+              })
+            ) : (
+              <MenuItem value={4} sx={categoryItem}>
+                noCategories
+              </MenuItem>
+            )}
           </Select>
 
           <NavigationAnchor href="/" onClick={menuDisActive}>
