@@ -1,9 +1,10 @@
 import { Request, Response } from 'express';
-import { Category } from '../models';
+import { Category, Product } from '../models';
 import CustomError from '../helpers/errorHandler/CustomError';
 import { categoriesSchema } from '../schemes';
-import { Op } from 'sequelize';
+import { Op, where } from 'sequelize';
 import * as fs from 'fs';
+import * as path from 'path';
 // CategoriesController.ts file
 export default class CategoriesController {
   // get All Categories
@@ -20,6 +21,18 @@ export default class CategoriesController {
   public static async show(req: Request, res: Response) {
     const { id } = req.params;
     const category = await Category.findByPk(id);
+
+    res.status(200).json({
+      status: 200,
+      data: category,
+    });
+  }
+
+  // get specific category
+  public static async category(req: Request, res: Response) {
+    const { categoryId } = req.params;
+
+    const category = await Category.findByPk(categoryId);
 
     res.status(200).json({
       status: 200,
@@ -109,54 +122,102 @@ export default class CategoriesController {
 
   // delete categories
   public static async delete(req: Request, res: Response) {
-    const { id } = req.body;
-
-    const category = await Category.findOne({ where: { id } });
+    const { categoryId } = req.params;
+    const category = await Category.findOne({ where: { id: categoryId } });
     if (!category) {
       throw new CustomError(404, 'CATEGORY NOT FOUND');
     }
-    const count = await Category.destroy({ where: { id } });
-    console.log(count);
-    res.status(202).json({
-      status: 202,
-      msg: 'deleted successfully',
-    });
+
+    const { isChild, cover }: { isChild: boolean; cover: string } =
+      category.dataValues;
+
+    const imagePath = path.join(__dirname, '..', 'images', 'categories', cover);
+
+    if (isChild) {
+      await Category.destroy({ where: { id: categoryId } });
+      await Product.destroy({ where: { CategoryId: categoryId } });
+      fs.unlinkSync(imagePath);
+      res.status(202).json({
+        status: 202,
+        msg: 'deleted successfully',
+      });
+    } else {
+      const allCategories = await Category.findAll({
+        where: { parentId: categoryId },
+      });
+      await Promise.all(
+        allCategories.map(async category => {
+          return await Category.update(
+            { isChild: false, parentId: null },
+            { where: { id: category.dataValues.id } },
+          );
+        }),
+      );
+      await Category.destroy({ where: { id: categoryId } });
+      await Product.destroy({ where: { CategoryId: categoryId } });
+      fs.unlinkSync(imagePath);
+      res.status(202).json({
+        status: 202,
+        msg: 'deleted successfully',
+      });
+    }
   }
 
   // update categories
   public static async update(req: Request, res: Response) {
-    const { id, title, description, cover, parentId } = req.body;
-
-    await categoriesSchema({ title, description, cover });
-
+    const files = req.files as { [fieldName: string]: Express.Multer.File[] };
+    const { cover } = files;
+    const { id, title, description } = req.body;
+    await categoriesSchema({ title, description });
     const category = await Category.findOne({ where: { title } });
+
     if (category) {
       throw new CustomError(422, 'The category was added previously !');
     }
 
-    if (!parentId) {
-      await Category.upsert({
-        id,
-        title,
-        description,
-      });
+    if (!cover) {
+      try {
+        await Category.upsert({
+          id,
+          title,
+          description,
+        });
 
-      res.status(200).json({
-        status: 200,
-        msg: 'updated successfully',
-      });
+        res.status(200).json({
+          status: 200,
+          msg: 'updated successfully',
+        });
+      } catch (error) {
+        throw new CustomError(501, 'something went wrong !');
+      }
     } else {
-      await Category.upsert({
-        id,
-        title,
-        description,
-        isChild: true,
-      });
+      const category = await Category.findOne({ where: { id } });
+      const coverInstance = cover[0];
+      const imagePath = path.join(
+        __dirname,
+        '..',
+        'images',
+        'categories',
+        category?.dataValues?.cover,
+      );
+      try {
+        fs.unlinkSync(imagePath);
 
-      res.status(200).json({
-        status: 200,
-        msg: 'updated successfully',
-      });
+        await Category.upsert({
+          id,
+          title,
+          description,
+          cover: coverInstance.filename,
+        });
+
+        res.status(200).json({
+          status: 200,
+          msg: 'updated successfully',
+        });
+      } catch (error) {
+        fs.unlinkSync(imagePath);
+        throw new CustomError(501, 'something went wrong !');
+      }
     }
   }
 }

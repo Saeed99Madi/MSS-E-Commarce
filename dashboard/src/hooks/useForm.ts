@@ -1,10 +1,11 @@
 import { useState, ChangeEvent } from 'react';
 
 type Category = {
-  title: string;
+  title: any;
   description: string;
   cover?: File;
-  parentId: string;
+  parentId?: string;
+  id?: string | Blob | undefined;
 };
 
 export const useForm = (initialState: Category) => {
@@ -14,6 +15,7 @@ export const useForm = (initialState: Category) => {
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { files } = event.target;
     //  check if the coming data is an id for parent category by checking if the data able to convert to number
+
     if (+event.target.value) {
       setValues({ ...values, parentId: event.target.value });
     } else if (event.target.name === 'cover') {
@@ -23,15 +25,8 @@ export const useForm = (initialState: Category) => {
     }
   };
 
-  //  onSubmit function to send the data to the backend
-  // const onSubmit = async (event: ChangeEvent<HTMLButtonElement>) => {
-  //   event.preventDefault();
-  //   await callback;
-  // };
-  // return values
   return {
     onChange,
-    // onSubmit,
     values,
   };
 };

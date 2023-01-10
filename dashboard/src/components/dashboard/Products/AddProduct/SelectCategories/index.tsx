@@ -55,7 +55,7 @@ export const SelectCategories = (props: Props) => {
       {categories.map((ele: ICategories) => {
         return (
           <MenuItem key={ele.id} value={`${ele.id}`}>
-            {ele.title}
+            {ele.title as string}
           </MenuItem>
         );
       })}
