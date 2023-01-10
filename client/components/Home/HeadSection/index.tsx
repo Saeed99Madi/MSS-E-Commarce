@@ -1,35 +1,53 @@
-import { GetServerSideProps } from 'next';
+import {
+  CardButton,
+  CardHdParagraph,
+  CardParagraph,
+  CenterdFlexContainer,
+  CustomButtonCheck,
+  CustomButtonWho,
+  HeadContainer,
+  HeadParagraph,
+  HeadText,
+  ServiceCard,
+} from './components.styled';
 
-import ApiServices from '../../../services/ApiService';
-
-type Props = {
-  error: { error: string };
-};
-
-const HeadSection = (props: Props) => {
-  const { error } = props;
+const HeadSection = () => {
   return (
-    <div>
-      <h1>{error.error} HeadSection</h1>
-    </div>
+    <HeadContainer>
+      <HeadText>Mooie Sterk Solar</HeadText>
+      <HeadParagraph>
+        We deliver Solar products to all Countries, Check Our Products & Enjoy
+      </HeadParagraph>
+      <CenterdFlexContainer>
+        <CustomButtonCheck>Check Products</CustomButtonCheck>
+        <CustomButtonWho>Who We Are</CustomButtonWho>
+      </CenterdFlexContainer>
+      <ServiceCard>
+        <img
+          style={{
+            width: '120px',
+            height: '100px',
+          }}
+          src="/assets/map.png"
+          alt="map"
+        />
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <CardParagraph>Mooie Sterk Solar</CardParagraph>
+          <CardHdParagraph>
+            We deliver Solar products to all Countries, Check Our Products &
+            Enjoy
+          </CardHdParagraph>
+        </div>
+        <CardButton>Check Products</CardButton>
+      </ServiceCard>
+    </HeadContainer>
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async context => {
-  try {
-    ApiServices.init();
-
-    return {
-      props: {
-        products: [],
-      },
-    };
-  } catch (error: unknown) {
-    return {
-      props: {
-        error: { error: 'somthing went wrong' },
-      },
-    };
-  }
-};
 export default HeadSection;
