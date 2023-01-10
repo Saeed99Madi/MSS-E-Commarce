@@ -3,14 +3,20 @@ import List from '@mui/material/List';
 import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
 import { IParentListItem } from '../interfaces.styled';
 
-export const CategoriesListWrapper = styled('div')`
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  height: 100%;
-  padding-bottom: 4rem !important;
-  overflow-y: scroll;
-  ::-webkit-scrollbar {
+export const CategoriesListWrapper = styled('div')(
+  ({ open }: { open: boolean }) => ({
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '1rem',
+    height: '100%',
+    width: `${open ? '55vw' : '68vw'}`,
+    paddingBottom: '4rem !important',
+    overflowY: 'scroll',
+    WebkitScrollSnapType: 'both',
+    marginRight: `${open ? '-80px' : '170px'}`,
+  }),
+  `
+    ::-webkit-scrollbar {
     width: 0.5rem;
   }
   ::-webkit-scrollbar-track {
@@ -21,10 +27,11 @@ export const CategoriesListWrapper = styled('div')`
     outline: 1px solid #f6cd06;
     border-radius: 8px;
   }
-`;
+  `,
+);
 
 export const ParentListItem = styled(List)(({ open }: IParentListItem) => ({
-  width: `${!open ? '85%' : '100%'}`,
+  // width: `${!open ? '85%' : '100%'}`,
   background:
     'linear-gradient(130.79deg, rgba(255, 255, 255, 0.08) -37.1%, rgba(255, 255, 255, 0) 134.47%)',
   borderRadius: '12px',

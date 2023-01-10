@@ -6,7 +6,7 @@ import { CategoriesListWrapper } from './component.style';
 
 const CategoriesList = ({ open }: { open: boolean }) => {
   const [category, setCategory] = useState<ICategories[]>();
-
+  console.log({ open });
   const fetchCategories = useCategories();
 
   useEffect(() => {
@@ -16,7 +16,7 @@ const CategoriesList = ({ open }: { open: boolean }) => {
   }, []);
 
   return (
-    <CategoriesListWrapper>
+    <CategoriesListWrapper open={open}>
       {category?.map((categoryItem: ICategories) => {
         return (
           <ListItem

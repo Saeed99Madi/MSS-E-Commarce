@@ -56,15 +56,16 @@ export const CategoryDetailsWrapper = styled('div')`
 export const CategoryMain = styled(Main)`
   background: #141417;
   color: #fff;
-  height: 100vh;
 `;
 
 export const CategoryWrapper = styled('div')`
-  height: 95.6%;
+  height: 100%;
   padding: 25px;
   background: #1e1e21;
   border-top-left-radius: 2rem;
-  min-width: 450px;
+  min-width: 470px;
+  padding-right: 220px;
+  margin-left: 100px;
 `;
 
 export const CustomTypography = styled(Typography)`

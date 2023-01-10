@@ -20,6 +20,7 @@ import { ICategories } from '../../../../interfaces/ICategories';
 import useSubcategories from '../../../../hooks/getSubcategories';
 import AlertDialogSlide from '../../DeleteDialog';
 import UpdateCategory from '../UpdateCategory';
+import { DrawerHeader } from '../../components.styled';
 
 const theme = createTheme({
   palette: {
@@ -86,6 +87,7 @@ const ListItem = ({ open, categoryItem, id, setCategory }: Props) => {
 
   return (
     <>
+      <DrawerHeader />
       <ParentListItem aria-labelledby="nested-list-subheader" open={open}>
         <ListItemButton
           onClick={handleClick}

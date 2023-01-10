@@ -1,23 +1,16 @@
 import Box from '@mui/material/Box';
 import { useContext } from 'react';
-import { DrawerHeader, Main } from '../components.styled';
+import { Main } from '../components.styled';
 import CategoriesList from './CategoriesList';
 import { DashboardContext } from '../../../context/DashboardContext';
 import AddCategories from './AddCategories';
 
 export const Categories = () => {
   const { openSideBar } = useContext(DashboardContext);
-
   return (
     <Box
-      sx={{
-        display: 'flex',
-        background: '#141417',
-        color: '#FFFFFF',
-      }}
-      className="wrapper"
       style={{
-        maxWidth: '100%',
+        width: '100vw',
       }}
     >
       <Main
@@ -26,12 +19,13 @@ export const Categories = () => {
           background: '#141417',
           color: '#FFFFFF',
           height: '100vh',
+          display: 'flex',
+          overflow: 'hidden',
         }}
       >
-        <DrawerHeader />
         <CategoriesList open={openSideBar} />
+        <AddCategories />
       </Main>
-      <AddCategories />
     </Box>
   );
 };
