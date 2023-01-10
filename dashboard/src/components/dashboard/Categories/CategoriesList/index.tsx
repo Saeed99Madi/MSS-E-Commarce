@@ -20,7 +20,7 @@ const CategoriesList = ({ open }: { open: boolean }) => {
       {category?.map((categoryItem: ICategories) => {
         return (
           <ListItem
-            id={categoryItem.id}
+            id={categoryItem.id as number}
             key={categoryItem.id}
             open={open}
             categoryItem={categoryItem}

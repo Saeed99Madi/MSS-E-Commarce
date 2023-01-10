@@ -52,7 +52,6 @@ const AlertDialogSlide = ({
     setConfirmDelete(false);
   };
 
-  ApiServices.init();
   const handleConfirmDeletion = async () => {
     setConfirmDelete(true);
     try {

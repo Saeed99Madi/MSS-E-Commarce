@@ -1,17 +1,18 @@
+import { useState } from 'react';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
+// import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
-import { useState } from 'react';
 import { ICategories } from '../../../../interfaces/ICategories';
 import ApiServices from '../../../../servises/ApiService';
 import AlertDialogSlide from '../../DeleteDialog';
 import UpdateCategory from '../UpdateCategory';
+import { SubLIstItemWrapper, EditIcon } from './component.style';
 
 interface Props {
   ele: ICategories;
-  id: number;
+  id: number | undefined | string;
   setSubCategory: Function;
   selectedCategory: string;
 }
@@ -34,20 +35,17 @@ const SubLIstItem = ({ ele, id, setSubCategory, selectedCategory }: Props) => {
 
   return (
     <>
-      <div style={{ borderTop: '2px solid #424244' }} id={`${id}`}>
+      <SubLIstItemWrapper id={`${id}`}>
         <ListItemButton sx={{ pl: 4.5 }}>
           <ListItemIcon>
             <img src="/timeline.svg" alt="logo" />
           </ListItemIcon>
-          <p style={{ marginLeft: '-20px' }}> {ele.title}</p>
+          <p style={{ marginLeft: '-20px' }}>{ele.title as string}</p>
           <ListItemText />
-          <ModeEditOutlineOutlinedIcon
-            onClick={handleEditBtn}
-            style={{ marginRight: '20px' }}
-          />
+          <EditIcon onClick={handleEditBtn} />
           <DeleteOutlinedIcon onClick={handleDeleteBtn} />
         </ListItemButton>
-      </div>
+      </SubLIstItemWrapper>
       <AlertDialogSlide
         setOpen={setOpen}
         open={open}

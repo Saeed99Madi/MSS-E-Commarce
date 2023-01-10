@@ -9,6 +9,12 @@ import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import {
+  ParentListItem,
+  CloseSign,
+  OpenSign,
+  CustomSpan,
+} from './component.style';
 import SubLIstItem from './SubLIstItem';
 import { ICategories } from '../../../../interfaces/ICategories';
 import useSubcategories from '../../../../hooks/getSubcategories';
@@ -42,7 +48,7 @@ declare module '@mui/material/Button' {
 
 interface Props {
   open: boolean;
-  categoryItem: ICategories | undefined;
+  categoryItem: ICategories;
   id: number;
   setCategory: Function;
 }
@@ -80,65 +86,32 @@ const ListItem = ({ open, categoryItem, id, setCategory }: Props) => {
 
   return (
     <>
-      <List
-        sx={{ width: `${!open ? '85%' : '100%'}`, bgcolor: 'background.paper' }}
-        component="nav"
-        aria-labelledby="nested-list-subheader"
-        style={{
-          background:
-            'linear-gradient(130.79deg, rgba(255, 255, 255, 0.08) -37.1%, rgba(255, 255, 255, 0) 134.47%)',
-          borderRadius: '12px',
-          borderTop: '2px solid #424244',
-        }}
-      >
+      <ParentListItem aria-labelledby="nested-list-subheader" open={open}>
         <ListItemButton
           onClick={handleClick}
-          style={{ height: '54px' }}
+          sx={{
+            height: '54px',
+          }}
           id={`${id}`}
         >
           <ListItemIcon sx={{ pl: 2 }}>
-            {openList ? (
-              <div
-                style={{
-                  backgroundColor: '#F6CD06',
-                  width: '16px',
-                  height: '2px',
-                }}
-              />
-            ) : (
-              <div
-                style={{
-                  color: '#ffff',
-                  fontSize: '2rem',
-                }}
-              >
-                {' '}
-                +{' '}
-              </div>
-            )}
+            {openList ? <CloseSign /> : <OpenSign>+</OpenSign>}
           </ListItemIcon>
           <ListItemText>
             <p>
-              {categoryItem?.title}
-              <span
-                style={{
-                  color: '#FFFFFF',
-                  opacity: '0.5',
-                  display: 'flex',
-                  flexDirection: 'column',
-                }}
-              >
+              {categoryItem?.title as string}
+              <CustomSpan>
                 {`${
                   subCategory?.length
                     ? `Subcategory - ${subCategory?.length}`
                     : 'Subcategory'
                 }`}
-              </span>
+              </CustomSpan>
             </p>
           </ListItemText>
           <ModeEditOutlineOutlinedIcon
             onClick={handleEditBtn}
-            style={{ marginRight: '20px' }}
+            sx={{ marginRight: '20px' }}
           />
           <DeleteOutlinedIcon onClick={handleDeleteBtn} />
         </ListItemButton>
@@ -161,8 +134,7 @@ const ListItem = ({ open, categoryItem, id, setCategory }: Props) => {
               <Stack>
                 <ThemeProvider theme={theme}>
                   <Alert
-                    sx={{ pl: 3.8 }}
-                    style={{ backgroundColor: 'inherit', color: '#fff' }}
+                    sx={{ pl: 3.8, backgroundColor: 'inherit', color: '#fff' }}
                     severity="info"
                   >
                     There is no data !
@@ -172,7 +144,7 @@ const ListItem = ({ open, categoryItem, id, setCategory }: Props) => {
             )}
           </List>
         </Collapse>
-      </List>
+      </ParentListItem>
       <AlertDialogSlide
         setOpen={setOpenDeleteConfirmation}
         open={openDeleteConfirmation}

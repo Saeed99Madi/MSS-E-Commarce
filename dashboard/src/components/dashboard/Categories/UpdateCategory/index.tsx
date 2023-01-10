@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -10,24 +9,23 @@ import { UpdateOutlined } from '@mui/icons-material';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import CircularProgress from '@mui/material/CircularProgress';
 import { toast } from 'react-toastify';
-import { CategoryDescriptionInput } from '../AddCategories/component.styled';
+import {
+  CategoryDescriptionInput,
+  CustomTextField,
+  CustomCoverButton,
+} from '../component.styled';
 import useCategory from '../../../../hooks/getCategory';
 import ApiServices from '../../../../servises/ApiService';
+import { ICategories } from '../../../../interfaces/ICategories';
 
 interface Props {
   open: boolean;
   setOpenUpdateCategory: Function;
-  id: number;
-}
-interface Category {
-  id?: any;
-  title?: any;
-  description?: any;
-  cover?: any;
+  id: number | undefined | string;
 }
 
 const UpdateCategory = ({ open, setOpenUpdateCategory, id }: Props) => {
-  const [category, setCategory] = useState<Category | undefined>();
+  const [category, setCategory] = useState<ICategories | undefined>();
   const [loader, setLoader] = useState(true);
   const fetchCategory = useCategory(id);
 
@@ -58,9 +56,9 @@ const UpdateCategory = ({ open, setOpenUpdateCategory, id }: Props) => {
 
   const AddCategoryCB = async () => {
     const data = new FormData();
-    data.append('title', category?.title);
-    data.append('description', category?.description);
-    data.append('cover', category?.cover);
+    data.append('title', category?.title as string);
+    data.append('description', category?.description as string);
+    data.append('cover', category?.cover as string);
     data.append('id', category?.id as string);
 
     try {
@@ -126,15 +124,10 @@ const UpdateCategory = ({ open, setOpenUpdateCategory, id }: Props) => {
             gap: '2rem',
           }}
         >
-          <TextField
+          <CustomTextField
             sx={{
-              borderRadius: '0.5rem',
               input: { color: '#FFFFFF' },
               label: { color: '#b1a9a9', marginLeft: '1rem' },
-              width: '100%',
-              height: '50px',
-              background:
-                'linear-gradient(130.79deg, rgba(255, 255, 255, 0.08) -37.1%, rgba(255, 255, 255, 0) 134.47%)',
             }}
             id="standard-basic"
             label="Category Name"
@@ -152,22 +145,8 @@ const UpdateCategory = ({ open, setOpenUpdateCategory, id }: Props) => {
             label="Category Description"
             multiline
             rows={4}
-            sx={{
-              borderRadius: '0.5rem',
-              input: { color: '#FFFFFF' },
-              label: { color: '#b1a9a9', marginLeft: '1rem' },
-              background:
-                'linear-gradient(130.79deg, rgba(255, 255, 255, 0.08) -37.1%, rgba(255, 255, 255, 0) 134.47%)',
-            }}
           />
-          <Button
-            sx={{
-              borderRadius: '0.5rem',
-              padding: '1rem 0',
-              width: '100%',
-              background:
-                'linear-gradient(130.79deg, rgba(255, 255, 255, 0.08) -37.1%, rgba(255, 255, 255, 0) 134.47%)',
-            }}
+          <CustomCoverButton
             component="label"
             variant="contained"
             startIcon={<CloudUploadIcon />}
@@ -180,7 +159,7 @@ const UpdateCategory = ({ open, setOpenUpdateCategory, id }: Props) => {
               accept="image/*"
               type="file"
             />
-          </Button>
+          </CustomCoverButton>
         </DialogContent>
 
         <DialogActions>

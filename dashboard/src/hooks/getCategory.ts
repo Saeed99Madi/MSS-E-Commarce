@@ -3,7 +3,7 @@ import { ICategories } from '../interfaces/ICategories';
 
 ApiServices.init();
 
-const useCategory = (id: number) => {
+const useCategory = (id: number | undefined | string) => {
   return async (): Promise<ICategories[] | any> => {
     const { data } = await ApiServices.get(`/categories/${id}`);
 
