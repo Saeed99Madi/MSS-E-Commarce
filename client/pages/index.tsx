@@ -20,13 +20,6 @@ const Home = (props: Props) => {
       <HeadSection />
       <h1>{t('title')}</h1>
 
-      {error ? (
-        <h1>{error.error}</h1>
-      ) : (
-        products.map((product: IProduct) => {
-          return <h1 key={product.id}>{product.title}</h1>;
-        })
-      )}
       <FeaturedProducts products={products} />
     </div>
   );
@@ -35,7 +28,8 @@ const Home = (props: Props) => {
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const getServerSideProps: GetServerSideProps = async context => {
   try {
-    const { data } = await Axios.get('/products');
+    const { data } = await Axios.get('products');
+
     return {
       props: {
         products: data.data,
