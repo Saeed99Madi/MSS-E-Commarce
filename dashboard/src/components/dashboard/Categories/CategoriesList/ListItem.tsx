@@ -9,9 +9,18 @@ import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import {
+  ParentListItem,
+  CloseSign,
+  OpenSign,
+  CustomSpan,
+} from './component.style';
 import SubLIstItem from './SubLIstItem';
 import { ICategories } from '../../../../interfaces/ICategories';
 import useSubcategories from '../../../../hooks/getSubcategories';
+import AlertDialogSlide from '../../DeleteDialog';
+import UpdateCategory from '../UpdateCategory';
+import { DrawerHeader } from '../../components.styled';
 
 const theme = createTheme({
   palette: {
@@ -40,14 +49,18 @@ declare module '@mui/material/Button' {
 
 interface Props {
   open: boolean;
-  categoryItem: ICategories | undefined;
+  categoryItem: ICategories;
   id: number;
+  setCategory: Function;
 }
-const ListItem = ({ open, categoryItem, id }: Props) => {
+const ListItem = ({ open, categoryItem, id, setCategory }: Props) => {
   const [openList, setOpenList] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState('');
   const [subCategory, setSubCategory] = useState<ICategories[]>();
+  const [openDeleteConfirmation, setOpenDeleteConfirmation] = useState(false);
+  const [openUpdateCategory, setOpenUpdateCategory] = useState(false);
   const fetchSubcategories = useSubcategories(selectedCategory);
+
   useEffect(() => {
     (async () => {
       const data = await fetchSubcategories(selectedCategory);
@@ -57,105 +70,97 @@ const ListItem = ({ open, categoryItem, id }: Props) => {
 
   const handleClick = (e: any) => {
     e.stopPropagation();
-    console.log('handleClick now is running');
     setSelectedCategory(e.currentTarget.id);
     setOpenList(!openList);
   };
 
   const handleEditBtn = (e: any) => {
     e.stopPropagation();
-
-    console.log('handleEditBtn now is running');
+    setOpenUpdateCategory(true);
   };
 
   const handleDeleteBtn = (e: any) => {
     e.stopPropagation();
-
-    console.log('handleDeleteBtn now is running');
+    setOpenDeleteConfirmation(true);
+    setSelectedCategory(e.currentTarget.parentElement.id);
   };
 
   return (
-    <List
-      sx={{ width: `${!open ? '85%' : '100%'}`, bgcolor: 'background.paper' }}
-      component="nav"
-      aria-labelledby="nested-list-subheader"
-      style={{
-        background:
-          'linear-gradient(130.79deg, rgba(255, 255, 255, 0.08) -37.1%, rgba(255, 255, 255, 0) 134.47%)',
-        borderRadius: '12px',
-        borderTop: '2px solid #424244',
-      }}
-    >
-      <ListItemButton
-        onClick={handleClick}
-        style={{ height: '54px' }}
-        id={`${id}`}
-      >
-        <ListItemIcon sx={{ pl: 2 }}>
-          {openList ? (
-            <div
-              style={{
-                backgroundColor: '#F6CD06',
-                width: '16px',
-                height: '2px',
-              }}
-            />
-          ) : (
-            <div
-              style={{
-                color: '#ffff',
-                fontSize: '2rem',
-              }}
-            >
-              {' '}
-              +{' '}
-            </div>
-          )}
-        </ListItemIcon>
-        <ListItemText>
-          <p>
-            {categoryItem?.title}
-            <span
-              style={{
-                color: '#FFFFFF',
-                opacity: '0.5',
-                display: 'flex',
-                flexDirection: 'column',
-              }}
-            >
-              Subcategory - 5
-            </span>
-          </p>
-        </ListItemText>
-        <ModeEditOutlineOutlinedIcon
-          onClick={handleEditBtn}
-          style={{ marginRight: '20px' }}
-        />
-        <DeleteOutlinedIcon onClick={handleDeleteBtn} />
-      </ListItemButton>
+    <>
+      <DrawerHeader />
+      <ParentListItem aria-labelledby="nested-list-subheader" open={open}>
+        <ListItemButton
+          onClick={handleClick}
+          sx={{
+            height: '54px',
+          }}
+          id={`${id}`}
+        >
+          <ListItemIcon sx={{ pl: 2 }}>
+            {openList ? <CloseSign /> : <OpenSign>+</OpenSign>}
+          </ListItemIcon>
+          <ListItemText>
+            <p>
+              {categoryItem?.title as string}
+              <CustomSpan>
+                {`${
+                  subCategory?.length
+                    ? `Subcategory - ${subCategory?.length}`
+                    : 'Subcategory'
+                }`}
+              </CustomSpan>
+            </p>
+          </ListItemText>
+          <ModeEditOutlineOutlinedIcon
+            onClick={handleEditBtn}
+            sx={{ marginRight: '20px' }}
+          />
+          <DeleteOutlinedIcon onClick={handleDeleteBtn} />
+        </ListItemButton>
 
-      <Collapse in={openList} timeout="auto" unmountOnExit>
-        <List component="div" disablePadding>
-          {subCategory?.length ? (
-            subCategory?.map(ele => {
-              return <SubLIstItem key={ele.id} ele={ele} />;
-            })
-          ) : (
-            <Stack>
-              <ThemeProvider theme={theme}>
-                <Alert
-                  sx={{ pl: 3.8 }}
-                  style={{ backgroundColor: 'inherit', color: '#fff' }}
-                  severity="info"
-                >
-                  There is no data !
-                </Alert>
-              </ThemeProvider>
-            </Stack>
-          )}
-        </List>
-      </Collapse>
-    </List>
+        <Collapse in={openList} timeout="auto" unmountOnExit>
+          <List component="div" disablePadding>
+            {subCategory?.length ? (
+              subCategory?.map(ele => {
+                return (
+                  <SubLIstItem
+                    key={ele.id}
+                    ele={ele}
+                    id={ele.id}
+                    setSubCategory={setSubCategory}
+                    selectedCategory={selectedCategory}
+                  />
+                );
+              })
+            ) : (
+              <Stack>
+                <ThemeProvider theme={theme}>
+                  <Alert
+                    sx={{ pl: 3.8, backgroundColor: 'inherit', color: '#fff' }}
+                    severity="info"
+                  >
+                    There is no data !
+                  </Alert>
+                </ThemeProvider>
+              </Stack>
+            )}
+          </List>
+        </Collapse>
+      </ParentListItem>
+      <AlertDialogSlide
+        setOpen={setOpenDeleteConfirmation}
+        open={openDeleteConfirmation}
+        selectItemToDelete={selectedCategory}
+        setSubCategory={setCategory}
+        selectedCategory={selectedCategory}
+        isSubcategory={false}
+      />
+      <UpdateCategory
+        open={openUpdateCategory}
+        setOpenUpdateCategory={setOpenUpdateCategory}
+        id={id}
+      />
+    </>
   );
 };
 

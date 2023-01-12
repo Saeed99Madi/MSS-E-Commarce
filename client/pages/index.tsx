@@ -4,6 +4,7 @@ import { GetServerSideProps } from 'next';
 import Layout from '../layouts/main';
 import { IProduct } from '../interfaces/IProduct';
 import Axios from '../config';
+import HeadSection from '../components/Home/HeadSection';
 
 type Props = {
   products: IProduct[];
@@ -15,6 +16,7 @@ const Home = (props: Props) => {
   const { products, error } = props;
   return (
     <div style={{ margin: '0' }}>
+      <HeadSection />
       <h1>{t('title')}</h1>
 
       {error ? (

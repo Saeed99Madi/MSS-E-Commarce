@@ -15,9 +15,17 @@ router
     errorWrapper(isAuth),
     upload.fields(categoryField),
     errorWrapper(CategoriesController.create),
-  )
+  );
+
+router
+  .route('/categories/:categoryId')
   .delete(errorWrapper(isAuth), errorWrapper(CategoriesController.delete))
-  .put(errorWrapper(isAuth), errorWrapper(CategoriesController.update));
+  .get(errorWrapper(isAuth), errorWrapper(CategoriesController.category))
+  .put(
+    errorWrapper(isAuth),
+    upload.fields(categoryField),
+    errorWrapper(CategoriesController.update),
+  );
 
 router.get(
   '/subcategories/:categoryId',
