@@ -1,10 +1,9 @@
 import { ReactNode } from 'react';
 import useTranslation from 'next-translate/useTranslation';
 import { GetServerSideProps } from 'next';
-import Link from 'next/link';
 import Layout from '../layouts/main';
-import ApiServices from '../services/ApiService';
 import { IProduct } from '../interfaces/IProduct';
+import Axios from '../config';
 import HeadSection from '../components/Home/HeadSection';
 
 type Props = {
@@ -16,15 +15,10 @@ const Home = (props: Props) => {
   const { t } = useTranslation('home');
   const { products, error } = props;
   return (
-    <div>
+    <div style={{ margin: '0' }}>
       <HeadSection />
       <h1>{t('title')}</h1>
-      <Link locale="en" href="/">
-        English
-      </Link>
-      <Link locale="ar" href="/">
-        Arabic
-      </Link>
+
       {error ? (
         <h1>{error.error}</h1>
       ) : (
@@ -36,12 +30,10 @@ const Home = (props: Props) => {
   );
 };
 
-Home.getLayout = (page: ReactNode) => <Layout>{page}</Layout>;
-
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const getServerSideProps: GetServerSideProps = async context => {
   try {
-    ApiServices.init();
-    const { data } = await ApiServices.get('/products');
+    const { data } = await Axios.get('/products');
     return {
       props: {
         products: data.data,
@@ -55,4 +47,6 @@ export const getServerSideProps: GetServerSideProps = async context => {
     };
   }
 };
+
+Home.getLayout = (page: ReactNode) => <Layout>{page}</Layout>;
 export default Home;
