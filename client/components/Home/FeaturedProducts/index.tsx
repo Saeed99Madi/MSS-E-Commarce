@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   ImageList,
   ImageListItem,
   Typography,
@@ -101,6 +102,20 @@ const FeaturedProducts = () => {
               />
             </ImageCard>
           ))}
+          <ImageListItem>
+            <Button
+              sx={{
+                textTransform: 'none',
+                color: '#FFFFFF',
+                borderRadius: '50px',
+                background: '#1F1F22',
+                '&:hover': { background: '#141417' },
+                width: '100%',
+              }}
+            >
+              Check All Products
+            </Button>
+          </ImageListItem>
         </ImageList>
       </Box>
     </ProductsListContainer>
