@@ -100,7 +100,7 @@ const AlertDialogSlide = ({
           <Button
             type="button"
             onClick={handleClose}
-            style={{
+            sx={{
               padding: '12px 28px',
               background: 'linear-gradient(90deg, #25D366 0%, #128C7E 100%)',
               borderRadius: '50px',
@@ -110,7 +110,7 @@ const AlertDialogSlide = ({
             Disagree
           </Button>
           <LoadingButton
-            style={{
+            sx={{
               padding: '12px 28px',
               background: 'linear-gradient(90deg, #FF5362 0%, #E52535 100%)',
               borderRadius: '50px',

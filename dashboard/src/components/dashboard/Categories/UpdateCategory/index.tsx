@@ -101,14 +101,14 @@ const UpdateCategory = ({ open, setOpenUpdateCategory, id }: Props) => {
         >
           <Typography
             paragraph
-            style={{
+            sx={{
               display: 'flex',
               alignItems: 'center',
             }}
           >
             <UpdateOutlined
               fontSize="large"
-              style={{
+              sx={{
                 marginRight: '1rem',
                 fontSize: '28px',
               }}

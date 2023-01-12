@@ -9,7 +9,7 @@ export const Categories = () => {
   const { openSideBar } = useContext(DashboardContext);
   return (
     <Box
-      style={{
+      sx={{
         width: '100vw',
       }}
     >
