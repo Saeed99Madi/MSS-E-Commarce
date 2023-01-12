@@ -1,4 +1,10 @@
-import { Box, ImageList, ImageListItem, Typography } from '@mui/material';
+import {
+  Box,
+  ImageList,
+  ImageListItem,
+  Typography,
+  useMediaQuery,
+} from '@mui/material';
 import { ImageCard, ProductsListContainer } from './components.styled';
 
 const itemData = [
@@ -53,6 +59,7 @@ const itemData = [
 ];
 
 const FeaturedProducts = () => {
+  const matches = useMediaQuery('(min-width:600px)');
   return (
     <ProductsListContainer>
       <h2 style={{ margin: '0' }}>Featured Products</h2>
@@ -70,8 +77,8 @@ const FeaturedProducts = () => {
         <ImageList
           sx={{ padding: '2rem 2rem 2rem 2rem' }}
           variant="masonry"
-          cols={4}
           gap={10}
+          cols={matches ? 4 : 2}
         >
           {itemData.map(item => (
             <ImageCard key={item.img}>
