@@ -1,12 +1,16 @@
 import {
-  Box,
-  Button,
   ImageList,
   ImageListItem,
   Typography,
   useMediaQuery,
 } from '@mui/material';
-import { ImageCard, ProductsListContainer } from './components.styled';
+import { IProduct } from '../../../interfaces/IProduct';
+import {
+  BlackButton,
+  ImageCard,
+  ImageListContainer,
+  ProductsListContainer,
+} from './components.styled';
 
 const itemData = [
   {
@@ -59,7 +63,11 @@ const itemData = [
   },
 ];
 
-const FeaturedProducts = () => {
+type Props = {
+  products: IProduct[];
+};
+
+const FeaturedProducts = ({ products }: Props) => {
   const matches = useMediaQuery('(min-width:600px)');
   return (
     <ProductsListContainer>
@@ -67,22 +75,15 @@ const FeaturedProducts = () => {
       <p style={{ margin: '0' }}>
         Top bought Solar Products sales in Mooie Sterk Solar
       </p>
-      <Box
-        sx={{
-          overflow: 'hidden',
-          maxWidth: '80%',
-          height: 'auto',
-          marginBottom: '2rem',
-        }}
-      >
+      <ImageListContainer>
         <ImageList
           sx={{ padding: '2rem 2rem 2rem 2rem' }}
           variant="masonry"
           gap={10}
           cols={matches ? 4 : 2}
         >
-          {itemData.map(item => (
-            <ImageCard key={item.img}>
+          {products.map(item => (
+            <ImageCard key={item.id}>
               <div className="overview">
                 <Typography
                   sx={{ color: '#f6b400', fontSize: '14px', margin: '0' }}
@@ -95,29 +96,18 @@ const FeaturedProducts = () => {
                 </Typography>
               </div>
               <img
-                src={`${item.img}?w=248&fit=crop&auto=format`}
-                srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                src={`${process.env.REACT_APP_BASEE_URL}/products/${item.cover}?w=248&fit=crop&auto=format`}
+                srcSet={`${process.env.REACT_APP_BASEE_URL}/products/${item.cover}?w=248&fit=crop&auto=format&dpr=2 2x`}
                 alt={item.title}
                 loading="lazy"
               />
             </ImageCard>
           ))}
           <ImageListItem>
-            <Button
-              sx={{
-                textTransform: 'none',
-                color: '#FFFFFF',
-                borderRadius: '50px',
-                background: '#1F1F22',
-                '&:hover': { background: '#141417' },
-                width: '100%',
-              }}
-            >
-              Check All Products
-            </Button>
+            <BlackButton>Check All Products</BlackButton>
           </ImageListItem>
         </ImageList>
-      </Box>
+      </ImageListContainer>
     </ProductsListContainer>
   );
 };

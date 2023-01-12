@@ -31,7 +31,7 @@ const Home = (props: Props) => {
           return <h1 key={product.id}>{product.title}</h1>;
         })
       )}
-      <FeaturedProducts />
+      <FeaturedProducts products={products} />
     </div>
   );
 };
