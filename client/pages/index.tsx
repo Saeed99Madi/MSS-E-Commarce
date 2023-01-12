@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Layout from '../layouts/main';
 import ApiServices from '../services/ApiService';
 import { IProduct } from '../interfaces/IProduct';
+import FeaturedProducts from '../components/Home/FeaturedProducts';
 
 type Props = {
   products: IProduct[];
@@ -30,6 +31,7 @@ const Home = (props: Props) => {
           return <h1 key={product.id}>{product.title}</h1>;
         })
       )}
+      <FeaturedProducts />
     </div>
   );
 };
