@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Layout from '../layouts/main';
 import ApiServices from '../services/ApiService';
 import { IProduct } from '../interfaces/IProduct';
+import HeadSection from '../components/Home/HeadSection';
 
 type Props = {
   products: IProduct[];
@@ -16,6 +17,7 @@ const Home = (props: Props) => {
   const { products, error } = props;
   return (
     <div>
+      <HeadSection />
       <h1>{t('title')}</h1>
       <Link locale="en" href="/">
         English
