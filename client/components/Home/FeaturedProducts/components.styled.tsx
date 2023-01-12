@@ -1,4 +1,4 @@
-import { ImageListItem, styled } from '@mui/material';
+import { Box, Button, ImageListItem, styled } from '@mui/material';
 
 const ProductsListContainer = styled('section')({
   height: 'auto',
@@ -39,5 +39,19 @@ const ImageCard = styled(ImageListItem)({
     transform: 'scale(1.04)',
   },
 });
+const BlackButton = styled(Button)({
+  textTransform: 'none',
+  color: '#FFFFFF',
+  borderRadius: '50px',
+  background: '#1F1F22',
+  '&:hover': { background: '#141417' },
+  width: '100%',
+});
+const ImageListContainer = styled(Box)({
+  overflow: 'hidden',
+  maxWidth: '80%',
+  height: 'auto',
+  marginBottom: '2rem',
+});
 
-export { ProductsListContainer, ImageCard };
+export { ProductsListContainer, ImageCard, BlackButton, ImageListContainer };
