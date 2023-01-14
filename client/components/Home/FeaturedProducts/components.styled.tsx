@@ -20,7 +20,6 @@ const ImageCard = styled(ImageListItem)({
   '.overview': {
     position: 'absolute',
     paddingBottom: '0.2rem',
-
     left: '0',
     right: '0',
     bottom: '0',
