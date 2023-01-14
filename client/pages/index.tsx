@@ -1,11 +1,16 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { ReactNode } from 'react';
+
 import useTranslation from 'next-translate/useTranslation';
 import { GetServerSideProps } from 'next';
+
 import Layout from '../layouts/main';
 import { IProduct } from '../interfaces/IProduct';
+
 import FeaturedProducts from '../components/Home/FeaturedProducts';
-import Axios from '../config';
 import HeadSection from '../components/Home/HeadSection';
+
+import Axios from '../config';
 
 type Props = {
   products: IProduct[];
@@ -18,8 +23,6 @@ const Home = (props: Props) => {
   return (
     <div style={{ margin: '0' }}>
       <HeadSection />
-      <h1>{t('title')}</h1>
-
       <FeaturedProducts products={products} />
     </div>
   );
