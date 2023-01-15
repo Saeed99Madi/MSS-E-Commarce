@@ -7,7 +7,7 @@ const ServicesContainer = styled('section')({
   height: '50%',
   alignItems: 'center',
   padding: '3rem 6rem',
-
+  transition: '0.5s ease',
   '@media screen and (max-width: 850px)': {
     flexDirection: 'column',
     gap: '2rem',
@@ -18,6 +18,7 @@ const ServiceCard = styled('div')({
   display: 'flex',
   gap: '1rem',
   width: '40%',
+  transition: '0.5s ease',
   '@media screen and (max-width: 850px)': {
     width: '100%',
   },
