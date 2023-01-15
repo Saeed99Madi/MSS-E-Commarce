@@ -7,11 +7,20 @@ const ServicesContainer = styled('section')({
   height: '50%',
   alignItems: 'center',
   padding: '3rem 6rem',
+
+  '@media screen and (max-width: 850px)': {
+    flexDirection: 'column',
+    gap: '2rem',
+    padding: '3rem 1rem',
+  },
 });
 const ServiceCard = styled('div')({
   display: 'flex',
   gap: '1rem',
   width: '40%',
+  '@media screen and (max-width: 850px)': {
+    width: '100%',
+  },
 });
 const IconContainer = styled('div')({
   height: '10%',
