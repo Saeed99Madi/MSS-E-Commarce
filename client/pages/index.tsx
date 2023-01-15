@@ -5,6 +5,7 @@ import Layout from '../layouts/main';
 import { IProduct } from '../interfaces/IProduct';
 import Axios from '../config';
 import HeadSection from '../components/Home/HeadSection';
+import ServicesList from '../components/Home/ServicesList';
 
 type Props = {
   products: IProduct[];
@@ -17,6 +18,7 @@ const Home = (props: Props) => {
   return (
     <div style={{ margin: '0' }}>
       <HeadSection />
+      <ServicesList />
       <h1>{t('title')}</h1>
 
       {error ? (
