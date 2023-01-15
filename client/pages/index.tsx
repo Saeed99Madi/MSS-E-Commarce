@@ -1,11 +1,17 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { ReactNode } from 'react';
+
 import useTranslation from 'next-translate/useTranslation';
 import { GetServerSideProps } from 'next';
+
 import Layout from '../layouts/main';
 import { IProduct } from '../interfaces/IProduct';
-import Axios from '../config';
+
+import FeaturedProducts from '../components/Home/FeaturedProducts';
 import HeadSection from '../components/Home/HeadSection';
 import ServicesList from '../components/Home/ServicesList';
+
+import Axios from '../config';
 
 type Props = {
   products: IProduct[];
@@ -18,6 +24,7 @@ const Home = (props: Props) => {
   return (
     <div style={{ margin: '0' }}>
       <HeadSection />
+      <FeaturedProducts products={products} />
       <ServicesList />
       <h1>{t('title')}</h1>
 
@@ -35,7 +42,8 @@ const Home = (props: Props) => {
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const getServerSideProps: GetServerSideProps = async context => {
   try {
-    const { data } = await Axios.get('/products');
+    const { data } = await Axios.get('products');
+
     return {
       props: {
         products: data.data,
