@@ -9,6 +9,7 @@ import { IProduct } from '../interfaces/IProduct';
 
 import FeaturedProducts from '../components/Home/FeaturedProducts';
 import HeadSection from '../components/Home/HeadSection';
+import ServicesList from '../components/Home/ServicesList';
 
 import Axios from '../config';
 
@@ -24,6 +25,16 @@ const Home = (props: Props) => {
     <div style={{ margin: '0' }}>
       <HeadSection />
       <FeaturedProducts products={products} />
+      <ServicesList />
+      <h1>{t('title')}</h1>
+
+      {error ? (
+        <h1>{error.error}</h1>
+      ) : (
+        products.map((product: IProduct) => {
+          return <h1 key={product.id}>{product.title}</h1>;
+        })
+      )}
     </div>
   );
 };
