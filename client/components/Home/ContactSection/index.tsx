@@ -1,4 +1,3 @@
-import LocalShippingOutlinedIcon from '@mui/icons-material/LocalShippingOutlined';
 import { Button, Typography } from '@mui/material';
 import {
   BoxColumn,
@@ -7,6 +6,8 @@ import {
   GrediantGreenPargraph,
   GrediantPargraph,
   IconWrapper,
+  ImageIcon,
+  CustomButton,
   ReflectedIconWrapper,
 } from './components.styled';
 // type Props = {
@@ -18,40 +19,41 @@ const ContactSection = () => {
     <ContactContainer>
       <ContactCard>
         <IconWrapper>
-          <img src="/assets/contact.png" alt="contact" />
+          <ImageIcon src="/assets/contact.png" alt="contact" />
         </IconWrapper>
         <BoxColumn sx={{ gap: '1rem' }}>
           <BoxColumn>
             <Typography
-              sx={{ margin: '0', fontSize: '2.5rem', color: '#FFFFFF' }}
+              sx={{
+                margin: '0',
+                fontSize: '2.5rem',
+                color: '#FFFFFF',
+              }}
             >
               Contct Us By
             </Typography>
             <GrediantPargraph>Contact Form</GrediantPargraph>
           </BoxColumn>
           <BoxColumn sx={{ gap: '1rem' }}>
-            <Typography sx={{ color: '#FFFFFF' }}>
+            <Typography sx={{ width: '80%', color: '#FFFFFF' }}>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat
               adipisci temporibus perspiciatis iste perferendis odio minus,
               iusto itaque aut assumenda distinctio reiciendis alias quisquam.
               Minima commodi natus fuga amet nihil!
             </Typography>
-            <Button
+            <CustomButton
               sx={{
-                borderRadius: '50px',
-                width: '50%',
-                color: '#FFFFFF',
                 background: 'linear-gradient(90deg, #EA4335 0%, #2E7DFF 100%)',
               }}
             >
               Contact Us
-            </Button>
+            </CustomButton>
           </BoxColumn>
         </BoxColumn>
       </ContactCard>
       <ContactCard>
         <ReflectedIconWrapper>
-          <img src="/assets/whatsapp.png" alt="contact" />
+          <ImageIcon src="/assets/whatsapp.png" alt="contact" />
         </ReflectedIconWrapper>
         <BoxColumn sx={{ gap: '1rem' }}>
           <BoxColumn>
@@ -63,22 +65,19 @@ const ContactSection = () => {
             <GrediantGreenPargraph>whatsApp</GrediantGreenPargraph>
           </BoxColumn>
           <BoxColumn sx={{ gap: '1rem' }}>
-            <Typography sx={{ color: '#FFFFFF' }}>
+            <Typography sx={{ width: '80%', color: '#FFFFFF' }}>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat
               adipisci temporibus perspiciatis iste perferendis odio minus,
               iusto itaque aut assumenda distinctio reiciendis alias quisquam.
               Minima commodi natus fuga amet nihil!
             </Typography>
-            <Button
+            <CustomButton
               sx={{
-                borderRadius: '50px',
-                width: '50%',
-                color: '#FFFFFF',
                 background: 'linear-gradient(90deg, #25D366 0%, #128C7E 100%)',
               }}
             >
               Contact Us
-            </Button>
+            </CustomButton>
           </BoxColumn>
         </BoxColumn>
       </ContactCard>
