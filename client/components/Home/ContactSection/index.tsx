@@ -1,4 +1,5 @@
-import { Button, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
+
 import {
   BoxColumn,
   ContactCard,
@@ -10,6 +11,7 @@ import {
   CustomButton,
   ReflectedIconWrapper,
 } from './components.styled';
+
 // type Props = {
 //   error: { error: string };
 // };

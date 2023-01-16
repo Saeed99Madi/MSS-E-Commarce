@@ -1,7 +1,7 @@
-import { styled, Typography } from '@mui/material';
+import { Button, styled, Typography } from '@mui/material';
 
 const ContactContainer = styled('section')({
-  padding: '3rem 0',
+  padding: '3rem 1rem',
   display: 'flex',
   background: 'linear-gradient(90.9deg, #1F1F22 0.72%, #141417 99.18%)',
   justifyContent: 'center',
@@ -20,6 +20,16 @@ const ContactCard = styled('div')({
 const BoxColumn = styled('div')({
   display: 'flex',
   flexDirection: 'column',
+  '@media screen and (max-width: 850px)': {
+    '> p': {
+      fontSize: '1.1rem',
+    },
+  },
+});
+const ImageIcon = styled('img')({
+  '@media screen and (max-width: 850px)': {
+    width: '1.7rem',
+  },
 });
 const IconWrapper = styled('div')({
   height: '10%',
@@ -28,6 +38,9 @@ const IconWrapper = styled('div')({
   borderRadius: '70% 50% 40% 50%',
   background:
     'linear-gradient(125.86deg, rgba(255, 255, 255, 0.18) -267.85%, rgba(255, 255, 255, 0) 138.29%)',
+  '@media screen and (max-width: 850px)': {
+    padding: '1rem',
+  },
 });
 const ReflectedIconWrapper = styled('div')({
   height: '10%',
@@ -36,6 +49,9 @@ const ReflectedIconWrapper = styled('div')({
   borderRadius: '40% 50% 70% 50%',
   background:
     'linear-gradient(125.86deg, rgba(255, 255, 255, 0.18) -267.85%, rgba(255, 255, 255, 0) 138.29%)',
+  '@media screen and (max-width: 850px)': {
+    padding: '1rem',
+  },
 });
 const GrediantPargraph = styled(Typography)({
   fontSize: '2.5rem',
@@ -49,13 +65,21 @@ const GrediantGreenPargraph = styled(Typography)({
   WebkitBackgroundClip: 'text',
   WebkitTextFillColor: 'transparent',
 });
+const CustomButton = styled(Button)({
+  textTransform: 'none',
+  borderRadius: '50px',
+  width: '50%',
+  color: '#FFFFFF',
+});
 
 export {
   ContactContainer,
+  ImageIcon,
   ContactCard,
   BoxColumn,
   IconWrapper,
   GrediantPargraph,
   GrediantGreenPargraph,
   ReflectedIconWrapper,
+  CustomButton,
 };
