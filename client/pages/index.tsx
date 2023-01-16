@@ -12,6 +12,7 @@ import HeadSection from '../components/Home/HeadSection';
 import ServicesList from '../components/Home/ServicesList';
 
 import Axios from '../config';
+import ContactSection from '../components/Home/ContactSection';
 
 type Props = {
   products: IProduct[];
@@ -25,7 +26,8 @@ const Home = (props: Props) => {
     <div style={{ margin: '0' }}>
       <HeadSection />
       <FeaturedProducts products={products} />
-      <ServicesList />
+      {/* <ServicesList /> */}
+      <ContactSection />
       <h1>{t('title')}</h1>
 
       {error ? (
