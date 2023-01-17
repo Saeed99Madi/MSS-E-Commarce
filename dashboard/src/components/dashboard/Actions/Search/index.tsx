@@ -5,7 +5,7 @@ import { MenuItem, Select, SelectChangeEvent, TextField } from '@mui/material';
 import { arrowIcon } from '../../components.styled';
 import { DashboardContext } from '../../../../context/DashboardContext';
 import depounce from '../../../../servises/debounce';
-import getAllCategories from '../../../../hooks/getAllCategories';
+import useCategories from '../../../../hooks/getAllCategories';
 import { ICategories } from '../../../../interfaces/ICategories';
 
 export const Search = () => {
@@ -15,7 +15,7 @@ export const Search = () => {
   const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchInput(event.target.value);
   };
-  const [categories, setcategories] = useState<ICategories[]>([]);
+  const [categories, setCategories] = useState<ICategories[]>([]);
   const handleFilterCategoryChange = (event: SelectChangeEvent) => {
     setSearchFilterCategory(event.target.value);
   };
@@ -31,13 +31,14 @@ export const Search = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchInput]);
 
-  const allCategories = getAllCategories();
+  const fetchCategories = useCategories();
+
   useEffect(() => {
     (async () => {
-      setcategories(await allCategories());
+      setCategories(await fetchCategories());
     })();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   return (
     <Box
       sx={{

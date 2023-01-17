@@ -3,7 +3,7 @@ import { useContext, useState } from 'react';
 import { Box } from '@mui/material';
 import { ProductCard } from './Card';
 // import useProducts from '../../../hooks/getProducts';
-import { DrawerHeader, Main } from '../components.styled';
+import { DrawerHeader, Main, ProductsWrapper } from '../components.styled';
 
 import { Actions } from '../Actions';
 
@@ -17,21 +17,15 @@ export const ProductsList = () => {
   const { openSideBar, products } = useContext(DashboardContext);
 
   return (
-    <Main open={openSideBar} sx={{ background: '#141417' }}>
+    <Main
+      open={openSideBar}
+      sx={{
+        background: '#141417',
+      }}
+    >
       <DrawerHeader />
       <Actions />
-      <Box
-        sx={{
-          textAlign: 'center',
-          position: 'relative',
-          display: 'flex',
-          flexDirection: 'row',
-          flexWrap: 'wrap',
-          gap: '1rem',
-          alignItems: 'center',
-          justifyContent: 'flex-start',
-        }}
-      >
+      <ProductsWrapper>
         <AddProduct open={openAddProduct} setOpen={setOpenAddProduct} />
 
         {products ? (
@@ -41,7 +35,7 @@ export const ProductsList = () => {
         ) : (
           <h3>No Products</h3>
         )}
-      </Box>
+      </ProductsWrapper>
     </Main>
   );
 };
