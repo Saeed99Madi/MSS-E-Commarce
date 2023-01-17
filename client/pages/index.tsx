@@ -12,6 +12,7 @@ import HeadSection from '../components/Home/HeadSection';
 import ServicesList from '../components/Home/ServicesList';
 
 import Axios from '../config';
+import ContactSection from '../components/Home/ContactSection';
 import TopCategories from '../components/Home/TopCategories';
 
 type Props = {
@@ -27,6 +28,7 @@ const Home = (props: Props) => {
       <FeaturedProducts products={products} />
       <ServicesList />
       <TopCategories />
+      <ContactSection />
     </div>
   );
 };
