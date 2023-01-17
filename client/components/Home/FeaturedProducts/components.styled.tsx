@@ -3,6 +3,7 @@ import { Box, Button, ImageListItem, styled } from '@mui/material';
 const ProductsListContainer = styled('section')({
   height: 'auto',
   width: '100%',
+  marginTop: '1.5rem',
   background: '#FFFFFF',
   display: 'flex',
   gap: '1rem',
@@ -14,7 +15,6 @@ const ProductsListContainer = styled('section')({
 const ImageCard = styled(ImageListItem)({
   position: 'relative',
   overflow: 'hidden',
-
   background: '#FFFFFF',
   transition: 'all .5s ease-in-out',
   '.overview': {

@@ -10,7 +10,7 @@ const TopCategoriesContainer = styled('section')({
 const CategoriesList = styled('div')({
   display: 'flex',
   justifyContent: 'space-around',
-  //   gap: '0.5rem',
+  gap: '1rem',
   flexWrap: 'wrap',
 
   //   height: 'auto',
