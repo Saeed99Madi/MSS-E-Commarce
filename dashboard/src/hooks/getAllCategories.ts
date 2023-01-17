@@ -5,7 +5,8 @@ ApiServices.init();
 
 const useCategories = () => {
   return async (): Promise<ICategories[]> => {
-    const { data } = await ApiServices.get('categories/all');
+    const { data } = await ApiServices.get('all-categories');
+
     return data.data;
   };
 };

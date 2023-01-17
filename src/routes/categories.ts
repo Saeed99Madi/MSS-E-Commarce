@@ -31,8 +31,8 @@ router.get(
   '/subcategories/:categoryId',
   errorWrapper(CategoriesController.subCatIndex),
 );
+router.get('/all-categories', errorWrapper(CategoriesController.all));
 
-router.get('/categories/all', errorWrapper(CategoriesController.all));
 router.get('/categories/show/:id', errorWrapper(CategoriesController.show));
 
 export default router;

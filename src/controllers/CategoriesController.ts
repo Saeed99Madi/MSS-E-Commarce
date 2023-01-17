@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { Category, Product } from '../models';
 import CustomError from '../helpers/errorHandler/CustomError';
 import { categoriesSchema } from '../schemes';
-import { Op, where } from 'sequelize';
+import { Op } from 'sequelize';
 import * as fs from 'fs';
 import * as path from 'path';
 // CategoriesController.ts file
@@ -10,7 +10,9 @@ export default class CategoriesController {
   // get All Categories
   public static async all(req: Request, res: Response) {
     const categories = await Category.findAll({ attributes: ['id', 'title'] });
-
+    console.log('-------------------');
+    console.log(categories);
+    console.log('-------------------');
     res.status(200).json({
       status: 200,
       data: categories,
