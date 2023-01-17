@@ -25,7 +25,7 @@ const HeadSection = () => {
       <ServiceCard>
         <img
           style={{
-            width: '120px',
+            width: '25%',
             height: '100px',
           }}
           src="/assets/map.png"
@@ -33,6 +33,7 @@ const HeadSection = () => {
         />
         <div
           style={{
+            width: '50%',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
