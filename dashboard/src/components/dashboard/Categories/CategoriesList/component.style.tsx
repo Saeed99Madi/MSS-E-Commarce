@@ -7,13 +7,13 @@ export const CategoriesListWrapper = styled('div')(
   ({ open }: { open: boolean }) => ({
     display: 'flex',
     flexDirection: 'column',
-    gap: '1rem',
     height: '100%',
     width: `${open ? '55vw' : '68vw'}`,
     paddingBottom: '4rem !important',
     overflowY: 'scroll',
     WebkitScrollSnapType: 'both',
     marginRight: `${open ? '-80px' : '170px'}`,
+    paddingTop: '75px',
   }),
   `
     ::-webkit-scrollbar {
@@ -31,11 +31,11 @@ export const CategoriesListWrapper = styled('div')(
 );
 
 export const ParentListItem = styled(List)(({ open }: IParentListItem) => ({
-  // width: `${!open ? '85%' : '100%'}`,
   background:
     'linear-gradient(130.79deg, rgba(255, 255, 255, 0.08) -37.1%, rgba(255, 255, 255, 0) 134.47%)',
   borderRadius: '12px',
   borderTop: '2px solid #424244',
+  marginTop: '-50px',
 }));
 
 export const CloseSign = styled('div')`
