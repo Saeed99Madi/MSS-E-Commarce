@@ -21,7 +21,7 @@ const HeadText = styled('h1')({
 });
 
 const HeadParagraph = styled('h1')({
-  marginTop: '-5%',
+  marginTop: '-1%',
   width: '427px',
   fontSize: '24px',
   textAlign: 'center',
@@ -48,6 +48,7 @@ const CustomButtonWho = styled(Button)({
   color: '#161619',
 });
 const ServiceCard = styled('div')({
+  width: '25rem',
   display: 'flex',
   justifyContent: 'center',
   padding: '1rem',
@@ -63,6 +64,7 @@ const CardParagraph = styled('p')({
   fontFamily: 'Cairo',
   fontWeight: 500,
   fontSize: '24px',
+  width: '100%',
   color: '#EFB92A',
   textAlign: 'center',
   marginTop: '0',
