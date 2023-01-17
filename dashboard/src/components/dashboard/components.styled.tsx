@@ -1,5 +1,5 @@
 import { styled } from '@mui/material/styles';
-
+import { Box } from '@mui/material';
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
 import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
 
@@ -62,4 +62,32 @@ const arrowIcon = styled(KeyboardDoubleArrowDownIcon)({
   color: '#FFFFFF !important',
 });
 
-export { AppBar, DrawerHeader, Main, arrowIcon };
+const ProductsWrapper = styled(Box)(
+  {
+    textAlign: 'center',
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: '1rem',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    height: '70vh',
+    overflowY: 'scroll',
+  },
+
+  `
+::-webkit-scrollbar {
+width: 0.5rem;
+}
+::-webkit-scrollbar-track {
+box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+::-webkit-scrollbar-thumb {
+background-color: #f6cd06;
+outline: 1px solid #f6cd06;
+border-radius: 8px;
+}
+`,
+);
+
+export { AppBar, DrawerHeader, Main, arrowIcon, ProductsWrapper };
