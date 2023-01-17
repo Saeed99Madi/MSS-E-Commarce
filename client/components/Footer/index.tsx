@@ -1,5 +1,89 @@
+import {
+  Grid,
+  Input,
+  InputAdornment,
+  Link,
+  Tooltip,
+  Typography,
+} from '@mui/material';
+import {
+  CustomEmailIcon,
+  FooterContainer,
+  IconWrapper,
+  InputContainer,
+  RedButton,
+  SubscribeContainer,
+} from './components.styled';
+
 const Footer = () => {
-  return <h1>Hello Footer</h1>;
+  return (
+    <FooterContainer>
+      <img
+        src={`${process.env.REACT_APP_BASEE_URL}settings/Group.png`}
+        alt="logo"
+      />
+      <Grid container justifyContent="center">
+        <Grid item>
+          <Tooltip disableFocusListener title="Home">
+            <Link sx={{ padding: '1rem' }} href="/">
+              Home
+            </Link>
+          </Tooltip>
+        </Grid>
+
+        <Grid item>
+          <Tooltip disableFocusListener title="Home">
+            <Link sx={{ padding: '1rem' }} href="/">
+              All Categories
+            </Link>
+          </Tooltip>
+        </Grid>
+
+        <Grid item>
+          <Tooltip disableFocusListener title="Home">
+            <Link sx={{ padding: '1rem' }} href="/">
+              Contact Us
+            </Link>
+          </Tooltip>
+        </Grid>
+
+        <Grid item>
+          <Tooltip disableFocusListener title="Home">
+            <Link sx={{ padding: '1rem' }} href="/">
+              About Us
+            </Link>
+          </Tooltip>
+        </Grid>
+      </Grid>
+      <SubscribeContainer>
+        <InputContainer>
+          <Input
+            disableUnderline
+            placeholder="Start Now"
+            startAdornment={
+              <InputAdornment position="start">
+                <CustomEmailIcon />
+              </InputAdornment>
+            }
+          />
+          <RedButton>Subscripe Now</RedButton>
+        </InputContainer>
+        <IconWrapper />
+      </SubscribeContainer>
+      <Typography
+        sx={{
+          color: '#666666',
+          fontSize: '0.7rem',
+          '@media screen and (max-width: 850px)': {
+            fontSize: '0.5rem',
+          },
+        }}
+        paragraph
+      >
+        All Rights Are Reserveed By MSS. By Dev. Said Madi
+      </Typography>
+    </FooterContainer>
+  );
 };
 
 export default Footer;
