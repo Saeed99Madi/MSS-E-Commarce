@@ -12,29 +12,21 @@ import HeadSection from '../components/Home/HeadSection';
 import ServicesList from '../components/Home/ServicesList';
 
 import Axios from '../config';
+import TopCategories from '../components/Home/TopCategories';
 
 type Props = {
   products: IProduct[];
-  error: { error: string };
 };
 
 const Home = (props: Props) => {
   const { t } = useTranslation('home');
-  const { products, error } = props;
+  const { products } = props;
   return (
     <div style={{ margin: '0' }}>
       <HeadSection />
       <FeaturedProducts products={products} />
       <ServicesList />
-      <h1>{t('title')}</h1>
-
-      {error ? (
-        <h1>{error.error}</h1>
-      ) : (
-        products.map((product: IProduct) => {
-          return <h1 key={product.id}>{product.title}</h1>;
-        })
-      )}
+      <TopCategories />
     </div>
   );
 };
