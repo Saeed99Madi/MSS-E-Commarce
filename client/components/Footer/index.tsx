@@ -6,15 +6,20 @@ import {
   Tooltip,
   Typography,
 } from '@mui/material';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import GoogleIcon from '@mui/icons-material/Google';
+import TwitterIcon from '@mui/icons-material/Twitter';
 import {
   CustomEmailIcon,
   FooterContainer,
   IconWrapper,
   InputContainer,
   RedButton,
+  SocialList,
   SubscribeContainer,
 } from './components.styled';
 
+const LinkStyle = { color: '#000000', textDecoration: 'none', padding: '1rem' };
 const Footer = () => {
   return (
     <FooterContainer>
@@ -25,7 +30,7 @@ const Footer = () => {
       <Grid container justifyContent="center">
         <Grid item>
           <Tooltip disableFocusListener title="Home">
-            <Link sx={{ padding: '1rem' }} href="/">
+            <Link sx={LinkStyle} href="/">
               Home
             </Link>
           </Tooltip>
@@ -33,7 +38,7 @@ const Footer = () => {
 
         <Grid item>
           <Tooltip disableFocusListener title="Home">
-            <Link sx={{ padding: '1rem' }} href="/">
+            <Link sx={LinkStyle} href="/">
               All Categories
             </Link>
           </Tooltip>
@@ -41,7 +46,7 @@ const Footer = () => {
 
         <Grid item>
           <Tooltip disableFocusListener title="Home">
-            <Link sx={{ padding: '1rem' }} href="/">
+            <Link sx={LinkStyle} href="/">
               Contact Us
             </Link>
           </Tooltip>
@@ -49,7 +54,7 @@ const Footer = () => {
 
         <Grid item>
           <Tooltip disableFocusListener title="Home">
-            <Link sx={{ padding: '1rem' }} href="/">
+            <Link sx={LinkStyle} href="/">
               About Us
             </Link>
           </Tooltip>
@@ -70,6 +75,17 @@ const Footer = () => {
         </InputContainer>
         <IconWrapper />
       </SubscribeContainer>
+      <SocialList>
+        <Link href="/">
+          <FacebookIcon sx={{ color: '#1877F2', fontSize: '2rem' }} />
+        </Link>
+        <Link href="/">
+          <GoogleIcon sx={{ color: '#EA4335', fontSize: '2rem' }} />
+        </Link>
+        <Link href="/">
+          <TwitterIcon sx={{ color: '#55ACEE', fontSize: '2rem' }} />
+        </Link>
+      </SocialList>
       <Typography
         sx={{
           color: '#666666',
