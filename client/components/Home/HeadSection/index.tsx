@@ -8,6 +8,7 @@ import {
   HeadContainer,
   HeadParagraph,
   HeadText,
+  Imagecustom,
   ServiceCard,
 } from './components.styled';
 
@@ -23,20 +24,14 @@ const HeadSection = () => {
         <CustomButtonWho>Who We Are</CustomButtonWho>
       </CenterdFlexContainer>
       <ServiceCard>
-        <img
-          style={{
-            width: '25%',
-            height: '100px',
-          }}
-          src="/assets/map.png"
-          alt="map"
-        />
+        <Imagecustom src="/assets/map.png" alt="map" />
         <div
           style={{
             width: '50%',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
+            justifyContent: 'space-between',
           }}
         >
           <CardParagraph>Mooie Sterk Solar</CardParagraph>
