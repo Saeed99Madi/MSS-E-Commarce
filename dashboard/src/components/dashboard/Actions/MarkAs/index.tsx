@@ -24,10 +24,12 @@ export const MarkAs = () => {
     setmarkAs(e.target.value);
     switch (value) {
       case '1':
-        ApiServices.put('products/publish', [...checkedProducts]);
+        ApiServices.put('products/publish', { products: [...checkedProducts] });
         break;
       case '2':
-        ApiServices.put('products/unpublish', [...checkedProducts]);
+        ApiServices.put('products/unpublish', {
+          products: [...checkedProducts],
+        });
         break;
       case '3':
         ApiServices.destroy(`products/delete/${[...checkedProducts]}`);
