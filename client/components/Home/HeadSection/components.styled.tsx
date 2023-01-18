@@ -82,26 +82,40 @@ const CardParagraph = styled('p')({
 });
 
 const CardHdParagraph = styled('p')({
-  marginTop: '-5%',
-  width: '100%',
+  marginTop: '0',
+  width: '70%',
   fontSize: '16px',
   textAlign: 'center',
   '@media screen and (max-width: 850px)': {
     fontSize: '11px',
+    width: '100%',
   },
 });
 const CardButton = styled(Button)({
   height: '2.5rem',
+  padding: '0.5rem 1.5rem',
   textTransform: 'none',
   background: 'linear-gradient(90.9deg, #1F1F22 0.72%, #141417 99.18%);',
   borderRadius: '50px',
   border: '1px solid ',
   color: '#FFFFFF',
   '@media screen and (max-width: 850px)': {
+    padding: '0rem 1rem',
+    width: '7rem',
     fontSize: '8px',
   },
 });
+const Imagecustom = styled('img')({
+  width: '25%',
+  height: 'auto',
+  // height: '100px',
+  '@media screen and (max-width: 850px)': {
+    height: 'auto',
+  },
+});
+
 export {
+  Imagecustom,
   HeadContainer,
   HeadText,
   HeadParagraph,
