@@ -19,7 +19,7 @@ ApiServices.init();
 export const MarkAs = () => {
   const { checkedProducts, setIsCheckedProducts, products, setProducts } =
     useContext(DashboardContext);
-  const [markas, setmarkAs] = useState<Array<string>>([]);
+  const [markas, setmarkAs] = useState<string>('');
   const handleMarkAs = (e: any) => {
     const { value } = e.target;
     setmarkAs(e.target.value);
@@ -46,6 +46,7 @@ export const MarkAs = () => {
             }),
           );
           setIsCheckedProducts([]);
+          setmarkAs('');
         })();
         break;
       case '2':
@@ -69,6 +70,7 @@ export const MarkAs = () => {
             }),
           );
           setIsCheckedProducts([]);
+          setmarkAs('');
         })();
 
         break;
@@ -87,6 +89,7 @@ export const MarkAs = () => {
             }),
           );
           setIsCheckedProducts([]);
+          setmarkAs('');
         })();
         break;
       case '4':
@@ -98,7 +101,7 @@ export const MarkAs = () => {
         });
         setProducts([...newproduct]);
         setIsCheckedProducts(products.map(ele => ele.id ?? 0));
-
+        setmarkAs('');
         break;
       case '5':
         setProducts(
@@ -109,7 +112,7 @@ export const MarkAs = () => {
           }),
         );
         setIsCheckedProducts([]);
-
+        setmarkAs('');
         break;
       default:
         throw new Error('error in Mark As actions');
