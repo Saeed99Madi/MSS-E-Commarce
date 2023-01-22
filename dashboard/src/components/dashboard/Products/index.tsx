@@ -1,6 +1,5 @@
 import { useContext, useState } from 'react';
 
-import { Box } from '@mui/material';
 import { ProductCard } from './Card';
 // import useProducts from '../../../hooks/getProducts';
 import { DrawerHeader, Main, ProductsWrapper } from '../components.styled';

@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import { useContext, useState } from 'react';
 
 import { Box, MenuItem } from '@mui/material';
@@ -18,21 +19,78 @@ ApiServices.init();
 export const MarkAs = () => {
   const { checkedProducts, setIsCheckedProducts, products, setProducts } =
     useContext(DashboardContext);
-  const [markas, setmarkAs] = useState<Array<string>>([]);
+  const [markas, setmarkAs] = useState<string>('');
   const handleMarkAs = (e: any) => {
     const { value } = e.target;
     setmarkAs(e.target.value);
     switch (value) {
       case '1':
-        ApiServices.put('products/publish', { products: [...checkedProducts] });
+        // ApiServices.put('products/publish', { products: [...checkedProducts] });
+        (async () => {
+          await ApiServices.put('products/publish', {
+            products: [...checkedProducts],
+          });
+          const updatedProducts = products.map(element => {
+            if (checkedProducts.includes(element.id || 0)) {
+              element.active = true;
+              return element;
+            }
+            return element;
+          });
+          setProducts(updatedProducts);
+          setProducts(
+            products.map(ele => {
+              // eslint-disable-next-line no-param-reassign
+              ele.checked = false;
+              return { ...ele };
+            }),
+          );
+          setIsCheckedProducts([]);
+          setmarkAs('');
+        })();
         break;
       case '2':
-        ApiServices.put('products/unpublish', {
-          products: [...checkedProducts],
-        });
+        (async () => {
+          await ApiServices.put('products/unpublish', {
+            products: [...checkedProducts],
+          });
+          const updatedProducts = products.map(element => {
+            if (checkedProducts.includes(element.id || 0)) {
+              element.active = false;
+              return element;
+            }
+            return element;
+          });
+          setProducts(updatedProducts);
+          setProducts(
+            products.map(ele => {
+              // eslint-disable-next-line no-param-reassign
+              ele.checked = false;
+              return { ...ele };
+            }),
+          );
+          setIsCheckedProducts([]);
+          setmarkAs('');
+        })();
+
         break;
       case '3':
-        ApiServices.destroy(`products/delete/${[...checkedProducts]}`);
+        (async () => {
+          await ApiServices.destroy(`products/delete/${[...checkedProducts]}`);
+          const updatedProducts = products.filter(
+            element => !checkedProducts.includes(element.id || 0),
+          );
+          setProducts(updatedProducts);
+          setProducts(
+            products.map(ele => {
+              // eslint-disable-next-line no-param-reassign
+              ele.checked = false;
+              return { ...ele };
+            }),
+          );
+          setIsCheckedProducts([]);
+          setmarkAs('');
+        })();
         break;
       case '4':
         // eslint-disable-next-line no-case-declarations
@@ -43,7 +101,7 @@ export const MarkAs = () => {
         });
         setProducts([...newproduct]);
         setIsCheckedProducts(products.map(ele => ele.id ?? 0));
-
+        setmarkAs('');
         break;
       case '5':
         setProducts(
@@ -54,7 +112,7 @@ export const MarkAs = () => {
           }),
         );
         setIsCheckedProducts([]);
-
+        setmarkAs('');
         break;
       default:
         throw new Error('error in Mark As actions');
