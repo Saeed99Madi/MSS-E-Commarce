@@ -46,7 +46,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
   } catch (error: unknown) {
     return {
       props: {
-        error: { error: 'somthing went wrong' },
+        error: { error: 'something went wrong' },
       },
     };
   }
