@@ -16,6 +16,8 @@ interface IDashboardContext {
   // Begen Products Managment States
   products: IProduct[];
   setProducts: Dispatch<SetStateAction<IProduct[]>>;
+  editProduct?: IProduct | null;
+  setEditProduct: Dispatch<SetStateAction<IProduct | null>>;
   searchFilterCategory: string;
   setSearchFilterCategory: Dispatch<SetStateAction<string>>;
   productSearch: string;

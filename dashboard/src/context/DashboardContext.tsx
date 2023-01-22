@@ -13,6 +13,7 @@ const ProvideDashboard = ({ children }: { children: ReactNode }) => {
   const [productSearch, setProductSearch] = useState<string>('');
   const [openSideBar, setOpenSideBar] = useState(false);
   const [products, setProducts] = useState<IProduct[]>([]);
+  const [editProduct, setEditProduct] = useState<IProduct | null>(null);
   // Begen Products Managment States
 
   // Begen Services Managment States
@@ -92,6 +93,8 @@ const ProvideDashboard = ({ children }: { children: ReactNode }) => {
       setProductSearch,
       openSideBar,
       setOpenSideBar,
+      editProduct,
+      setEditProduct,
       // End Products Managment States
     }),
     [
@@ -104,6 +107,7 @@ const ProvideDashboard = ({ children }: { children: ReactNode }) => {
       searchFilterCategory,
       productSearch,
       openSideBar,
+      editProduct,
     ],
   );
   return (
