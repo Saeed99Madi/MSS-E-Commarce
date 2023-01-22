@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import { useContext, useState } from 'react';
 
 import { Box, MenuItem } from '@mui/material';
@@ -24,15 +25,69 @@ export const MarkAs = () => {
     setmarkAs(e.target.value);
     switch (value) {
       case '1':
-        ApiServices.put('products/publish', { products: [...checkedProducts] });
+        // ApiServices.put('products/publish', { products: [...checkedProducts] });
+        (async () => {
+          await ApiServices.put('products/publish', {
+            products: [...checkedProducts],
+          });
+          const updatedProducts = products.map(element => {
+            if (checkedProducts.includes(element.id || 0)) {
+              element.active = true;
+              return element;
+            }
+            return element;
+          });
+          setProducts(updatedProducts);
+          setProducts(
+            products.map(ele => {
+              // eslint-disable-next-line no-param-reassign
+              ele.checked = false;
+              return { ...ele };
+            }),
+          );
+          setIsCheckedProducts([]);
+        })();
         break;
       case '2':
-        ApiServices.put('products/unpublish', {
-          products: [...checkedProducts],
-        });
+        (async () => {
+          await ApiServices.put('products/unpublish', {
+            products: [...checkedProducts],
+          });
+          const updatedProducts = products.map(element => {
+            if (checkedProducts.includes(element.id || 0)) {
+              element.active = false;
+              return element;
+            }
+            return element;
+          });
+          setProducts(updatedProducts);
+          setProducts(
+            products.map(ele => {
+              // eslint-disable-next-line no-param-reassign
+              ele.checked = false;
+              return { ...ele };
+            }),
+          );
+          setIsCheckedProducts([]);
+        })();
+
         break;
       case '3':
-        ApiServices.destroy(`products/delete/${[...checkedProducts]}`);
+        (async () => {
+          await ApiServices.destroy(`products/delete/${[...checkedProducts]}`);
+          const updatedProducts = products.filter(
+            element => !checkedProducts.includes(element.id || 0),
+          );
+          setProducts(updatedProducts);
+          setProducts(
+            products.map(ele => {
+              // eslint-disable-next-line no-param-reassign
+              ele.checked = false;
+              return { ...ele };
+            }),
+          );
+          setIsCheckedProducts([]);
+        })();
         break;
       case '4':
         // eslint-disable-next-line no-case-declarations
