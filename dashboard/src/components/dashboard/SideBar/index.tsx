@@ -65,7 +65,7 @@ export const SideBar = (props: Props) => {
           )}
         </IconButton>
       </DrawerHeader>
-      <Divider />
+      <Divider sx={{ background: '#141417' }} />
       <List>
         <Link
           style={{ color: '#FFFFFF', textDecoration: 'none' }}
@@ -146,7 +146,7 @@ export const SideBar = (props: Props) => {
           </ListItem>
         </Link>
       </List>
-      <Divider />
+      <Divider sx={{ background: '#141417' }} />
     </Drawer>
   );
 };
