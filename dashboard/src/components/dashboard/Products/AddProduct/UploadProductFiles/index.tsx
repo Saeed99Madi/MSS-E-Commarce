@@ -1,15 +1,15 @@
 import { Button } from '@mui/material';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction, useEffect } from 'react';
+import PDFViewer from 'pdf-viewer-reactjs';
 import { IProduct } from '../../../../../interfaces/IProduct';
 
 type Props = {
+  product: IProduct;
   setNewProduct: Dispatch<SetStateAction<IProduct>>;
 };
 
-export const UploadProductFiles = (props: Props) => {
-  const { setNewProduct } = props;
-
+export const UploadProductFiles = ({ product, setNewProduct }: Props) => {
   const handleProductFillsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, files } = e.target;
 
@@ -18,9 +18,13 @@ export const UploadProductFiles = (props: Props) => {
     } else if (name === 'catalog') {
       setNewProduct(prev => ({ ...prev, catalog: (files as any)[0] }));
     } else {
+      console.log(files);
       setNewProduct(prev => ({ ...prev, [name]: files }));
     }
   };
+  useEffect(() => {
+    console.log(product);
+  }, [product]);
   return (
     <>
       <Button
@@ -44,6 +48,15 @@ export const UploadProductFiles = (props: Props) => {
           type="file"
         />
       </Button>
+      {product.cover ? (
+        <div>
+          <img
+            style={{ width: '12rem', height: '12rem' }}
+            src={`${process.env.REACT_APP_BASEE_URL}/products/${product.cover}`}
+            alt={product.title}
+          />
+        </div>
+      ) : null}
 
       <Button
         sx={{
@@ -67,6 +80,22 @@ export const UploadProductFiles = (props: Props) => {
           type="file"
         />
       </Button>
+      {product.productGallery ? (
+        product.productGallery?.length > 0 ? (
+          <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+            {product.productGallery.map(ele => {
+              return (
+                <img
+                  style={{ width: '12rem', height: '12rem' }}
+                  src={`${process.env.REACT_APP_BASEE_URL}/products/${ele.image}`}
+                  alt={product.title}
+                />
+              );
+            })}
+          </div>
+        ) : null
+      ) : null}
+
       <Button
         sx={{
           borderRadius: '0.5rem',
@@ -89,6 +118,15 @@ export const UploadProductFiles = (props: Props) => {
           type="file"
         />
       </Button>
+      {product.catalog ? (
+        <div>
+          <PDFViewer
+            document={{
+              url: `${process.env.REACT_APP_BASEE_URL}/products/${product.catalog}`,
+            }}
+          />
+        </div>
+      ) : null}
     </>
   );
 };

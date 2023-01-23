@@ -9,11 +9,14 @@ import { Actions } from '../Actions';
 import { DashboardContext } from '../../../context/DashboardContext';
 import AddProduct from './AddProduct';
 import ApiServices from '../../../servises/ApiService';
+import EditProduct from './EditProduct';
 
 ApiServices.init();
 export const ProductsList = () => {
   const [openAddProduct, setOpenAddProduct] = useState(false);
-  const { openSideBar, products } = useContext(DashboardContext);
+  // const [] = useState(false);
+  const { openEditProduct, setOpenEditProduct, openSideBar, products } =
+    useContext(DashboardContext);
 
   return (
     <Main
@@ -26,7 +29,7 @@ export const ProductsList = () => {
       <Actions />
       <ProductsWrapper>
         <AddProduct open={openAddProduct} setOpen={setOpenAddProduct} />
-
+        <EditProduct open={openEditProduct} setOpen={setOpenEditProduct} />
         {products ? (
           products.map(product => {
             return <ProductCard key={product.id} product={product} />;
