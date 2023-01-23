@@ -188,7 +188,10 @@ const AddProduct = (props: Props) => {
             setNewProduct={setNewProduct}
           />
 
-          <UploadProductFiles setNewProduct={setNewProduct} />
+          <UploadProductFiles
+            product={newProduct}
+            setNewProduct={setNewProduct}
+          />
           <AttriputeForms
             attriputes={attriputes}
             attriputesDispatch={attriputesDispatch}

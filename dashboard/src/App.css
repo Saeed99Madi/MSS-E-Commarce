@@ -29,7 +29,7 @@
 }
 
 html {
-  background: #141417;
+  background: #141417 !important;
 }
 
 @keyframes App-logo-spin {

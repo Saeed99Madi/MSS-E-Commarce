@@ -18,7 +18,7 @@ Product.belongsTo(User);
 Product.hasOne(Slider);
 Slider.belongsTo(Product);
 
-Product.hasMany(ProductGalary);
+Product.hasMany(ProductGalary, { as: 'productGallery' });
 ProductGalary.belongsTo(Product);
 
 Product.hasMany(ProductAttripute);

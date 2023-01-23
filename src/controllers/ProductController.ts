@@ -13,7 +13,9 @@ import { IAttripute } from '../interfaces/IAttripute';
 export default class ProductController {
   // get All Products
   public static async index(req: Request, res: Response) {
-    const products = await Product.findAll();
+    const products = await Product.findAll({
+      include: ['productGallery', 'ProductAttriputes'],
+    });
 
     res.status(200).json({
       status: 200,
