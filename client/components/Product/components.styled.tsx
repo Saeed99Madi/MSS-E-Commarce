@@ -43,19 +43,18 @@ const SectionWithPadding = styled('div')(
     padding: '124px 16px',
     display: 'flex',
     flexDirection: 'column',
+    flexWrap: 'wrap',
     gap: '4rem',
   }),
   `
   @media ${device.tablet} {
     flex-direction: row;
-    padding: 124px 144px;
-    flex-wrap: wrap;
   }
   `,
 );
 
 const ProductDetailsWrapper = styled('div')(() => ({
-  flex: '1 1 300px',
+  flex: '1 1 400px',
   height: 'inherit',
   display: 'flex',
   flexDirection: 'column',
@@ -130,7 +129,7 @@ width: 255px;
 
 const ProductImagesWrapper = styled('div')(
   () => ({
-    flex: '1 1 300px',
+    flex: '1 1 500px',
     padding: '12px',
     display: 'flex',
     flexDirection: 'column',
@@ -372,10 +371,6 @@ const RelatedProductWrapper = styled(SectionWithPadding)(
   }
   @media ${device.tablet} {
     flex-direction: column;
-    & h2 {
-      margin-top: -45px;
-      margin-bottom: 15px;
-    }
    }
   `,
 );
