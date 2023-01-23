@@ -1,10 +1,11 @@
 import { ChangeEvent, useContext, useEffect, useState } from 'react';
 
-import { Box, Typography } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 
 import { DashboardContext } from '../../../../context/DashboardContext';
 import { IProduct } from '../../../../interfaces/IProduct';
 import ApiServices from '../../../../servises/ApiService';
+import { EditIcon } from '../../Categories/CategoriesList/component.style';
 
 ApiServices.init();
 type Props = {
@@ -19,7 +20,8 @@ export const ProductCard = (props: Props) => {
 
   const [categoryName, setCategoryName] = useState('');
 
-  const { setIsCheckedProducts } = useContext(DashboardContext);
+  const { setIsCheckedProducts, setEditIdProduct, setOpenEditProduct } =
+    useContext(DashboardContext);
   useEffect(() => {
     (async () => {
       const { data } = await ApiServices.get(
@@ -46,6 +48,14 @@ export const ProductCard = (props: Props) => {
       });
     }
     setIsChecked(checked);
+  };
+  const handleOpenEdetProduct = () => {
+    if (product.id) {
+      setEditIdProduct(product.id);
+    } else {
+      console.log('Product ID Is not Defined');
+    }
+    setOpenEditProduct(true);
   };
 
   return (
@@ -105,19 +115,30 @@ export const ProductCard = (props: Props) => {
           alt="Renewable energy"
           loading="lazy"
         />
-        <input
+        <div
           style={{
             position: 'absolute',
+            display: 'flex',
             top: '8px',
             right: '1rem',
-            padding: '0.5rem 1rem',
             borderRadius: '50',
           }}
-          value={product.id}
-          type="checkbox"
-          onChange={handleIsChecked}
-          checked={isChecked}
-        />
+        >
+          <Button
+            onClick={handleOpenEdetProduct}
+            sx={{ minWidth: 'auto', margin: '0', padding: '0' }}
+            startIcon={<EditIcon sx={{ margin: '0', padding: '0' }} />}
+          />
+          <input
+            style={{
+              borderRadius: '50',
+            }}
+            value={product.id}
+            type="checkbox"
+            onChange={handleIsChecked}
+            checked={isChecked}
+          />
+        </div>
       </Box>
     </Box>
   );
