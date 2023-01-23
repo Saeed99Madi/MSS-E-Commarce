@@ -1,6 +1,7 @@
 import { styled } from '@mui/material/styles';
 import { Button } from '@mui/material';
 import Skeleton from '@mui/material/Skeleton';
+import List from '@mui/material/List';
 import { device } from '../../utils/devices';
 
 const GlobalStyle = styled('div')`
@@ -13,6 +14,16 @@ const GlobalStyle = styled('div')`
     line-height: 103.5%;
     letter-spacing: 0.02em;
     margin-bottom: 24px;
+  }
+  & h2 {
+    color: #f6cd06;
+    font-family: 'Cairo';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 103.5%;
+    text-align: center;
+    letter-spacing: 0.02em;
   }
 
   & p {
@@ -209,6 +220,143 @@ const ImagesList = styled('div')(
 `,
 );
 
+// product feature
+const SectionWithoutPadding = styled('div')(
+  () => ({
+    background: 'linear-gradient(90.9deg, #1F1F22 0.72%, #141417 99.18%)',
+    minHeight: '90vh',
+    position: 'relative',
+    overflow: 'hidden',
+    width: '100%',
+  }),
+  `
+  & h2 {
+    padding-top: 56px;
+    padding-bottom: 44px;
+    position: absolute;
+    z-index: 1000;
+    width: 100%;
+  }
+  @media ${device.tablet} {
+    margin-top: 60px;
+    h2 {
+      position:static;
+    }
+  }
+  `,
+);
+
+const RedSpot = styled('div')(
+  () => ({
+    width: '200px',
+    height: '200px',
+    background:
+      'linear-gradient(90deg, rgba(85,38,44,1) 0%, rgba(77,37,43,1) 35%, rgba(44,31,35,1) 100%);',
+    position: 'absolute',
+    borderRadius: '50%',
+    marginLeft: '-30px',
+    marginTop: '-30px',
+    overflow: 'hidden',
+    filter: 'blur(30px)',
+    zIndex: '1',
+  }),
+  `
+  @media ${device.tablet} {
+    width: 300px;
+    height: 300px;
+    margin-top: -50px;
+    margin-left: -50px;
+  }
+`,
+);
+
+const YellowSpot = styled('div')(
+  () => ({
+    top: '100px',
+    left: '200px',
+    width: '200px',
+    height: '200px',
+    background:
+      'linear-gradient(90deg, rgba(53,46,23,1) 0%, rgba(65,55,24,1) 35%, rgba(34,31,25,1) 100%)',
+    position: 'absolute',
+    borderRadius: '50%',
+    overflow: 'hidden',
+    filter: 'blur(30px)',
+  }),
+  `
+  @media ${device.tablet} {
+    width: 300px;
+    height: 300px;
+    margin-bottom: -50px;
+    margin-right: -50px;
+  }
+`,
+);
+const RectangularImg = styled('div')(
+  ({ image }: { image: string | undefined }) => ({
+    width: '500px',
+    height: '400px',
+    backgroundImage: `url(${image})`,
+    backgroundRepeat: 'no-repeat',
+    position: 'absolute',
+    bottom: '-150px',
+    right: '-200px',
+    filter: 'blur(1px)',
+    zIndex: '1000',
+  }),
+  `
+@media ${device.tablet} {
+  width: 400px;
+  height: 300px;
+  bottom: 0px;
+  right: 0px;
+}
+
+`,
+);
+const FeaturesListWrapper = styled('div')(
+  () => ({
+    margin: '180px 0',
+    marginBottom: '130px',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    paddingBottom: '50px',
+    position: 'relative',
+    zIndex: '10000',
+  }),
+  `
+  nav:first-child {
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-top: 2px solid #424244;
+  }
+  nav:last-child {
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    border-bottom: 2px solid #424244;
+  }
+@media ${device.tablet} {
+  margin-top: 0px;
+}
+`,
+);
+
+const FeaturesList = styled(List)(
+  ({ component }: { component: string }) => ({
+    width: '90%',
+    background:
+      'linear-gradient(130.79deg, rgba(255, 255, 255, 0.08) -37.1%, rgba(255, 255, 255, 0) 134.47%)',
+    color: '#fff',
+    borderTop: '1px solid #424244',
+  }),
+  `
+@media ${device.tablet} {
+  width: 60%;
+}
+`,
+);
+
 export {
   GlobalStyle,
   SectionWithPadding,
@@ -222,4 +370,10 @@ export {
   ImagesList,
   ImagesWrapper,
   SmallImagesWrapper,
+  SectionWithoutPadding,
+  FeaturesListWrapper,
+  RedSpot,
+  YellowSpot,
+  FeaturesList,
+  RectangularImg,
 };
