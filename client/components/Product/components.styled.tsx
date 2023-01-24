@@ -49,7 +49,6 @@ const SectionWithPadding = styled('div')(
   `
   @media ${device.tablet} {
     flex-direction: row;
-    padding: 124px 144px;
   }
   `,
 );
@@ -357,6 +356,41 @@ const FeaturesList = styled(List)(
 `,
 );
 
+// related product
+const RelatedProductWrapper = styled(SectionWithPadding)(
+  () => ({
+    justifyContent: 'center',
+    flexDirection: 'column',
+    padding: '20px 16px',
+    gap: '2rem',
+  }),
+  `
+  & h2 {
+    color: #18181B;
+
+  }
+  @media ${device.tablet} {
+    flex-direction: column;
+   }
+  `,
+);
+
+const ProductsCardWrapper = styled('div')(
+  () => ({
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: '24px',
+    flexWrap: 'wrap',
+  }),
+  `
+@media ${device.tablet} {
+ flex-direction: row;
+}
+`,
+);
+
 export {
   GlobalStyle,
   SectionWithPadding,
@@ -376,4 +410,6 @@ export {
   YellowSpot,
   FeaturesList,
   RectangularImg,
+  RelatedProductWrapper,
+  ProductsCardWrapper,
 };
