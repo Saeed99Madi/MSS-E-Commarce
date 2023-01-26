@@ -1,11 +1,12 @@
 import { Request, Response } from 'express';
 
-import { Product, ProductAttripute, ProductGalary } from '../models';
+import { Product, ProductAttripute, ProductGalary, sequelize } from '../db';
 import CustomError from '../helpers/errorHandler/CustomError';
 import { productSchema } from '../schemes';
-import { sequelize } from '../db';
 import ProductHelpers from '../helpers/products/ProductHelpers';
 import { IAttripute } from '../interfaces/IAttripute';
+import path from 'path';
+import fs from 'fs';
 
 // import environment from '../config/environment';
 
@@ -199,6 +200,151 @@ export default class ProductController {
     res.status(201).json({
       status: 201,
       data: newProduct,
+    });
+  }
+
+  // update Product
+  public static async update(req: Request, res: Response) {
+    console.log('*************************************');
+    console.log(req.body);
+    console.log('*************************************');
+    // id,
+
+    const files = req.files as { [fieldname: string]: Express.Multer.File[] };
+    const { gallery, cover, catalog } = files;
+    console.log('*************************************');
+    console.log(gallery, cover, catalog);
+    console.log('*************************************');
+    // if (catalog) {
+    //   const catalogInstance = catalog[0];
+    // }
+    // if (cover) {
+    //   const coverInstance = cover[0];
+    // }
+    // console.log(req.files.cover, 'files');
+    const { id, title, description, active, CategoryId, attriputes } = req.body;
+    // const {} = req.files;
+    // console.log('body', req.body, 'body');
+
+    await productSchema({ title, description });
+
+    const product = await Product.findByPk(id, { include: ['productGallery'] });
+    if (!product) {
+      throw new CustomError(404, 'Product Undefined');
+    }
+    console.log(product);
+
+    await product.update({
+      title,
+      description,
+      CategoryId,
+      active,
+    });
+    if (gallery) {
+      console.log(gallery, 'gallery is her');
+
+      // delete old Gallery files
+      const oldProductGallery = product.productGallery;
+      if (oldProductGallery && oldProductGallery.length > 0) {
+        await Promise.all(
+          oldProductGallery.map(async image => {
+            const imagePath = path.join(
+              __dirname,
+              '..',
+              'images',
+              'products',
+              image.image,
+            );
+            fs.unlinkSync(imagePath);
+            await ProductGalary.destroy({ where: { image: image.image } });
+          }),
+        );
+      }
+      // create new Gellery
+      await Promise.all(
+        gallery.map(async image => {
+          return await ProductGalary.create({
+            ProductId: product.id,
+            image: image.filename,
+          });
+        }),
+      );
+    }
+    if (cover) {
+      console.log(cover, 'file cover');
+
+      const coverInstance = cover[0].filename;
+      // delete old cover file
+      const oldProductCover = product.cover;
+      if (oldProductCover) {
+        const imagePath = path.join(
+          __dirname,
+          '..',
+          'images',
+          'products',
+          oldProductCover,
+        );
+        fs.unlinkSync(imagePath);
+      }
+      // create new Cover
+      const updatedProduct = await product.update({
+        cover: coverInstance,
+      });
+      console.log(updatedProduct, 'updatedProduct');
+    }
+    if (catalog) {
+      const catalogInstance = catalog[0];
+      // delete old cover file
+      const oldProductCatalog = product.catalog;
+      if (oldProductCatalog) {
+        const imagePath = path.join(
+          __dirname,
+          '..',
+          'images',
+          'products',
+          oldProductCatalog,
+        );
+        fs.unlinkSync(imagePath);
+      }
+      // update new Catalog
+      await product.update({
+        catalogInstance,
+      });
+    }
+
+    if (attriputes) {
+      const productAttriputes: IAttripute[] = JSON.parse(attriputes);
+      console.log(productAttriputes, product);
+
+      await Promise.all(
+        productAttriputes.map(async attr => {
+          const oldAttripute = await ProductAttripute.findByPk(attr.id);
+          if (oldAttripute) {
+            return await oldAttripute.update({
+              title: attr.title,
+              description: attr.description,
+            });
+          }
+          return await ProductAttripute.create({
+            ProductId: product.id,
+            title: attr.title,
+            description: attr.description,
+          });
+        }),
+      );
+    }
+
+    if (active) {
+      product.active = active;
+    }
+    const updatedProduct = await Product.findByPk(id, {
+      include: ['productGallery', 'ProductAttriputes'],
+    });
+    console.log(updatedProduct);
+
+    res.status(200).json({
+      status: 200,
+      data: updatedProduct,
     });
   }
 }
