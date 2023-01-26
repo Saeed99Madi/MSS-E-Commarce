@@ -14,9 +14,9 @@ export const UploadProductFiles = ({ product, setNewProduct }: Props) => {
     const { name, files } = e.target;
 
     if (name === 'cover') {
-      setNewProduct(prev => ({ ...prev, cover: (files as any)[0] }));
+      setNewProduct(prev => ({ ...prev, image: (files as any)[0] }));
     } else if (name === 'catalog') {
-      setNewProduct(prev => ({ ...prev, catalog: (files as any)[0] }));
+      setNewProduct(prev => ({ ...prev, catalogFile: (files as any)[0] }));
     } else {
       console.log(files);
       setNewProduct(prev => ({ ...prev, [name]: files }));
@@ -72,7 +72,7 @@ export const UploadProductFiles = ({ product, setNewProduct }: Props) => {
       >
         Product Gallery
         <input
-          name="gallery"
+          name="gallary"
           onChange={handleProductFillsChange}
           hidden
           accept="image/*"
