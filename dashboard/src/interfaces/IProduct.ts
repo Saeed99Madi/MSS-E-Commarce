@@ -19,7 +19,7 @@ export interface IProduct {
   description: string;
   CategoryId: string;
   cover?: File;
-  gallery: File[];
+  gallery?: File[];
   ProductAttriputes?: Attripute[];
   productGallery?: IProductgallery[];
   catalog?: File;
