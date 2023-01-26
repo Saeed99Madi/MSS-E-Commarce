@@ -25,6 +25,12 @@ router.put(
   errorWrapper(ProductController.unPublish),
 );
 router.put(
+  '/products/update',
+  upload('products').fields(productFields),
+  errorWrapper(isAuth),
+  errorWrapper(ProductController.update),
+);
+router.put(
   '/products/publish',
   errorWrapper(isAuth),
   errorWrapper(ProductController.publish),
