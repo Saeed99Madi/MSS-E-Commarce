@@ -28,9 +28,9 @@ const BoxColumn = styled('div')({
   },
 });
 const ImageIcon = styled('img')({
-  '@media screen and (max-width: 850px)': {
-    width: '1.7rem',
-  },
+  width: '100px',
+  position: 'relative',
+  zIndex: '100',
 });
 const IconWrapper = styled('div')({
   height: '10%',
