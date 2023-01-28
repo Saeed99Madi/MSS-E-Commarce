@@ -4,9 +4,15 @@ import { Dispatch, SetStateAction, useEffect } from 'react';
 import PDFViewer from 'pdf-viewer-reactjs';
 import { IProduct } from '../../../../../interfaces/IProduct';
 
+interface IProductC extends IProduct {
+  gallary?: File[];
+  image?: File;
+  catalogFile?: File;
+}
+
 type Props = {
-  product: IProduct;
-  setNewProduct: Dispatch<SetStateAction<IProduct>>;
+  product: IProductC;
+  setNewProduct: Dispatch<SetStateAction<IProductC>>;
 };
 
 export const UploadProductFiles = ({ product, setNewProduct }: Props) => {
