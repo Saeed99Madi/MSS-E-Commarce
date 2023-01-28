@@ -17,6 +17,7 @@ import {
 import CloseIcon from '@mui/icons-material/Close';
 import { TransitionProps } from '@mui/material/transitions';
 import AddIcon from '@mui/icons-material/Add';
+import { toast } from 'react-toastify';
 import TextInput from './TextInput';
 
 import { DescriptionInput, InputsList } from './components.styled';
@@ -28,6 +29,7 @@ import { UploadProductFiles } from './UploadProductFiles';
 import { AttriputeReducer } from '../../../../helpers/AttriputeReducer';
 
 import { AttriputeForms } from './AttriputeForms';
+import { DashboardContext } from '../../../../context/DashboardContext';
 
 ApiServices.init();
 const Transition = React.forwardRef(
@@ -49,6 +51,7 @@ type Props = {
 };
 const AddProduct = (props: Props) => {
   const { open, setOpen } = props;
+  const { setProducts } = React.useContext(DashboardContext);
   const [category, setCategory] = React.useState('');
   const [newProduct, setNewProduct] = React.useState<IProduct>({
     title: '',
@@ -82,24 +85,40 @@ const AddProduct = (props: Props) => {
     setNewProduct(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSaveProduct = () => {
-    const data = new FormData();
-    if (!newProduct.cover || !newProduct.gallery || !newProduct.catalog) {
-      return;
-    }
-    data.append('cover', newProduct.cover);
-    data.append('catalog', newProduct.catalog);
-    const productGallery = [...newProduct.gallery];
-    productGallery.forEach(image => {
-      data.append('gallery', image, image.name);
-    });
+  const handleSaveProduct = async () => {
+    try {
+      const productForm = new FormData();
+      if (!newProduct.cover || !newProduct.gallery || !newProduct.catalog) {
+        throw new Error('no images ');
+      }
+      productForm.append('cover', newProduct.cover);
+      productForm.append('catalog', newProduct.catalog);
+      const productGallery = [...newProduct.gallery];
+      productGallery.forEach(image => {
+        productForm.append('gallery', image, image.name);
+      });
 
-    data.append('title', newProduct.title);
-    data.append('CategoryId', newProduct.CategoryId);
-    data.append('description', newProduct.description);
-    const AttriputesStr = JSON.stringify(attriputes);
-    data.append('attriputes', AttriputesStr);
-    ApiServices.post('products', data);
+      productForm.append('title', newProduct.title);
+      productForm.append('CategoryId', newProduct.CategoryId);
+      productForm.append('description', newProduct.description);
+      const AttriputesStr = JSON.stringify(attriputes);
+      productForm.append('attriputes', AttriputesStr);
+
+      const { data } = await ApiServices.post('products', productForm);
+
+      setProducts(prev => {
+        prev.push(data.data);
+        const newProductstr = JSON.stringify(prev);
+        const newProducts: IProduct[] = JSON.parse(newProductstr);
+        return newProducts;
+      });
+      if (data.status === 201) {
+        toast.success(`product have been updated successfully!`);
+        // window.location.reload();
+      }
+    } catch (err: any) {
+      toast.error(err.message);
+    }
   };
 
   return (

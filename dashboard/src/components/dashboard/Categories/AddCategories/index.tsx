@@ -54,6 +54,8 @@ const AddCategory = () => {
     (async () => {
       setCategories(await fetchCategories());
     })();
+    // we have to return to ensure from this line
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleIsChecked = (e: React.ChangeEvent<HTMLInputElement>) => {

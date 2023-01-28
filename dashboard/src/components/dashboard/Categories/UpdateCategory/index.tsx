@@ -36,6 +36,7 @@ const UpdateCategory = ({ open, setOpenUpdateCategory, id }: Props) => {
       setCategory({ id, title, description, cover });
       setLoader(false);
     })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleInput = (e: any) => {

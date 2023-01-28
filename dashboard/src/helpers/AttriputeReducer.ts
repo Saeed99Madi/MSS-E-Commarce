@@ -16,8 +16,6 @@ export const AttriputeReducer = (state: Array<Attripute>, action: any) => {
     case 'removeAll':
       return [];
     case 'addAttriputes':
-      console.log(action.attriputes, 'her we go');
-
       return [...state, ...action.attriputes];
     case 'edit':
       // eslint-disable-next-line no-param-reassign

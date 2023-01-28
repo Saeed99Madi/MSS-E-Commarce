@@ -23,6 +23,7 @@ import {
 
 import CloseIcon from '@mui/icons-material/Close';
 import { TransitionProps } from '@mui/material/transitions';
+import { toast } from 'react-toastify';
 import { AttriputeReducer } from '../../../../helpers/AttriputeReducer';
 import { IProduct } from '../../../../interfaces/IProduct';
 import ApiServices from '../../../../servises/ApiService';
@@ -85,8 +86,6 @@ const EditProduct = ({ open, setOpen }: Props) => {
       });
       setCategory(product?.CategoryId);
       setNewProduct(product);
-    } else {
-      console.log('product not found');
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [editIdProduct]);
@@ -107,21 +106,15 @@ const EditProduct = ({ open, setOpen }: Props) => {
   };
 
   const handleSaveProduct = async () => {
-    console.log(newProduct);
-
     const formData = new FormData();
 
     if (newProduct.gallary) {
-      console.log(newProduct.gallary, 'gellery tum ');
-
       const productGallery = [...newProduct.gallary];
       productGallery.forEach(image => {
         formData.append('gallery', image, image.name);
       });
     }
     if (newProduct.image) {
-      console.log(newProduct.image, 'heheheheh image product cover');
-
       formData.append('cover', newProduct.image);
     }
     if (newProduct.catalogFile) {
@@ -138,19 +131,24 @@ const EditProduct = ({ open, setOpen }: Props) => {
     formData.append('description', newProduct.description);
     const AttriputesStr = JSON.stringify(attriputes);
     formData.append('attriputes', AttriputesStr);
-    console.log(formData);
+    try {
+      const { data } = await ApiServices.put('products/update', formData);
 
-    const { data } = await ApiServices.put('products/update', formData);
-    console.log(data);
-
-    setProducts(prev => {
-      return prev.map(ele => {
-        if (ele.id === newProduct.id) {
-          return data.data;
-        }
-        return ele;
+      setProducts(prev => {
+        return prev.map(ele => {
+          if (ele.id === newProduct.id) {
+            return data.data;
+          }
+          return ele;
+        });
       });
-    });
+      if (data.data.status === 200) {
+        toast.success(`product have been updated successfully!`);
+        // window.location.reload();
+      }
+    } catch (err: any) {
+      toast.error(err);
+    }
   };
 
   return (
