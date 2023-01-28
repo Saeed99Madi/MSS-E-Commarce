@@ -1,70 +1,100 @@
 import { styled } from '@mui/material/styles';
 import { Typography, TextField } from '@mui/material';
+import { device } from '../../utils/devices';
 
 const ContactPageWrapper = styled('main')(() => ({
   border: '1px solid red',
-  height: '100vh',
   display: 'flex',
-  overflow: 'none',
+  flexDirection: 'column',
   background: 'linear-gradient(90.9deg, #1F1F22 0.72%, #141417 99.18%)',
+  padding: '1rem',
+  [`@media ${device.tablet}`]: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'stretch',
+    padding: '0',
+    height: '80vh',
+  },
 }));
 
 const ContactFormSection = styled('div')(
   ({ hoverForm }: { hoverForm: boolean }) => ({
-    border: '1px solid orange',
-    width: `${hoverForm ? '80%' : '50%'}`,
+    border: '1px solid green',
+    // width: `${hoverForm ? '50%' : '50%'}`,
     background: `${
       hoverForm
         ? 'inherit'
         : 'linear-gradient(90.9deg, #1F1F22 100%, #251417 99.18%)'
     }`,
     display: 'flex',
+    flexDirection: 'column',
     justifyContent: 'center',
+    alignItems: 'center',
     overflow: 'hidden',
+    height: '100%',
+    [`@media ${device.tablet}`]: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      margin: 'auto',
+      width: `${hoverForm ? '80%' : '50%'}`,
+      paddingLeft: '3rem',
+    },
   }),
 );
 const ContactWhatsAppSection = styled('div')(() => ({
   border: '1px solid blue',
-  width: '50%',
-  height: '100%',
   display: 'flex',
   background: `${
     false ? 'inherit' : 'linear-gradient(90.9deg, #1F1F22 100%, #141417 99.18%)'
   }`,
+  [`@media ${device.tablet}`]: {
+    border: '1px solid #fff',
+    width: '50%',
+  },
 }));
 
 const FormWrapper = styled('div')(({ hoverForm }: { hoverForm: boolean }) => ({
-  //   border: '1px solid green',
-  width: '50%',
-  height: '50%',
+  border: '1px solid gold',
+  width: '100%',
+  height: '100%',
   margin: 'auto',
   display: 'flex',
   flexDirection: 'column',
-  justifyContent: 'space-around',
-  transform: `${hoverForm ? 'translateX(0%)' : 'translateX(50%)'}`,
   transition: 'all 0.5s ease-in-out',
   position: 'relative',
-  paddingLeft: `${hoverForm ? '144px' : '0px'}`,
+
+  [`@media ${device.tablet}`]: {
+    border: '1px solid red',
+    paddingLeft: `${hoverForm ? '144px' : '0px'}`,
+    width: `${hoverForm ? '60%' : '100%'}`,
+    justifyContent: 'center',
+  },
 }));
 
 const WhatsAppWrapper = styled('div')(() => ({
-  //   border: '1px solid gold',
-  width: '50%',
-  height: '50%',
   margin: 'auto',
 }));
 
 const FormSection = styled('div')(({ hoverForm }: { hoverForm: boolean }) => ({
-  //   border: '1px solid gold',
-  width: '50%',
-  height: '50%',
+  border: '1px solid gold',
+  width: '100%',
+  height: '100%',
   margin: 'auto',
   transform: `${hoverForm ? 'translateX(0%)' : 'translateX(1000%)'}`,
   transition: 'all 0.5s ease-in-out',
-  display: 'flex',
+  display: `${hoverForm ? 'flex' : 'none'}`,
+  alignItems: 'center',
   flexDirection: 'column',
   gap: '2rem',
   marginRight: '3rem',
+  [`@media ${device.tablet}`]: {
+    border: '1px solid red',
+    transform: `${hoverForm ? 'translateX(0%)' : 'translateX(1000%)'}`,
+    display: 'flex',
+    justifyContent: 'center',
+    width: '50%',
+    height: '100%',
+  },
 }));
 
 const Spot = styled('div')(({ hoverForm }: { hoverForm: boolean }) => ({
@@ -133,18 +163,23 @@ const SubmitBtn = styled('button')(() => ({
   fontWeight: '700',
   color: '#fff',
   padding: '16px 45px',
-  maxWidth: '80%',
+
+  width: '100%',
   border: 'none',
   outline: 'none',
   cursor: 'pointer',
   borderRadius: '8px',
   marginTop: '2rem',
+  [`@media ${device.tablet}`]: {
+    maxWidth: '80%',
+  },
 }));
 
 const InputsWrapper = styled('div')(() => ({
   display: 'flex',
   flexDirection: 'column',
   gap: '1rem',
+  width: '100%',
 }));
 
 const CustomTextField = styled(TextField)(() => ({
@@ -152,12 +187,20 @@ const CustomTextField = styled(TextField)(() => ({
     'linear-gradient(130.79deg, rgba(255, 255, 255, 0.08) -37.1%, rgba(255, 255, 255, 0) 134.47%)',
   border: 'none',
   borderRadius: '8px',
-  color: 'red !important',
   input: {
     color: '#fff',
   },
   label: {
     color: '#5D5D5F',
+  },
+  textArea: {
+    color: '#fff',
+  },
+  svg: {
+    color: '#fff',
+  },
+  div: {
+    color: '#fff',
   },
 }));
 
