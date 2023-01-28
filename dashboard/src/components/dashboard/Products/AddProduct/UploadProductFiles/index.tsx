@@ -1,6 +1,6 @@
 import { Button } from '@mui/material';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-import { Dispatch, SetStateAction, useEffect } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 import PDFViewer from 'pdf-viewer-reactjs';
 import { IProduct } from '../../../../../interfaces/IProduct';
 
@@ -14,17 +14,14 @@ export const UploadProductFiles = ({ product, setNewProduct }: Props) => {
     const { name, files } = e.target;
 
     if (name === 'cover') {
-      setNewProduct(prev => ({ ...prev, image: (files as any)[0] }));
+      setNewProduct(prev => ({ ...prev, cover: (files as any)[0] }));
     } else if (name === 'catalog') {
-      setNewProduct(prev => ({ ...prev, catalogFile: (files as any)[0] }));
+      setNewProduct(prev => ({ ...prev, catalog: (files as any)[0] }));
     } else {
-      console.log(files);
       setNewProduct(prev => ({ ...prev, [name]: files }));
     }
   };
-  useEffect(() => {
-    console.log(product);
-  }, [product]);
+
   return (
     <>
       <Button

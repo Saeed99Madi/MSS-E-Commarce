@@ -30,6 +30,7 @@ export const CategoriesListWrapper = styled('div')(
   `,
 );
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const ParentListItem = styled(List)(({ open }: IParentListItem) => ({
   background:
     'linear-gradient(130.79deg, rgba(255, 255, 255, 0.08) -37.1%, rgba(255, 255, 255, 0) 134.47%)',
@@ -42,13 +43,11 @@ export const CloseSign = styled('div')`
   background-color: #f6cd06;
   width: 16px;
   height: 2px;
-}}
 `;
 
 export const OpenSign = styled('div')`
   color: #fff;
-  font-size: 2rem
-}}
+  font-size: 2rem;
 `;
 
 export const CustomSpan = styled('span')`
@@ -56,12 +55,10 @@ export const CustomSpan = styled('span')`
   opacity: 0.5;
   display: flex;
   flex-direction: column;
-}}
 `;
 
 export const SubLIstItemWrapper = styled('div')`
-  border-top: 2px solid #424244
-}}
+  border-top: 2px solid #424244;
 `;
 
 export const EditIcon = styled(ModeEditOutlineOutlinedIcon)(() => ({

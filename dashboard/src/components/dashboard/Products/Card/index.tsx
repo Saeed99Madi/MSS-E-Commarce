@@ -14,7 +14,6 @@ type Props = {
 
 export const ProductCard = (props: Props) => {
   const { product } = props;
-  // console.log('product');
 
   const [isChecked, setIsChecked] = useState(false);
 
@@ -52,8 +51,6 @@ export const ProductCard = (props: Props) => {
   const handleOpenEdetProduct = () => {
     if (product.id) {
       setEditIdProduct(product.id);
-    } else {
-      console.log('Product ID Is not Defined');
     }
     setOpenEditProduct(true);
   };
