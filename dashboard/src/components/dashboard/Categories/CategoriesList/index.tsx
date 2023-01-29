@@ -6,13 +6,15 @@ import { CategoriesListWrapper } from './component.style';
 
 const CategoriesList = ({ open }: { open: boolean }) => {
   const [category, setCategory] = useState<ICategories[]>();
-  console.log({ open });
+
   const fetchCategories = useCategories();
 
   useEffect(() => {
     (async () => {
       setCategory(await fetchCategories());
     })();
+    // we have to ensure from this line
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

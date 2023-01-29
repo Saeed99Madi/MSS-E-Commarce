@@ -1,4 +1,12 @@
-import { createContext, ReactNode, useEffect, useMemo, useState } from 'react';
+/* eslint-disable no-console */
+import {
+  createContext,
+  MouseEventHandler,
+  ReactNode,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 import IDashboardContext from '../interfaces/IDashboardContext';
 import { IProduct } from '../interfaces/IProduct';
 import { IService } from '../interfaces/IService';
@@ -23,6 +31,16 @@ const ProvideDashboard = ({ children }: { children: ReactNode }) => {
   const [openAddService, setOpenAddService] = useState(false);
   const [services, setServices] = useState<IService[]>([]);
   // End Services Managment States
+
+  // Begen Conferm Action Dialog
+  const [openConfermAlert, setOpenConfermAlert] = useState(false);
+  const [confermMessage, setConfermMessage] = useState<string>('');
+  const [confermHandler, setConfermHandler] = useState<() => Promise<void>>(
+    async () => {
+      console.log('no handlers');
+    },
+  );
+  // End Conferm Action Dialog
 
   useEffect(() => {
     (async () => {
@@ -74,6 +92,7 @@ const ProvideDashboard = ({ children }: { children: ReactNode }) => {
   const dashboardValues = useMemo(
     () => ({
       // Begen Services Managment States
+
       checkedServices,
       setIsCheckedServices,
       servicesSearch,
@@ -99,6 +118,14 @@ const ProvideDashboard = ({ children }: { children: ReactNode }) => {
       openEditProduct,
       setOpenEditProduct,
       // End Products Managment States
+      // Begen Conferm Action Dialog
+      openConfermAlert,
+      setOpenConfermAlert,
+      confermHandler,
+      setConfermHandler,
+      confermMessage,
+      setConfermMessage,
+      // End Conferm Action Dialog
     }),
     [
       checkedServices,
@@ -112,6 +139,9 @@ const ProvideDashboard = ({ children }: { children: ReactNode }) => {
       openSideBar,
       editIdProduct,
       openEditProduct,
+      openConfermAlert,
+      confermHandler,
+      confermMessage,
     ],
   );
   return (

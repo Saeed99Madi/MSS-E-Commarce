@@ -7,6 +7,7 @@ import {
   useState,
 } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import IAuthGaurd, { ISignIn } from '../interfaces/IAuthGaurd';
 import { IUser } from '../interfaces/IUser';
 import ApiServices from '../servises/ApiService';
@@ -30,8 +31,12 @@ const ProvideAuthGaurd = ({ children }: { children: ReactNode }) => {
         role: data?.data?.role,
         email: data?.data?.email,
       });
+      if (data.data.status === 200) {
+        toast.success(`user login successfully`);
+        // window.location.reload();
+      }
     } catch (err: any) {
-      console.error(err);
+      toast.error(err);
     }
   }, []);
 
@@ -44,8 +49,12 @@ const ProvideAuthGaurd = ({ children }: { children: ReactNode }) => {
     try {
       const { data } = await ApiServices.get('/user/me');
       setUser({ ...data?.data });
+      if (data.data.status === 200) {
+        toast.success(`user alredy logined successfully`);
+        // window.location.reload();
+      }
     } catch (error: any) {
-      console.error(error);
+      toast.error(error);
     }
   }, []);
 
@@ -67,6 +76,7 @@ const ProvideAuthGaurd = ({ children }: { children: ReactNode }) => {
         navigate('/admin/dashboard');
       }
     })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

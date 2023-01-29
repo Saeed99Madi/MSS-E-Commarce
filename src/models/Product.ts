@@ -1,5 +1,6 @@
 import sequelize from '../db/connection';
 import { Model, DataTypes } from 'sequelize';
+import ProductGalary from './ProductGalary';
 
 class Product extends Model {
   declare id: number;
@@ -8,6 +9,7 @@ class Product extends Model {
   declare cover: string;
   declare active?: boolean;
   declare catalog?: string;
+  productGallery?: ProductGalary[];
 }
 Product.init(
   {

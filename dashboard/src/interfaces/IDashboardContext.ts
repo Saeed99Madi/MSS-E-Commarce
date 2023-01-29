@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, MouseEventHandler, SetStateAction } from 'react';
 import { IProduct } from './IProduct';
 import { IService } from './IService';
 
@@ -30,6 +30,14 @@ interface IDashboardContext {
   checkedProducts: Array<number>;
   setIsCheckedProducts: Dispatch<SetStateAction<Array<number>>>;
   // End Products Managment States
+  // Begen Conferm Action Dialog
+  openConfermAlert: boolean;
+  setOpenConfermAlert: Dispatch<SetStateAction<boolean>>;
+  confermHandler: () => Promise<void>;
+  setConfermHandler: Dispatch<SetStateAction<() => Promise<void>>>;
+  confermMessage: string;
+  setConfermMessage: Dispatch<SetStateAction<string>>;
+  // End Conferm Action Dialog
 }
 
 export default IDashboardContext;
