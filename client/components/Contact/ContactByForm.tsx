@@ -21,8 +21,10 @@ import {
 import { useForm } from '../../hooks/useForm';
 
 type Props = {
-  hoverForm: boolean;
-  SetHoverForm: Function;
+  openForm: boolean;
+  SetOpenForm: Function;
+  openWhatsApp: boolean;
+  seOpenWhatsApp: Function;
 };
 const initialState = {
   name: '',
@@ -50,7 +52,12 @@ const subjects = [
   },
 ];
 
-const ContactByForm = ({ hoverForm, SetHoverForm }: Props) => {
+const ContactByForm = ({
+  openForm,
+  SetOpenForm,
+  openWhatsApp,
+  seOpenWhatsApp,
+}: Props) => {
   const { values, onChange, setValues } = useForm(initialState);
   const [error, setError] = useState<boolean>(false);
 
@@ -73,33 +80,40 @@ const ContactByForm = ({ hoverForm, SetHoverForm }: Props) => {
   };
 
   return (
-    <ContactFormSection hoverForm={hoverForm}>
-      <FormWrapper hoverForm={hoverForm}>
+    <ContactFormSection
+      openForm={openForm}
+      openWhatsApp={openWhatsApp}
+      onMouseEnter={() => {
+        seOpenWhatsApp(false);
+      }}
+    >
+      <FormWrapper hoverForm={openForm}>
         <div>
-          <ImageWrapper>
-            <Spot hoverForm={hoverForm} />
+          <ImageWrapper whatsapp={false}>
+            <Spot hoverForm={openForm} whatsapp={false} />
             <ImageIcon src="/assets/form.png" alt="contact" />
           </ImageWrapper>
           <CustomTypography>Contact Us</CustomTypography>
-          <HeaderTypography>
+          <HeaderTypography whatsapp={false}>
             Contact By <span>FORM</span>
           </HeaderTypography>
         </div>
-        {!hoverForm && (
+        {!openForm && (
           <SubmitBtn
+            whatsapp={false}
             onMouseEnter={() => {
-              SetHoverForm(true);
+              SetOpenForm(true);
             }}
           >
             Submit Form
           </SubmitBtn>
         )}
       </FormWrapper>
-      <FormSection hoverForm={hoverForm}>
+      <FormSection hoverForm={openForm}>
         <CloseIcon
           sx={{ color: '#fff', alignSelf: 'flex-end', cursor: 'pointer' }}
           onClick={() => {
-            SetHoverForm(false);
+            SetOpenForm(false);
             setValues({ ...initialState });
           }}
         />
@@ -160,7 +174,11 @@ const ContactByForm = ({ hoverForm, SetHoverForm }: Props) => {
             value={`${values.subject}`}
           />
 
-          {hoverForm && <SubmitBtn onClick={handelSubmitBtn}>Submit</SubmitBtn>}
+          {openForm && (
+            <SubmitBtn whatsapp={false} onClick={handelSubmitBtn}>
+              Submit
+            </SubmitBtn>
+          )}
         </InputsWrapper>
       </FormSection>
       <ToastContainer />

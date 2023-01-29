@@ -4,11 +4,22 @@ import ContactByForm from './ContactByForm';
 import ContactByWhatsApp from './ContactByWhatsApp';
 
 const ContactPage = () => {
-  const [hoverForm, SetHoverForm] = useState<boolean>(false);
+  const [openForm, SetOpenForm] = useState<boolean>(true);
+  const [openWhatsApp, seOpenWhatsApp] = useState<boolean>(false);
   return (
     <ContactPageWrapper>
-      <ContactByForm hoverForm={hoverForm} SetHoverForm={SetHoverForm} />
-      <ContactByWhatsApp hoverForm={hoverForm} SetHoverForm={SetHoverForm} />
+      <ContactByForm
+        openForm={openForm}
+        SetOpenForm={SetOpenForm}
+        openWhatsApp={openWhatsApp}
+        seOpenWhatsApp={seOpenWhatsApp}
+      />
+      <ContactByWhatsApp
+        openForm={openForm}
+        SetOpenForm={SetOpenForm}
+        openWhatsApp={openWhatsApp}
+        seOpenWhatsApp={seOpenWhatsApp}
+      />
     </ContactPageWrapper>
   );
 };
