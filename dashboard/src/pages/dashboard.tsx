@@ -10,6 +10,7 @@ import { SideBar } from '../components/dashboard/SideBar';
 import { ProvideDashboard } from '../context/DashboardContext';
 import { AuthGaurdContext } from '../context/AuthContext';
 import ToastMessage from '../components/dashboard/ToastContainer';
+import ConfermAction from '../components/dashboard/ConfermAction';
 
 const Dashboard = () => {
   const theme = useTheme();
@@ -20,6 +21,7 @@ const Dashboard = () => {
   return (
     <ProvideDashboard>
       <ToastMessage />
+      <ConfermAction />
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
         <NavBar />
