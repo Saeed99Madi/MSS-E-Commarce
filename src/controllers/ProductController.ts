@@ -143,17 +143,13 @@ export default class ProductController {
 
   // create Product
   public static async create(req: Request, res: Response) {
-    console.log('*************************************');
-    console.log(req.body);
-    console.log('*************************************');
     const files = req.files as { [fieldname: string]: Express.Multer.File[] };
     const { gallery, cover, catalog } = files;
     const catalogInstance = catalog[0];
     const coverInstance = cover[0];
-    // console.log(req.files.cover, 'files');
+
     const { title, description, active, CategoryId, attriputes } = req.body;
-    // const {} = req.files;
-    // console.log('body', req.body, 'body');
+
     await productSchema({ title, description });
 
     const product = await Product.findOne({ where: { title } });
@@ -205,26 +201,10 @@ export default class ProductController {
 
   // update Product
   public static async update(req: Request, res: Response) {
-    console.log('*************************************');
-    console.log(req.body);
-    console.log('*************************************');
-    // id,
-
     const files = req.files as { [fieldname: string]: Express.Multer.File[] };
     const { gallery, cover, catalog } = files;
-    console.log('*************************************');
-    console.log(gallery, cover, catalog);
-    console.log('*************************************');
-    // if (catalog) {
-    //   const catalogInstance = catalog[0];
-    // }
-    // if (cover) {
-    //   const coverInstance = cover[0];
-    // }
-    // console.log(req.files.cover, 'files');
+
     const { id, title, description, active, CategoryId, attriputes } = req.body;
-    // const {} = req.files;
-    // console.log('body', req.body, 'body');
 
     await productSchema({ title, description });
 
@@ -241,9 +221,6 @@ export default class ProductController {
       active,
     });
     if (gallery) {
-      console.log(gallery, 'gallery is her');
-
-      // delete old Gallery files
       const oldProductGallery = product.productGallery;
       if (oldProductGallery && oldProductGallery.length > 0) {
         await Promise.all(
@@ -255,7 +232,11 @@ export default class ProductController {
               'products',
               image.image,
             );
-            fs.unlinkSync(imagePath);
+            try {
+              fs.unlinkSync(imagePath);
+            } catch (error) {
+              console.log(error);
+            }
             await ProductGalary.destroy({ where: { image: image.image } });
           }),
         );
@@ -284,7 +265,11 @@ export default class ProductController {
           'products',
           oldProductCover,
         );
-        fs.unlinkSync(imagePath);
+        try {
+          fs.unlinkSync(imagePath);
+        } catch (error) {
+          console.log(error);
+        }
       }
       // create new Cover
       const updatedProduct = await product.update({
@@ -304,7 +289,11 @@ export default class ProductController {
           'products',
           oldProductCatalog,
         );
-        fs.unlinkSync(imagePath);
+        try {
+          fs.unlinkSync(imagePath);
+        } catch (error) {
+          console.log(error);
+        }
       }
       // update new Catalog
       await product.update({
@@ -340,7 +329,6 @@ export default class ProductController {
     const updatedProduct = await Product.findByPk(id, {
       include: ['productGallery', 'ProductAttriputes'],
     });
-    console.log(updatedProduct);
 
     res.status(200).json({
       status: 200,

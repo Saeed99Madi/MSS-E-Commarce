@@ -107,14 +107,16 @@ const AddProduct = (props: Props) => {
       const { data } = await ApiServices.post('products', productForm);
 
       setProducts(prev => {
-        prev.push(data.data);
+        prev.unshift(data.data);
         const newProductstr = JSON.stringify(prev);
         const newProducts: IProduct[] = JSON.parse(newProductstr);
         return newProducts;
       });
       if (data.status === 201) {
-        toast.success(`product have been updated successfully!`);
+        toast.success(`Product have been addded successfully!`);
         // window.location.reload();
+      } else {
+        toast.error(`${data.status}, Custom Error: ${data.msg}`);
       }
     } catch (err: any) {
       toast.error(err.message);

@@ -57,7 +57,14 @@ type Props = {
 };
 
 const EditProduct = ({ open, setOpen }: Props) => {
-  const { products, editIdProduct, setProducts } = useContext(DashboardContext);
+  const {
+    products,
+    editIdProduct,
+    setProducts,
+    setOpenConfermAlert,
+    setConfermHandler,
+    setConfermMessage,
+  } = useContext(DashboardContext);
 
   const [category, setCategory] = useState('');
   const [newProduct, setNewProduct] = useState<IProductC>({
@@ -107,7 +114,6 @@ const EditProduct = ({ open, setOpen }: Props) => {
 
   const handleSaveProduct = async () => {
     const formData = new FormData();
-
     if (newProduct.gallary) {
       const productGallery = [...newProduct.gallary];
       productGallery.forEach(image => {
@@ -133,7 +139,6 @@ const EditProduct = ({ open, setOpen }: Props) => {
     formData.append('attriputes', AttriputesStr);
     try {
       const { data } = await ApiServices.put('products/update', formData);
-
       setProducts(prev => {
         return prev.map(ele => {
           if (ele.id === newProduct.id) {
@@ -142,13 +147,24 @@ const EditProduct = ({ open, setOpen }: Props) => {
           return ele;
         });
       });
-      if (data.data.status === 200) {
+      if (data.status === 200) {
         toast.success(`product have been updated successfully!`);
         // window.location.reload();
       }
+      setOpenConfermAlert(false);
     } catch (err: any) {
       toast.error(err);
     }
+  };
+  const handleSaveEdit = async () => {
+    console.log('Hello handle Save Edit Product');
+    handleClose();
+    setConfermMessage('Are You Sure To Edit Product ?');
+    setOpenConfermAlert(true);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    setConfermHandler(prev => {
+      return handleSaveProduct;
+    });
   };
 
   return (
@@ -181,10 +197,7 @@ const EditProduct = ({ open, setOpen }: Props) => {
             sx={{ background: '#E52535' }}
             autoFocus
             color="inherit"
-            onClick={() => {
-              handleClose();
-              handleSaveProduct();
-            }}
+            onClick={handleSaveEdit}
           >
             save
           </Button>

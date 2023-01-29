@@ -64,7 +64,7 @@ export const ProductCard = (props: Props) => {
           'linear-gradient(125.86deg, rgba(255, 255, 255, 0.18) -267.85%, rgba(255, 255, 255, 0) 138.29%)',
         backdropFilter: 'blur(5.73932px)',
         borderRadius: '12px',
-        border: product.active ? '0.2rem solid green' : '0.2rem solid red',
+        border: product.active ? '0.1rem solid green' : '0.2rem solid red',
       }}
     >
       <Box
