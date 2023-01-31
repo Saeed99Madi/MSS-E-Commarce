@@ -30,6 +30,8 @@ const ProvideDashboard = ({ children }: { children: ReactNode }) => {
   const [servicesSearch, setServicesSearch] = useState<string>('');
   const [openAddService, setOpenAddService] = useState(false);
   const [services, setServices] = useState<IService[]>([]);
+  const [openEditService, setOpenEditService] = useState(false);
+  const [editIdService, setEditIdService] = useState<number>(0);
   // End Services Managment States
 
   // Begen Conferm Action Dialog
@@ -101,6 +103,10 @@ const ProvideDashboard = ({ children }: { children: ReactNode }) => {
       setOpenAddService,
       services,
       setServices,
+      openEditService,
+      setOpenEditService,
+      editIdService,
+      setEditIdService,
       // End Services Managment States
       // Begen Products Managment States
       products,
@@ -132,6 +138,8 @@ const ProvideDashboard = ({ children }: { children: ReactNode }) => {
       servicesSearch,
       openAddService,
       services,
+      openEditService,
+      editIdService,
       products,
       checkedProducts,
       searchFilterCategory,
