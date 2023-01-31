@@ -10,7 +10,6 @@ import {
   FormSection,
   SubmitBtn,
   Spot,
-  ImageIcon,
   ImageWrapper,
   CustomTypography,
   HeaderTypography,
@@ -89,8 +88,7 @@ const ContactByForm = ({
       <FormWrapper hoverForm={openForm}>
         <div>
           <ImageWrapper whatsapp={false}>
-            <Spot hoverForm={openForm} whatsapp={false} />
-            {/* <ImageIcon src="/assets/form.png" alt="contact" /> */}@
+            <Spot hoverForm={openForm} whatsapp={false} />@
           </ImageWrapper>
           <CustomTypography>Contact Us</CustomTypography>
           <HeaderTypography whatsapp={false}>
