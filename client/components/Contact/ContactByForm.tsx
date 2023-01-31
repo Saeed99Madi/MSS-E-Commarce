@@ -68,12 +68,10 @@ const ContactByForm = ({
       !values.subject ||
       !values.subjectTitle
     ) {
-      console.log('something went wrong');
       toast.error('you must fill out all fields');
       setError(true);
     } else {
       setError(false);
-      console.log('clicked');
       console.log(values);
       setValues({ ...initialState });
     }
@@ -90,8 +88,7 @@ const ContactByForm = ({
       <FormWrapper hoverForm={openForm}>
         <div>
           <ImageWrapper whatsapp={false}>
-            <Spot hoverForm={openForm} whatsapp={false} />
-            <ImageIcon src="/assets/form.png" alt="contact" />
+            <Spot hoverForm={openForm} whatsapp={false} />@
           </ImageWrapper>
           <CustomTypography>Contact Us</CustomTypography>
           <HeaderTypography whatsapp={false}>

@@ -184,6 +184,8 @@ const ImageIcon = styled('img')(() => ({
 const ImageWrapper = styled('div')(({ whatsapp }: { whatsapp: boolean }) => ({
   width: '100px',
   height: '100px',
+  fontSize: '4rem',
+  color: '#fff',
   background: `${
     whatsapp
       ? 'linear-gradient(90deg, #25D366 0%, #128C7E 100%)'
