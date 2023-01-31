@@ -1,24 +1,23 @@
 import { ChangeEvent, useContext, useEffect, useState } from 'react';
 
-import { Box, Typography } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 
 import { DashboardContext } from '../../../../context/DashboardContext';
 
 import ApiServices from '../../../../servises/ApiService';
 import { IService } from '../../../../interfaces/IService';
+import { EditIcon } from '../../Categories/CategoriesList/component.style';
 
 ApiServices.init();
 type Props = {
   service: IService;
 };
 
-export const ServiceCard = (props: Props) => {
-  const { service } = props;
-  // console.log('product');
-
+export const ServiceCard = ({ service }: Props) => {
   const [isChecked, setIsChecked] = useState(false);
 
-  const { setIsCheckedServices } = useContext(DashboardContext);
+  const { setIsCheckedServices, setEditIdService, setOpenEditService } =
+    useContext(DashboardContext);
   useEffect(() => {
     if (service.checked) {
       setIsChecked(service.checked);
@@ -39,6 +38,12 @@ export const ServiceCard = (props: Props) => {
       });
     }
     setIsChecked(checked);
+  };
+  const handleOpenEditService = () => {
+    if (service.id) {
+      setEditIdService(service.id);
+    }
+    setOpenEditService(true);
   };
 
   return (
@@ -91,19 +96,31 @@ export const ServiceCard = (props: Props) => {
           alt="Renewable energy"
           loading="lazy"
         />
-        <input
+
+        <div
           style={{
             position: 'absolute',
+            display: 'flex',
             top: '8px',
             right: '1rem',
-            padding: '0.5rem 1rem',
             borderRadius: '50',
           }}
-          value={service.id}
-          type="checkbox"
-          onChange={handleIsChecked}
-          checked={isChecked}
-        />
+        >
+          <Button
+            onClick={handleOpenEditService}
+            sx={{ minWidth: 'auto', margin: '0', padding: '0' }}
+            startIcon={<EditIcon sx={{ margin: '0', padding: '0' }} />}
+          />
+          <input
+            style={{
+              borderRadius: '50',
+            }}
+            value={service.id}
+            type="checkbox"
+            onChange={handleIsChecked}
+            checked={isChecked}
+          />
+        </div>
       </Box>
     </Box>
   );

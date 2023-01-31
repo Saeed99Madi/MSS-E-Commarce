@@ -2,7 +2,6 @@ import { useContext, useState } from 'react';
 
 import { Box } from '@mui/material';
 import { ServiceCard } from './Card';
-// import useProducts from '../../../hooks/getProducts';
 import { DrawerHeader, Main } from '../components.styled';
 
 import { Actions } from './Actions';
@@ -11,6 +10,7 @@ import { DashboardContext } from '../../../context/DashboardContext';
 
 import ApiServices from '../../../servises/ApiService';
 import AddService from './AddService';
+import EditService from './EditService';
 
 ApiServices.init();
 export const ServicesList = () => {
@@ -21,6 +21,7 @@ export const ServicesList = () => {
     <Main open={openSideBar} sx={{ background: '#141417' }}>
       <DrawerHeader />
       <Actions />
+      <EditService />
       <Box
         sx={{
           textAlign: 'center',

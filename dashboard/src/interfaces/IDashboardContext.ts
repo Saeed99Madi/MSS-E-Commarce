@@ -13,6 +13,10 @@ interface IDashboardContext {
   setServices: Dispatch<SetStateAction<IService[]>>;
   checkedServices: Array<number>;
   setIsCheckedServices: Dispatch<SetStateAction<Array<number>>>;
+  openEditService: boolean;
+  setOpenEditService: Dispatch<SetStateAction<boolean>>;
+  editIdService: number;
+  setEditIdService: Dispatch<SetStateAction<number>>;
   // End Services Managment States
   // Begen Products Managment States
   products: IProduct[];
@@ -21,7 +25,6 @@ interface IDashboardContext {
   setEditIdProduct: Dispatch<SetStateAction<number>>;
   openEditProduct: boolean;
   setOpenEditProduct: Dispatch<SetStateAction<boolean>>;
-
   searchFilterCategory: string;
   setSearchFilterCategory: Dispatch<SetStateAction<string>>;
   productSearch: string;
