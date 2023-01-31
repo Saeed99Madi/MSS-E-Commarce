@@ -9,7 +9,7 @@ export default class ContactController {
   public static async index(req: Request, res: Response) {
     const contacts = await Contact.findAll();
 
-    res.status(200).json({ data: contacts });
+    res.status(200).json({ status: 200, data: contacts });
   }
 
   // Add new Contact
