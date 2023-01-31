@@ -67,7 +67,6 @@ const ContactByForm = ({
       !values.subject ||
       !values.subjectTitle
     ) {
-      toast.error('you must fill out all fields');
       setError(true);
     } else {
       setError(false);
