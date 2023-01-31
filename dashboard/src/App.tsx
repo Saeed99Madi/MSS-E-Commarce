@@ -11,6 +11,7 @@ import { Categories } from './components/dashboard/Categories';
 import { SettingsManagement } from './components/dashboard/SettingsManage';
 import NotFound from './pages/NotFound';
 import { LoginDashboard } from './components/dashboard/Login';
+import { Contacts } from './components/dashboard/Contacts';
 
 const App = () => {
   return (
@@ -38,6 +39,14 @@ const App = () => {
             element={
               <ProtectedRoute>
                 <ProductsList />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="contacts"
+            element={
+              <ProtectedRoute>
+                <Contacts />
               </ProtectedRoute>
             }
           />

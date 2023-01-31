@@ -1,12 +1,6 @@
 /* eslint-disable no-console */
-import {
-  createContext,
-  MouseEventHandler,
-  ReactNode,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react';
+import { createContext, ReactNode, useEffect, useMemo, useState } from 'react';
+import { IContact } from '../interfaces/IContact';
 import IDashboardContext from '../interfaces/IDashboardContext';
 import { IProduct } from '../interfaces/IProduct';
 import { IService } from '../interfaces/IService';
@@ -32,6 +26,12 @@ const ProvideDashboard = ({ children }: { children: ReactNode }) => {
   const [services, setServices] = useState<IService[]>([]);
   const [openEditService, setOpenEditService] = useState(false);
   const [editIdService, setEditIdService] = useState<number>(0);
+  // End Services Managment States
+
+  // Begen Contact Managment States
+  const [contacts, setContacts] = useState<IContact[]>([]);
+  const [openShowContact, setOpenShowContact] = useState<boolean>(false);
+  const [slectedContact, setSlectedContact] = useState<number>(0);
   // End Services Managment States
 
   // Begen Conferm Action Dialog
@@ -132,6 +132,14 @@ const ProvideDashboard = ({ children }: { children: ReactNode }) => {
       confermMessage,
       setConfermMessage,
       // End Conferm Action Dialog
+      // Begen Contact Managment States
+      contacts,
+      setContacts,
+      openShowContact,
+      setOpenShowContact,
+      slectedContact,
+      setSlectedContact,
+      // End Services Managment States
     }),
     [
       checkedServices,
@@ -150,6 +158,9 @@ const ProvideDashboard = ({ children }: { children: ReactNode }) => {
       openConfermAlert,
       confermHandler,
       confermMessage,
+      contacts,
+      openShowContact,
+      slectedContact,
     ],
   );
   return (

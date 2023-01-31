@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction } from 'react';
+import { IContact } from './IContact';
 import { IProduct } from './IProduct';
 import { IService } from './IService';
 
@@ -41,6 +42,14 @@ interface IDashboardContext {
   confermMessage: string;
   setConfermMessage: Dispatch<SetStateAction<string>>;
   // End Conferm Action Dialog
+  // Begen Contacts Managment States
+  contacts: IContact[];
+  setContacts: Dispatch<SetStateAction<IContact[]>>;
+  openShowContact: boolean;
+  setOpenShowContact: Dispatch<SetStateAction<boolean>>;
+  slectedContact: number;
+  setSlectedContact: Dispatch<SetStateAction<number>>;
+  // End Contacts Managment States
 }
 
 export default IDashboardContext;
