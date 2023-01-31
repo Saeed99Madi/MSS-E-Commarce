@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { Box, Button, Typography } from '@mui/material';
@@ -9,7 +9,6 @@ import TextInput from './LoginTextInput';
 import { DrawerHeader } from '../components.styled';
 
 import { AuthGaurdContext } from '../../../context/AuthContext';
-import ApiServices from '../../../servises/ApiService';
 
 export const LoginDashboard = () => {
   const [signInData, setSignInData] = useState({

@@ -79,6 +79,7 @@ export const FolderIcon = styled(CreateNewFolderOutlined)`
 `;
 
 export const CustomCoverButton = styled(Button)(
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   ({ component, variant, startIcon }: ICustomCoverButton) => ({
     borderRadius: '0.5rem',
     padding: '1rem',

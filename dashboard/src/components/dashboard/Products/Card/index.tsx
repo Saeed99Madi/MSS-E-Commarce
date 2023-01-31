@@ -14,7 +14,6 @@ type Props = {
 
 export const ProductCard = (props: Props) => {
   const { product } = props;
-  // console.log('product');
 
   const [isChecked, setIsChecked] = useState(false);
 
@@ -52,8 +51,6 @@ export const ProductCard = (props: Props) => {
   const handleOpenEdetProduct = () => {
     if (product.id) {
       setEditIdProduct(product.id);
-    } else {
-      console.log('Product ID Is not Defined');
     }
     setOpenEditProduct(true);
   };
@@ -67,7 +64,7 @@ export const ProductCard = (props: Props) => {
           'linear-gradient(125.86deg, rgba(255, 255, 255, 0.18) -267.85%, rgba(255, 255, 255, 0) 138.29%)',
         backdropFilter: 'blur(5.73932px)',
         borderRadius: '12px',
-        border: product.active ? '0.2rem solid green' : '0.2rem solid red',
+        border: product.active ? '0.1rem solid green' : '0.2rem solid red',
       }}
     >
       <Box

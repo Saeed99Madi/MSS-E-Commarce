@@ -23,13 +23,14 @@ import {
 
 import CloseIcon from '@mui/icons-material/Close';
 import { TransitionProps } from '@mui/material/transitions';
+import { toast } from 'react-toastify';
 import { AttriputeReducer } from '../../../../helpers/AttriputeReducer';
 import { IProduct } from '../../../../interfaces/IProduct';
 import ApiServices from '../../../../servises/ApiService';
 import { DescriptionInput, InputsList } from '../AddProduct/components.styled';
 import TextInput from '../AddProduct/TextInput';
 import { SelectCategories } from '../AddProduct/SelectCategories';
-import { UploadProductFiles } from '../AddProduct/UploadProductFiles';
+import { UploadProductFiles } from './UploadProductFiles';
 import { AttriputeForms } from '../AddProduct/AttriputeForms';
 import { DashboardContext } from '../../../../context/DashboardContext';
 
@@ -44,7 +45,11 @@ const Transition = forwardRef(
     return <Slide direction="up" ref={ref} {...props} />;
   },
 );
-
+interface IProductC extends IProduct {
+  gallary?: File[];
+  image?: File;
+  catalogFile?: File;
+}
 const initialState = [{ id: uuid(), title: '', description: '' }];
 type Props = {
   open: boolean;
@@ -52,15 +57,21 @@ type Props = {
 };
 
 const EditProduct = ({ open, setOpen }: Props) => {
-  const { products, editIdProduct } = useContext(DashboardContext);
+  const {
+    products,
+    editIdProduct,
+    setProducts,
+    setOpenConfermAlert,
+    setConfermHandler,
+    setConfermMessage,
+  } = useContext(DashboardContext);
 
   const [category, setCategory] = useState('');
-  const [newProduct, setNewProduct] = useState<IProduct>({
+  const [newProduct, setNewProduct] = useState<IProductC>({
     title: '',
     description: '',
     CategoryId: '',
     active: false,
-    gallery: [],
   });
 
   const checkProductId = (product: IProduct) => {
@@ -82,8 +93,6 @@ const EditProduct = ({ open, setOpen }: Props) => {
       });
       setCategory(product?.CategoryId);
       setNewProduct(product);
-    } else {
-      console.log('product not found');
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [editIdProduct]);
@@ -103,24 +112,59 @@ const EditProduct = ({ open, setOpen }: Props) => {
     setNewProduct(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSaveProduct = () => {
-    const data = new FormData();
-    if (!newProduct.cover || !newProduct.gallery || !newProduct.catalog) {
+  const handleSaveProduct = async () => {
+    const formData = new FormData();
+    if (newProduct.gallary) {
+      const productGallery = [...newProduct.gallary];
+      productGallery.forEach(image => {
+        formData.append('gallery', image, image.name);
+      });
+    }
+    if (newProduct.image) {
+      formData.append('cover', newProduct.image);
+    }
+    if (newProduct.catalogFile) {
+      formData.append('catalog', newProduct.catalogFile);
+    }
+    if (!newProduct.id) {
       return;
     }
-    data.append('cover', newProduct.cover);
-    data.append('catalog', newProduct.catalog);
-    const productGallery = [...newProduct.gallery];
-    productGallery.forEach(image => {
-      data.append('gallery', image, image.name);
-    });
 
-    data.append('title', newProduct.title);
-    data.append('CategoryId', newProduct.CategoryId);
-    data.append('description', newProduct.description);
+    formData.append('id', `${newProduct.id}`);
+    formData.append('title', newProduct.title);
+
+    formData.append('CategoryId', newProduct.CategoryId);
+    formData.append('description', newProduct.description);
     const AttriputesStr = JSON.stringify(attriputes);
-    data.append('attriputes', AttriputesStr);
-    ApiServices.post('products', data);
+    formData.append('attriputes', AttriputesStr);
+    try {
+      const { data } = await ApiServices.put('products/update', formData);
+      setProducts(prev => {
+        return prev.map(ele => {
+          if (ele.id === newProduct.id) {
+            return data.data;
+          }
+          return ele;
+        });
+      });
+      if (data.status === 200) {
+        toast.success(`product have been updated successfully!`);
+        // window.location.reload();
+      }
+      setOpenConfermAlert(false);
+    } catch (err: any) {
+      toast.error(err);
+    }
+  };
+  const handleSaveEdit = async () => {
+    console.log('Hello handle Save Edit Product');
+    handleClose();
+    setConfermMessage('Are You Sure To Edit Product ?');
+    setOpenConfermAlert(true);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    setConfermHandler(prev => {
+      return handleSaveProduct;
+    });
   };
 
   return (
@@ -153,10 +197,7 @@ const EditProduct = ({ open, setOpen }: Props) => {
             sx={{ background: '#E52535' }}
             autoFocus
             color="inherit"
-            onClick={() => {
-              handleClose();
-              handleSaveProduct();
-            }}
+            onClick={handleSaveEdit}
           >
             save
           </Button>

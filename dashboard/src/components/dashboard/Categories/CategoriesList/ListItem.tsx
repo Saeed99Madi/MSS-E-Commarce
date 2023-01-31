@@ -66,6 +66,8 @@ const ListItem = ({ open, categoryItem, id, setCategory }: Props) => {
       const data = await fetchSubcategories(selectedCategory);
       setSubCategory(data);
     })();
+    // we have to ensure from this line
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedCategory]);
 
   const handleClick = (e: any) => {
