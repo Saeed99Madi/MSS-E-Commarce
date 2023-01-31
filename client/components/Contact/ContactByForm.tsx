@@ -72,8 +72,8 @@ const ContactByForm = ({
       setError(true);
     } else {
       setError(false);
-      console.log(values);
       setValues({ ...initialState });
+      console.log(values);
     }
   };
 
