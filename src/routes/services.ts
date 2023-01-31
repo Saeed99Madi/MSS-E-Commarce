@@ -18,6 +18,12 @@ router.put(
   errorWrapper(isAuth),
   errorWrapper(ServicesController.publish),
 );
+router.put(
+  '/services/update',
+  errorWrapper(isAuth),
+  upload('services').single('cover'),
+  errorWrapper(ServicesController.update),
+);
 router.delete(
   '/services/delete/:servicesIds',
   errorWrapper(isAuth),

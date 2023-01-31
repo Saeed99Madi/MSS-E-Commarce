@@ -4,6 +4,8 @@ import CustomError from '../helpers/errorHandler/CustomError';
 import { servicesSchema } from '../schemes';
 import { sequelize, Service } from '../db';
 import ServicesHelper from '../helpers/services/ServicesHelper';
+import path from 'path';
+import fs from 'fs';
 
 // ServicesController.ts file
 export default class ServicesController {
@@ -121,6 +123,58 @@ export default class ServicesController {
     res.status(201).json({
       status: 201,
       data: newService,
+    });
+  }
+
+  // Update Service
+  public static async update(req: Request, res: Response) {
+    const cover = req.file;
+
+    const { id, title, description, active } = req.body;
+
+    await servicesSchema({ title, description });
+
+    const service = await Service.findByPk(id);
+    if (!service) {
+      throw new CustomError(404, 'Service Not Found!');
+    }
+    console.log(service);
+
+    await service.update({
+      title,
+      description,
+      active,
+    });
+
+    if (cover) {
+      console.log(cover, 'file cover');
+
+      const coverInstance = cover.filename;
+      // delete old cover file
+      const oldProductCover = service.cover;
+      if (oldProductCover) {
+        const imagePath = path.join(
+          __dirname,
+          '..',
+          'images',
+          'products',
+          oldProductCover,
+        );
+        try {
+          fs.unlinkSync(imagePath);
+        } catch (error) {
+          console.log(error);
+        }
+      }
+      // create new Cover
+      await service.update({
+        cover: coverInstance,
+      });
+    }
+
+    res.status(200).json({
+      status: 200,
+      data: service,
     });
   }
 }
