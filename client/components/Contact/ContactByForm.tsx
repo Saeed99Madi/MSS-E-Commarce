@@ -90,7 +90,7 @@ const ContactByForm = ({
         <div>
           <ImageWrapper whatsapp={false}>
             <Spot hoverForm={openForm} whatsapp={false} />
-            <ImageIcon src="/assets/form.png" alt="contact" />
+            {/* <ImageIcon src="/assets/form.png" alt="contact" /> */}@
           </ImageWrapper>
           <CustomTypography>Contact Us</CustomTypography>
           <HeaderTypography whatsapp={false}>
