@@ -12,6 +12,7 @@ import {
   LogoWrapper,
   WhatsAppSectionWrapper,
 } from './components.styled';
+import { Logo } from '../Header/Logo';
 
 type Props = {
   openWhatsApp: boolean;
@@ -65,7 +66,8 @@ const ContactByWhatsApp = ({
         />
         <WhatsAppSectionWrapper>
           <LogoWrapper>
-            <ImageIcon src="/assets/logo.png" alt="contact" />
+            {/* <ImageIcon src="/assets/logo.png" alt="contact" /> */}
+            <Logo />
           </LogoWrapper>
           {openWhatsApp && <SubmitBtn whatsapp>Chat with us</SubmitBtn>}
         </WhatsAppSectionWrapper>
