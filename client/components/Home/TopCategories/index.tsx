@@ -19,7 +19,9 @@ import {
 const TopCategories = () => {
   return (
     <TopCategoriesContainer>
-      <Typography sx={{ textAlign: 'center', fontSize: '1.5rem' }}>
+      <Typography
+        sx={{ textAlign: 'center', fontSize: '1.5rem', padding: '1.5rem' }}
+      >
         Top Categories
       </Typography>
       <CategoriesList>
@@ -37,7 +39,7 @@ const TopCategories = () => {
               <Typography sx={{ color: '#F6CD06' }}>
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                 adipisicing elit. Nesciunt dolorum eaque suscipit! adipisicing
-                adipisicing elit. Nesciunt dolorum eaque suscipit! adipisicing
+                adipisicing elit.
               </Typography>
             </BlackCardOverview>
           </BlackCardInfo>
@@ -45,11 +47,16 @@ const TopCategories = () => {
         </BlackCard>
 
         <YellowCard>
-          <ImageWrapper>
+          <ImageWrapper
+            sx={{
+              background: 'linear-gradient(to right, #FFFFFF, #F6CD06)',
+            }}
+          >
             <img
               style={{
-                width: '98.8%',
-                height: '98.8%',
+                width: '99%',
+                height: '99.8%',
+                marginTop: 'auto',
               }}
               src="https://plus.unsplash.com/premium_photo-1661695337810-0f56cde8bdfe?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"
               alt="solar legs"
@@ -83,8 +90,9 @@ const TopCategories = () => {
           <ImageWrapper>
             <img
               style={{
-                width: '98.8%',
-                height: '98.8%',
+                width: '99%',
+                height: '99.8%',
+                marginBottom: 'auto',
               }}
               src="https://plus.unsplash.com/premium_photo-1661695337810-0f56cde8bdfe?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"
               alt="solar legs"
