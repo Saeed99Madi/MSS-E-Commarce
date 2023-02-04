@@ -83,10 +83,10 @@ const StyledHeader = styled('header')({
 
 const NavigationAnchor = styled(Link)({
   color: '#000116',
-  fontSize: '0.9em',
+  fontSize: '1em',
   textDecoration: 'none',
   marginLeft: '50px',
-  fontWeight: '550',
+  fontWeight: '560',
   '@media screen and (max-width: 850px)': {
     display: 'flex',
     flexWrap: 'noWrap',
