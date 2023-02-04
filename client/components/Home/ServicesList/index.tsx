@@ -43,7 +43,7 @@ const ServicesList = () => {
             sx={{
               textTransform: 'none',
               color: '#FFFFFF',
-              background: 'Linear-gradient(90deg, #FF5362 0%, #E52535 100%)',
+              background: 'linear-gradient(90deg, #F6CD06 0%, #EFB92A 100%)',
             }}
           >
             Check Products

@@ -38,12 +38,20 @@ const FeaturedProducts = ({ products }: Props) => {
               <ImageCard key={item.id}>
                 <div className="overview">
                   <Typography
-                    sx={{ color: '#f6b400', fontSize: '14px', margin: '0' }}
+                    sx={{
+                      color: '#f6b400',
+                      fontSize: '14px',
+                      margin: '0',
+                      paddingLeft: '0.3rem',
+                    }}
                     paragraph
                   >
                     Product Name
                   </Typography>
-                  <Typography sx={{ fontSize: '8px', margin: '0' }} paragraph>
+                  <Typography
+                    sx={{ fontSize: '8px', margin: '0', paddingLeft: '0.3rem' }}
+                    paragraph
+                  >
                     Category Name
                   </Typography>
                 </div>

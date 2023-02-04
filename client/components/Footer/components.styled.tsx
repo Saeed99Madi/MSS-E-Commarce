@@ -46,6 +46,15 @@ const SocialList = styled('div')({
   alignItems: 'center',
 });
 const IconWrapper = styled('div')({
+  '@keyframes spin': {
+    from: {
+      transform: 'rotate(0deg)',
+    },
+    to: {
+      transform: 'rotate(360deg)',
+    },
+  },
+  animation: 'spin infinite 20s linear',
   zIndex: '-1',
   position: 'absolute',
   top: '0',
@@ -55,7 +64,6 @@ const IconWrapper = styled('div')({
   textAlign: 'center',
   padding: '2rem',
   borderRadius: '70% 50% 40% 50%',
-  transform: 'rotate(-0.10turn)',
   background: 'linear-gradient(90deg, #FF5362 0%, #E52535 100%)',
   '@media screen and (max-width: 850px)': {
     height: '3rem',

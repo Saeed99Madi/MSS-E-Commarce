@@ -42,8 +42,26 @@ const IconWrapper = styled('div')({
   '@media screen and (max-width: 850px)': {
     padding: '1rem',
   },
+  '@keyframes spin': {
+    from: {
+      transform: 'rotate(0deg)',
+    },
+    to: {
+      transform: 'rotate(360deg)',
+    },
+  },
+  animation: 'spin infinite 20s linear',
 });
 const ReflectedIconWrapper = styled('div')({
+  '@keyframes spin': {
+    from: {
+      transform: 'rotate(0deg)',
+    },
+    to: {
+      transform: 'rotate(360deg)',
+    },
+  },
+  animation: 'spin infinite 20s linear',
   height: '10%',
   textAlign: 'center',
   padding: '2rem',
