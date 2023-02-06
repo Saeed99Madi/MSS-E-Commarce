@@ -48,8 +48,10 @@ const ConatctWithForms = () => {
           <BoxColumn sx={{ gap: '1rem' }}>
             <Typography
               sx={{
-                width: '80%',
                 color: '#FFFFFF',
+                '@media screen and (max-width: 450px)': {
+                  fontSize: '0.8rem',
+                },
               }}
             >
               Submit Form {'>>'}
