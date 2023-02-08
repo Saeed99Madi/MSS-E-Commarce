@@ -24,6 +24,19 @@ export default class ProductController {
     });
   }
 
+  // get All Published Products
+  public static async getPublishedProducts(req: Request, res: Response) {
+    const products = await Product.findAll({
+      include: ['productGallery', 'ProductAttriputes'],
+      where: { active: true },
+    });
+
+    res.status(200).json({
+      status: 200,
+      data: products,
+    });
+  }
+
   // search products with category filter Products
   public static async search(req: Request, res: Response) {
     const { search, CategoryId } = req.params;
