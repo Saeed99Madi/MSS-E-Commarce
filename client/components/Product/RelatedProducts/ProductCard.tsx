@@ -8,7 +8,7 @@ const ProductCard = () => {
   return (
     <Card
       sx={{
-        maxWidth: 345,
+        maxWidth: 300,
         borderRadius: '40px',
         backgroundColor: ' #F1F1F1',
         display: 'flex',

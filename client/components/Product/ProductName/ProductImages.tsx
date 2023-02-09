@@ -34,7 +34,7 @@ const data = [
 // const data: any = [];
 const ProductImages = () => {
   const [imageLink, setImageLink] = useState<string | undefined>(data[0]);
-  const handeChangeImage = (
+  const handleChangeImage = (
     event: React.SyntheticEvent,
     image: string | undefined,
   ) => {
@@ -61,7 +61,7 @@ const ProductImages = () => {
               <SmallImagesWrapper
                 image={image}
                 sm
-                onClick={event => handeChangeImage(event, image)}
+                onClick={event => handleChangeImage(event, image)}
               />
             );
           })

@@ -40,7 +40,7 @@ const GlobalStyle = styled('div')`
 
 const SectionWithPadding = styled('div')(
   () => ({
-    padding: '124px 16px',
+    padding: '62px 16px',
     display: 'flex',
     flexDirection: 'column',
     flexWrap: 'wrap',
@@ -49,16 +49,18 @@ const SectionWithPadding = styled('div')(
   `
   @media ${device.tablet} {
     flex-direction: row;
+    padding-top: 124px;
   }
   `,
 );
 
 const ProductDetailsWrapper = styled('div')(() => ({
-  flex: '1 1 400px',
+  flex: '1 1 200px',
   height: 'inherit',
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-between',
+  width: '100%',
 }));
 
 const CategoryTag = styled('div')(() => ({
@@ -130,10 +132,11 @@ width: 255px;
 const ProductImagesWrapper = styled('div')(
   () => ({
     flex: '1 1 500px',
-    padding: '12px',
     display: 'flex',
     flexDirection: 'column',
     gap: '2rem',
+    width: '100%',
+    overflow: 'hidden',
   }),
   `
 @media ${device.tablet} {
@@ -360,6 +363,7 @@ const FeaturesList = styled(List)(
 const RelatedProductWrapper = styled(SectionWithPadding)(
   () => ({
     justifyContent: 'center',
+    alignItems: 'center',
     flexDirection: 'column',
     padding: '20px 16px',
     gap: '2rem',
