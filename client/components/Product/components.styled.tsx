@@ -316,6 +316,7 @@ const RectangularImg = styled('div')(
 
 `,
 );
+
 const FeaturesListWrapper = styled('div')(
   () => ({
     margin: '180px 0',
@@ -345,7 +346,7 @@ const FeaturesListWrapper = styled('div')(
 );
 
 const FeaturesList = styled(List)(
-  ({ component }: { component: string }) => ({
+  () => ({
     width: '90%',
     background:
       'linear-gradient(130.79deg, rgba(255, 255, 255, 0.08) -37.1%, rgba(255, 255, 255, 0) 134.47%)',
@@ -381,12 +382,9 @@ const RelatedProductWrapper = styled(SectionWithPadding)(
 
 const ProductsCardWrapper = styled('div')(
   () => ({
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
     justifyContent: 'center',
-    gap: '24px',
-    flexWrap: 'wrap',
+    maxWidth: '1440px',
+    width: '100%',
   }),
   `
 @media ${device.tablet} {
@@ -394,6 +392,20 @@ const ProductsCardWrapper = styled('div')(
 }
 `,
 );
+
+const ArrowBtn = styled(Button)(({ left }: { left: boolean }) => ({
+  backgroundColor: 'rgba(26, 26, 29,0.1)',
+  position: 'absolute',
+  right: '0rem',
+  top: '50%',
+  left: left ? '0' : '',
+  zIndex: '1000',
+  width: '1rem',
+  borderRadius: '1rem',
+  '&:hover': {
+    backgroundColor: 'rgba(26, 26, 29,0.4)',
+  },
+}));
 
 export {
   GlobalStyle,
@@ -416,4 +428,5 @@ export {
   RectangularImg,
   RelatedProductWrapper,
   ProductsCardWrapper,
+  ArrowBtn,
 };
