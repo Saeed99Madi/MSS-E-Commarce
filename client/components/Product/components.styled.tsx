@@ -40,7 +40,7 @@ const GlobalStyle = styled('div')`
 
 const SectionWithPadding = styled('div')(
   () => ({
-    padding: '124px 16px',
+    padding: '62px 16px',
     display: 'flex',
     flexDirection: 'column',
     flexWrap: 'wrap',
@@ -49,16 +49,18 @@ const SectionWithPadding = styled('div')(
   `
   @media ${device.tablet} {
     flex-direction: row;
+    padding-top: 124px;
   }
   `,
 );
 
 const ProductDetailsWrapper = styled('div')(() => ({
-  flex: '1 1 400px',
+  flex: '1 1 200px',
   height: 'inherit',
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-between',
+  width: '100%',
 }));
 
 const CategoryTag = styled('div')(() => ({
@@ -130,10 +132,11 @@ width: 255px;
 const ProductImagesWrapper = styled('div')(
   () => ({
     flex: '1 1 500px',
-    padding: '12px',
     display: 'flex',
     flexDirection: 'column',
     gap: '2rem',
+    width: '100%',
+    overflow: 'hidden',
   }),
   `
 @media ${device.tablet} {
@@ -313,6 +316,7 @@ const RectangularImg = styled('div')(
 
 `,
 );
+
 const FeaturesListWrapper = styled('div')(
   () => ({
     margin: '180px 0',
@@ -342,7 +346,7 @@ const FeaturesListWrapper = styled('div')(
 );
 
 const FeaturesList = styled(List)(
-  ({ component }: { component: string }) => ({
+  () => ({
     width: '90%',
     background:
       'linear-gradient(130.79deg, rgba(255, 255, 255, 0.08) -37.1%, rgba(255, 255, 255, 0) 134.47%)',
@@ -360,6 +364,7 @@ const FeaturesList = styled(List)(
 const RelatedProductWrapper = styled(SectionWithPadding)(
   () => ({
     justifyContent: 'center',
+    alignItems: 'center',
     flexDirection: 'column',
     padding: '20px 16px',
     gap: '2rem',
@@ -377,12 +382,9 @@ const RelatedProductWrapper = styled(SectionWithPadding)(
 
 const ProductsCardWrapper = styled('div')(
   () => ({
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
     justifyContent: 'center',
-    gap: '24px',
-    flexWrap: 'wrap',
+    maxWidth: '1440px',
+    width: '100%',
   }),
   `
 @media ${device.tablet} {
@@ -390,6 +392,20 @@ const ProductsCardWrapper = styled('div')(
 }
 `,
 );
+
+const ArrowBtn = styled(Button)(({ left }: { left: boolean }) => ({
+  backgroundColor: 'rgba(26, 26, 29,0.1)',
+  position: 'absolute',
+  right: '0rem',
+  top: '50%',
+  left: left ? '0' : '',
+  zIndex: '1000',
+  width: '1rem',
+  borderRadius: '1rem',
+  '&:hover': {
+    backgroundColor: 'rgba(26, 26, 29,0.4)',
+  },
+}));
 
 export {
   GlobalStyle,
@@ -412,4 +428,5 @@ export {
   RectangularImg,
   RelatedProductWrapper,
   ProductsCardWrapper,
+  ArrowBtn,
 };
