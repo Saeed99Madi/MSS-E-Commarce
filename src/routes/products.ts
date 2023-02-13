@@ -49,5 +49,10 @@ router.get(
   '/products/:search/:CategoryId?',
   errorWrapper(ProductController.search),
 );
+// client Routes
+router.get(
+  '/products/published',
+  errorWrapper(ProductController.getPublishedProducts),
+);
 
 export default router;
