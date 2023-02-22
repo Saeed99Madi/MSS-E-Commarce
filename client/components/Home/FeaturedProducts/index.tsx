@@ -1,18 +1,14 @@
-import {
-  ImageList,
-  ImageListItem,
-  Typography,
-  useMediaQuery,
-} from '@mui/material';
+import { ImageList, ImageListItem, useMediaQuery } from '@mui/material';
 
 import {
   BlackButton,
-  ImageCard,
   ImageListContainer,
   ProductsListContainer,
 } from './components.styled';
 
 import { IProduct } from '../../../interfaces/IProduct';
+import Card from './Card';
+// import { Axios, BASE_UEL } from '../../../config';
 
 type Props = {
   products: IProduct[];
@@ -20,6 +16,7 @@ type Props = {
 
 const FeaturedProducts = ({ products }: Props) => {
   const matches = useMediaQuery('(min-width:600px)');
+
   return (
     <ProductsListContainer>
       <h2 style={{ margin: '0' }}>Featured Products</h2>
@@ -34,37 +31,7 @@ const FeaturedProducts = ({ products }: Props) => {
           cols={matches ? 4 : 2}
         >
           {products ? (
-            products.map(item => (
-              <ImageCard key={item.id}>
-                <div className="overview">
-                  <Typography
-                    sx={{
-                      color: '#f6b400',
-                      fontSize: '14px',
-                      margin: '0',
-                      paddingLeft: '0.3rem',
-                    }}
-                    paragraph
-                  >
-                    Product Name
-                  </Typography>
-                  <Typography
-                    sx={{ fontSize: '8px', margin: '0', paddingLeft: '0.3rem' }}
-                    paragraph
-                  >
-                    Category Name
-                  </Typography>
-                </div>
-                <img
-                  src={`${process.env.REACT_APP_BASEE_URL}/products/${item.cover}?w=248&fit=crop&auto=format`}
-                  srcSet={`${process.env.REACT_APP_BASEE_URL}/products/${item.cover}?w=248&fit=crop&auto=format&dpr=2 2x`}
-                  // src={`${item.img}?w=248&fit=crop&auto=format`}
-                  // srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
-                  alt={item.title}
-                  loading="lazy"
-                />
-              </ImageCard>
-            ))
+            products.map(item => <Card product={item} />)
           ) : (
             <p>no Products</p>
           )}

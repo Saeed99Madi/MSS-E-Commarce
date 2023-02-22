@@ -11,7 +11,7 @@ import FeaturedProducts from '../components/Home/FeaturedProducts';
 import HeadSection from '../components/Home/HeadSection';
 import ServicesList from '../components/Home/ServicesList';
 
-import Axios from '../config';
+import { Axios } from '../config';
 import ContactSection from '../components/Home/ContactSection';
 import TopCategories from '../components/Home/TopCategories';
 

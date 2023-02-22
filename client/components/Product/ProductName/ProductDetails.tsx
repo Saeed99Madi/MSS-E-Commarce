@@ -1,4 +1,8 @@
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import { Axios, BASE_UEL } from '../../../config';
+import { IProduct } from '../../../interfaces/IProduct';
 import {
   ProductDetailsWrapper,
   CategoryTag,
@@ -7,24 +11,41 @@ import {
   ButtonsWrapper,
 } from '../components.styled';
 
-const ProductDetails = () => {
+const ProductDetails = ({ product }: { product: IProduct }) => {
+  const [categoryName, setCategoryName] = useState('');
+  useEffect(() => {
+    console.log(product, product.CategoryId, 'hello');
+
+    if (product) {
+      (async () => {
+        const { data } = await Axios.get(
+          `categories/show/${product.CategoryId}`,
+        );
+        setCategoryName(data.data.title);
+      })();
+    }
+  }, [product]);
   return (
     <ProductDetailsWrapper>
       <div>
-        <CategoryTag>SubCategory</CategoryTag>
-        <h1>Product Name</h1>
-        <p>
-          We deliver solar products to all countries, Check Our Products & Enjoy
-          We deliver solar products to all countries, Check Our Products & Enjoy
-          We deliver solar products to all countries, Check Our Products & Enjoy
-          .
-        </p>
+        {categoryName ? <CategoryTag>{categoryName}</CategoryTag> : null}
+        <h1>{product.title}</h1>
+        <p>{product.description}</p>
       </div>
       <ButtonsWrapper>
-        <DownloadButton startIcon={<FileDownloadIcon />}>
-          Download Catalog
-        </DownloadButton>
-        <ContactButton>contact us</ContactButton>
+        {product.catalog ? (
+          <Link
+            href={`${BASE_UEL}/products/${product.catalog}`}
+            style={{ textDecoration: 'none' }}
+          >
+            <DownloadButton startIcon={<FileDownloadIcon />}>
+              Download Catalog
+            </DownloadButton>
+          </Link>
+        ) : null}
+        <Link href="/contacts" style={{ textDecoration: 'none' }}>
+          <ContactButton>contact us</ContactButton>
+        </Link>
       </ButtonsWrapper>
     </ProductDetailsWrapper>
   );
