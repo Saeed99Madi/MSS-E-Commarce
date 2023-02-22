@@ -19,6 +19,7 @@ router.post(
   upload('products').fields(productFields),
   errorWrapper(ProductController.create),
 );
+
 router.put(
   '/products/unpublish',
   errorWrapper(isAuth),
@@ -54,5 +55,6 @@ router.get(
   '/products/published',
   errorWrapper(ProductController.getPublishedProducts),
 );
+router.get('/product/:id', errorWrapper(ProductController.getProduct));
 
 export default router;

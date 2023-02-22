@@ -37,6 +37,22 @@ export default class ProductController {
     });
   }
 
+  // get Spacific Product By id
+  public static async getProduct(req: Request, res: Response) {
+    const { id } = req.params;
+    const product = await Product.findAll({
+      include: ['productGallery', 'ProductAttriputes'],
+      where: { id: +id, active: true },
+    });
+    if (!product) {
+      throw new Error('PRODUCTS NOT FOUND');
+    }
+    res.status(200).json({
+      status: 200,
+      data: product,
+    });
+  }
+
   // search products with category filter Products
   public static async search(req: Request, res: Response) {
     const { search, CategoryId } = req.params;
@@ -292,6 +308,7 @@ export default class ProductController {
     }
     if (catalog) {
       const catalogInstance = catalog[0];
+      console.log(catalogInstance, 'updatedProduct catalog');
       // delete old cover file
       const oldProductCatalog = product.catalog;
       if (oldProductCatalog) {
@@ -310,7 +327,7 @@ export default class ProductController {
       }
       // update new Catalog
       await product.update({
-        catalogInstance,
+        catalog: catalogInstance.filename,
       });
     }
 
@@ -320,13 +337,16 @@ export default class ProductController {
 
       await Promise.all(
         productAttriputes.map(async attr => {
-          const oldAttripute = await ProductAttripute.findByPk(attr.id);
-          if (oldAttripute) {
-            return await oldAttripute.update({
-              title: attr.title,
-              description: attr.description,
-            });
+          if (typeof attr.id === 'number') {
+            const oldAttripute = await ProductAttripute.findByPk(attr.id);
+            if (oldAttripute) {
+              return await oldAttripute.update({
+                title: attr.title,
+                description: attr.description,
+              });
+            }
           }
+
           return await ProductAttripute.create({
             ProductId: product.id,
             title: attr.title,
