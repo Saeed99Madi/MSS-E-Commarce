@@ -48,7 +48,7 @@ const ProvideDashboard = ({ children }: { children: ReactNode }) => {
     (async () => {
       if (productSearch && searchFilterCategory) {
         const { data } = await ApiServices.get(
-          `products/${productSearch}/${searchFilterCategory}`,
+          `products/search/${productSearch}/${searchFilterCategory}`,
         );
         setProducts(data.data);
       } else if (searchFilterCategory && !productSearch) {
@@ -58,7 +58,7 @@ const ProvideDashboard = ({ children }: { children: ReactNode }) => {
         setProducts(data.data);
       } else if (!searchFilterCategory && productSearch) {
         const { data } = await ApiServices.get(
-          `products/${productSearch}/${searchFilterCategory}`,
+          `products/search/${productSearch}/${searchFilterCategory}`,
         );
         setProducts(data.data);
       } else {

@@ -36,7 +36,8 @@ const Home = (props: Props) => {
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const getServerSideProps: GetServerSideProps = async context => {
   try {
-    const { data } = await Axios.get('products');
+    const { data } = await Axios.get('products/published');
+    console.log(data);
 
     return {
       props: {
