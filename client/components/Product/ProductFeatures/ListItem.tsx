@@ -9,8 +9,12 @@ import { FeaturesList } from '../components.styled';
 
 type Props = {
   feature: {
-    name: string;
+    id: string;
+    title: string;
     description: string;
+    productID?: number;
+    createdAt?: string;
+    updatedAt?: string;
   };
 };
 
@@ -23,7 +27,7 @@ const ListItem = ({ feature }: Props) => {
   return (
     <FeaturesList component="nav" aria-labelledby="nested-list-subheader">
       <ListItemButton onClick={handleClick}>
-        <ListItemText primary={`${feature.name}`} />
+        <ListItemText primary={`${feature.title}`} />
         {open ? <ExpandLess /> : <ExpandMore />}
       </ListItemButton>
       <Collapse in={open} timeout="auto" unmountOnExit>

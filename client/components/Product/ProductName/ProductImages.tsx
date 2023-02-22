@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { IProduct } from '../../../interfaces/IProduct';
 import {
   ProductImagesWrapper,
   ImageSkeleton,
@@ -7,43 +8,35 @@ import {
   SmallImagesWrapper,
 } from '../components.styled';
 
-const data = [
-  'https://images.unsplash.com/photo-1560343090-f0409e92791a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8cHJvZHVjdHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60',
-
-  'https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZHVjdHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60',
-
-  'https://images.unsplash.com/photo-1572635196237-14b3f281503f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8cHJvZHVjdHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60',
-
-  'https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fHByb2R1Y3R8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60',
-
-  'https://images.unsplash.com/photo-1586495777744-4413f21062fa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8cHJvZHVjdHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60',
-
-  'https://images.unsplash.com/photo-1553456558-aff63285bdd1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fHByb2R1Y3R8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60',
-
-  'https://images.unsplash.com/photo-1581235720704-06d3acfcb36f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fHByb2R1Y3R8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60',
-
-  'https://images.unsplash.com/photo-1583394838336-acd977736f90?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjF8fHByb2R1Y3R8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60',
-
-  'https://images.unsplash.com/photo-1564466809058-bf4114d55352?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjZ8fHByb2R1Y3R8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60',
-
-  'https://images.unsplash.com/photo-1491637639811-60e2756cc1c7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mjl8fHByb2R1Y3R8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60',
-
-  'https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzR8fHByb2R1Y3R8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60',
-];
-
+type IProductgallery = {
+  id: number;
+  image: string;
+  createdAt?: string;
+  updatedAt?: string;
+};
 // const data: any = [];
-const ProductImages = () => {
-  const [imageLink, setImageLink] = useState<string | undefined>(data[0]);
-  const handleChangeImage = (
-    event: React.SyntheticEvent,
-    image: string | undefined,
-  ) => {
+const ProductImages = ({ product }: { product: IProduct }) => {
+  const [imageLink, setImageLink] = useState<string>('');
+  const handleChangeImage = (event: React.SyntheticEvent, image: string) => {
     setImageLink(image);
   };
+  useEffect(() => {
+    console.log(product, ' form product images ');
+
+    if (!product.cover) {
+      console.log('product cover not ger');
+
+      return;
+    }
+    setImageLink(product.cover);
+  }, [product]);
+  useEffect(() => {
+    console.log(imageLink);
+  }, [imageLink]);
   return (
     <ProductImagesWrapper>
       <ImagesWrapper image={imageLink}>
-        {!data.length && (
+        {imageLink === '' && (
           <ImageSkeleton
             animation="wave"
             variant="rectangular"
@@ -55,17 +48,17 @@ const ProductImages = () => {
       </ImagesWrapper>
 
       <ImagesList>
-        {data.length ? (
-          data.map((image: string | undefined) => {
+        {product.productGallery.length > 0 ? (
+          product.productGallery.map((image: IProductgallery) => {
             return (
               <SmallImagesWrapper
-                image={image}
+                image={image.image}
                 sm
-                onClick={event => handleChangeImage(event, image)}
+                onClick={event => handleChangeImage(event, image.image)}
               />
             );
           })
-        ) : (
+        ) : product.productGallery.length > 0 ? (
           <>
             <SmallImagesWrapper image={undefined} sm>
               <ImageSkeleton
@@ -95,7 +88,7 @@ const ProductImages = () => {
               />
             </SmallImagesWrapper>
           </>
-        )}
+        ) : null}
       </ImagesList>
     </ProductImagesWrapper>
   );

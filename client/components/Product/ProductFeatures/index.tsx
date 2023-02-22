@@ -1,3 +1,4 @@
+import { IProduct } from '../../../interfaces/IProduct';
 import {
   SectionWithoutPadding,
   FeaturesListWrapper,
@@ -7,98 +8,16 @@ import {
 } from '../components.styled';
 import ListItem from './ListItem';
 
-interface Features {
-  name: string;
+type Attripute = {
+  id: string;
+  title: string;
   description: string;
-}
-const data: Features[] = [
-  {
-    name: 'feature name',
-    description:
-      'We deliver solar products to all countries, Check Our Products & Enjoy We deliver solar products to all countries, Check Our Products & Enjoy We deliver solar products to all countries, Check Our Products & Enjoy .',
-  },
-  {
-    name: 'feature name',
-    description:
-      'We deliver solar products to all countries, Check Our Products & Enjoy We deliver solar products to all countries, Check Our Products & Enjoy We deliver solar products to all countries, Check Our Products & Enjoy .',
-  },
-  {
-    name: 'feature name',
-    description:
-      'We deliver solar products to all countries, Check Our Products & Enjoy We deliver solar products to all countries, Check Our Products & Enjoy We deliver solar products to all countries, Check Our Products & Enjoy .',
-  },
-  {
-    name: 'feature name',
-    description:
-      'We deliver solar products to all countries, Check Our Products & Enjoy We deliver solar products to all countries, Check Our Products & Enjoy We deliver solar products to all countries, Check Our Products & Enjoy .',
-  },
-  {
-    name: 'feature name',
-    description:
-      'We deliver solar products to all countries, Check Our Products & Enjoy We deliver solar products to all countries, Check Our Products & Enjoy We deliver solar products to all countries, Check Our Products & Enjoy .',
-  },
-  {
-    name: 'feature name',
-    description:
-      'We deliver solar products to all countries, Check Our Products & Enjoy We deliver solar products to all countries, Check Our Products & Enjoy We deliver solar products to all countries, Check Our Products & Enjoy .',
-  },
-  {
-    name: 'feature name',
-    description:
-      'We deliver solar products to all countries, Check Our Products & Enjoy We deliver solar products to all countries, Check Our Products & Enjoy We deliver solar products to all countries, Check Our Products & Enjoy .',
-  },
-  {
-    name: 'feature name',
-    description:
-      'We deliver solar products to all countries, Check Our Products & Enjoy We deliver solar products to all countries, Check Our Products & Enjoy We deliver solar products to all countries, Check Our Products & Enjoy .',
-  },
-  {
-    name: 'feature name',
-    description:
-      'We deliver solar products to all countries, Check Our Products & Enjoy We deliver solar products to all countries, Check Our Products & Enjoy We deliver solar products to all countries, Check Our Products & Enjoy .',
-  },
-  {
-    name: 'feature name',
-    description:
-      'We deliver solar products to all countries, Check Our Products & Enjoy We deliver solar products to all countries, Check Our Products & Enjoy We deliver solar products to all countries, Check Our Products & Enjoy .',
-  },
-  {
-    name: 'feature name',
-    description:
-      'We deliver solar products to all countries, Check Our Products & Enjoy We deliver solar products to all countries, Check Our Products & Enjoy We deliver solar products to all countries, Check Our Products & Enjoy .',
-  },
-  {
-    name: 'feature name',
-    description:
-      'We deliver solar products to all countries, Check Our Products & Enjoy We deliver solar products to all countries, Check Our Products & Enjoy We deliver solar products to all countries, Check Our Products & Enjoy .',
-  },
-  {
-    name: 'feature name',
-    description:
-      'We deliver solar products to all countries, Check Our Products & Enjoy We deliver solar products to all countries, Check Our Products & Enjoy We deliver solar products to all countries, Check Our Products & Enjoy .',
-  },
-  {
-    name: 'feature name',
-    description:
-      'We deliver solar products to all countries, Check Our Products & Enjoy We deliver solar products to all countries, Check Our Products & Enjoy We deliver solar products to all countries, Check Our Products & Enjoy .',
-  },
-  {
-    name: 'feature name',
-    description:
-      'We deliver solar products to all countries, Check Our Products & Enjoy We deliver solar products to all countries, Check Our Products & Enjoy We deliver solar products to all countries, Check Our Products & Enjoy .',
-  },
-  {
-    name: 'feature name',
-    description:
-      'We deliver solar products to all countries, Check Our Products & Enjoy We deliver solar products to all countries, Check Our Products & Enjoy We deliver solar products to all countries, Check Our Products & Enjoy .',
-  },
-  {
-    name: 'feature name',
-    description:
-      'We deliver solar products to all countries, Check Our Products & Enjoy We deliver solar products to all countries, Check Our Products & Enjoy We deliver solar products to all countries, Check Our Products & Enjoy .',
-  },
-];
-const ProductFeatures = () => {
+  productID?: number;
+  createdAt?: string;
+  updatedAt?: string;
+};
+
+const ProductFeatures = ({ product }: { product: IProduct }) => {
   return (
     <SectionWithoutPadding>
       <RedSpot />
@@ -108,9 +27,11 @@ const ProductFeatures = () => {
 
       <h2>Product Features</h2>
       <FeaturesListWrapper>
-        {data.map((feature: Features) => {
-          return <ListItem feature={feature} />;
-        })}
+        {product.ProductAttriputes.length > 0
+          ? product.ProductAttriputes.map((feature: Attripute) => {
+              return <ListItem feature={feature} />;
+            })
+          : null}
       </FeaturesListWrapper>
     </SectionWithoutPadding>
   );

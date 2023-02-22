@@ -8,42 +8,42 @@ import {
   ProductsCardWrapper,
 } from '../components.styled';
 import ProductCard from './ProductCard';
+import { IProduct } from '../../../interfaces/IProduct';
 
-const RelatedProducts = () => {
-  const settings = {
-    infinite: true,
-    speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    initialSlide: 0,
-    autoplay: true,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-        },
+const settings = {
+  infinite: true,
+  speed: 500,
+  slidesToShow: 4,
+  slidesToScroll: 1,
+  initialSlide: 0,
+  autoplay: true,
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 3,
       },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-        },
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 2,
       },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
       },
-    ],
-    nextArrow: <ArrowsLeft />,
-    prevArrow: <ArrowsRight />,
-  };
-
+    },
+  ],
+  nextArrow: <ArrowsLeft />,
+  prevArrow: <ArrowsRight />,
+};
+const RelatedProducts = ({ product }: { product: IProduct }) => {
   return (
     <RelatedProductWrapper>
       <h2>Related products</h2>

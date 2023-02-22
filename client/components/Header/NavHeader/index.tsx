@@ -3,7 +3,7 @@ import { MenuItem, Select } from '@mui/material';
 import useTranslation from 'next-translate/useTranslation';
 import { useEffect, useState } from 'react';
 
-import Axios from '../../../config';
+import { Axios } from '../../../config';
 import { ICategory } from '../../../interfaces/ICategory';
 
 import {
@@ -91,11 +91,11 @@ export const NavHeader = () => {
             <HomeIconNav />
             {t('Home')}
           </NavigationAnchor>
-          <NavigationAnchor href="/doctors" onClick={menuDisActive}>
+          <NavigationAnchor href="/contacts" onClick={menuDisActive}>
             <Diversity1IconNav />
             {t('Contact Us')}
           </NavigationAnchor>
-          <NavigationAnchor href="/" onClick={menuDisActive}>
+          <NavigationAnchor href="/contacts" onClick={menuDisActive}>
             <HomeRepairServiceIconNav />
             {t('who we are')}
           </NavigationAnchor>

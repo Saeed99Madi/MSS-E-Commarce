@@ -3,6 +3,7 @@ import { Button } from '@mui/material';
 import Skeleton from '@mui/material/Skeleton';
 import List from '@mui/material/List';
 import { device } from '../../utils/devices';
+import { BASE_UEL } from '../../config';
 
 const GlobalStyle = styled('div')`
   @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@600&family=Roboto:wght@300&display=swap');
@@ -152,29 +153,33 @@ const ImagesWrapper = styled('div')(
     borderRadius: '40px',
     flex: '1 1 300px',
     padding: '15px !important',
-    backgroundImage: `url(${image})`,
+    backgroundImage: `url(${BASE_UEL}/products/${image})`,
     backgroundPosition: '50% !important',
     backgroundSize: 'cover',
+    minHeight: '18rem',
+    maxWidth: '25rem',
     position: 'relative',
     backgroundRepeat: 'no-repeat',
   }),
 );
 
 const SmallImagesWrapper = styled('div')(
-  ({ image }: { image: string | undefined; sm: boolean }) => ({
-    minWidth: '74px',
-    minHeight: '74px',
-    border: '8px solid #F1F1F1',
-    borderRadius: '14px',
-    flex: '1 1 74px',
-    padding: '6px',
-    cursor: 'pointer',
-    backgroundImage: `url(${image})`,
-    backgroundPosition: '50% !important',
-    backgroundSize: 'cover',
-    position: 'relative',
-    backgroundRepeat: 'no-repeat',
-  }),
+  ({ image }: { image: string | undefined; sm: boolean }) => {
+    return {
+      minWidth: '74px',
+      minHeight: '74px',
+      border: '8px solid #F1F1F1',
+      borderRadius: '14px',
+      flex: '1 1 74px',
+      padding: '6px',
+      cursor: 'pointer',
+      backgroundImage: `url(${BASE_UEL}/products/${image})`,
+      backgroundPosition: '50% !important',
+      backgroundSize: 'cover',
+      position: 'relative',
+      backgroundRepeat: 'no-repeat',
+    };
+  },
   `
 @media ${device.tablet} {
   max-height: 74px;
