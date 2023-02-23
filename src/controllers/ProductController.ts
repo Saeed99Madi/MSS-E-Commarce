@@ -26,6 +26,8 @@ export default class ProductController {
 
   // get All Published Products
   public static async getPublishedProducts(req: Request, res: Response) {
+    console.log('are u her ?');
+
     const products = await Product.findAll({
       include: ['productGallery', 'ProductAttriputes'],
       where: { active: true },

@@ -47,7 +47,7 @@ router.get(
   errorWrapper(ProductController.categoryProducts),
 );
 router.get(
-  '/products/:search/:CategoryId?',
+  '/products/search/:search/:CategoryId?',
   errorWrapper(ProductController.search),
 );
 // client Routes
