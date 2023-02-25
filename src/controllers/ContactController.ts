@@ -14,11 +14,11 @@ export default class ContactController {
 
   // Add new Contact
   public static async create(req: Request, res: Response) {
-    const { name, email, content } = req.body;
+    const { name, email, content, mobile } = req.body;
 
-    await contentSchema({ content });
+    await contentSchema({ name, email, content, mobile });
 
-    const newContact = await Contact.create({ name, email, content });
+    const newContact = await Contact.create({ name, email, content, mobile });
 
     res.status(201).json({ data: newContact });
   }

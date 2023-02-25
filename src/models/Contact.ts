@@ -5,6 +5,7 @@ class Contact extends Model {
   declare id: number;
   declare name: string;
   declare email: string;
+  declare mobile: string;
   declare content: string;
 }
 Contact.init(
@@ -19,6 +20,10 @@ Contact.init(
       allowNull: false,
     },
     email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    mobile: {
       type: DataTypes.STRING,
       allowNull: false,
     },

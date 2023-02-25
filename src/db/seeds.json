@@ -316,11 +316,13 @@
   "Contact": [
     {
       "name": "jamajem1",
+      "mobile": "+970599266293",
       "email": "hakim.test1@gmail.com",
       "content": "I forget my password and I can't recover it"
     },
     {
       "name": "jamajem2",
+      "mobile": "+970599266293",
       "email": "hakim.test2@gmail.com",
       "content": "I buy a products but the proccess goes wrong"
     }
