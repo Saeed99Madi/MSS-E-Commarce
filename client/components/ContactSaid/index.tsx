@@ -1,8 +1,10 @@
+import { useState } from 'react';
+
 import { Typography } from '@mui/material';
 
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
-import EastIcon from '@mui/icons-material/East';
+
 import {
   BoxColumn,
   ContactCard,
@@ -10,16 +12,19 @@ import {
   GrediantGreenPargraph,
   GrediantPargraph,
   IconWrapper,
-  ImageIcon,
   CustomButton,
   ReflectedIconWrapper,
   Spot,
 } from './components.styled';
-// type Props = {
-//   error: { error: string };
-// };
+import ContactForm from './ContactForm';
 
 const ConatctWithForms = () => {
+  const [open, setOpen] = useState<boolean>(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
   return (
     <ContactContainer>
       <ContactCard>
@@ -46,16 +51,15 @@ const ConatctWithForms = () => {
             <GrediantPargraph>Form</GrediantPargraph>
           </BoxColumn>
           <BoxColumn sx={{ gap: '1rem' }}>
-            <Typography
+            <CustomButton
+              onClick={handleClickOpen}
               sx={{
-                color: '#FFFFFF',
-                '@media screen and (max-width: 450px)': {
-                  fontSize: '0.8rem',
-                },
+                width: '100%',
+                background: 'linear-gradient(90deg, #EA4335 0%, #2E7DFF 100%)',
               }}
             >
-              Submit Form {'>>'}
-            </Typography>
+              Contact Us
+            </CustomButton>
           </BoxColumn>
         </BoxColumn>
       </ContactCard>
@@ -83,12 +87,18 @@ const ConatctWithForms = () => {
             <GrediantGreenPargraph>whatsApp</GrediantGreenPargraph>
           </BoxColumn>
           <BoxColumn sx={{ gap: '1rem' }}>
-            <Typography sx={{ width: '80%', color: '#FFFFFF' }}>
-              Link {'>>'}
-            </Typography>
+            <CustomButton
+              sx={{
+                width: '100%',
+                background: 'linear-gradient(90deg, #25D366 0%, #128C7E 100%)',
+              }}
+            >
+              Contact Us
+            </CustomButton>
           </BoxColumn>
         </BoxColumn>
       </ContactCard>
+      <ContactForm open={open} setOpen={setOpen} />
     </ContactContainer>
   );
 };
