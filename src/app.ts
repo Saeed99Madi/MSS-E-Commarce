@@ -31,11 +31,29 @@ class App {
     this.app.use(express.urlencoded({ extended: false }));
     this.app.use('/api/v1', router);
     this.app.use(express.static(join(__dirname, 'images')));
-    if (environment.nodeEnv === 'production') {
-      this.app.use(express.static(join(__dirname, '..', 'client', 'build')));
+     if (environment.nodeEnv === 'production') {
+      this.app.use(express.static(join(__dirname, '..', 'dashbaord', 'build')));
+
+      this.app.get('/dashboard/*', (req: Request, res: Response) => {
+        res.sendFile(join(__dirname, '..', 'dashbaord', 'build', 'index.html'));
+      });
+
+      this.app.use(
+        express.static(join(__dirname, '..', 'client', '.next', 'static')),
+      );
 
       this.app.get('*', (req: Request, res: Response) => {
-        res.sendFile(join(__dirname, '..', 'client', 'build', 'index.html'));
+        res.sendFile(
+          join(
+            __dirname,
+            '..',
+            'client',
+            '.next',
+            'server',
+            'pages',
+            'index.html',
+          ),
+        );
       });
     }
 
