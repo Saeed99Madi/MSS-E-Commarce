@@ -21,6 +21,7 @@ const ProductName = ({
       image: product.cover,
     });
     setProduct(newProduct);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <SectionWithPadding>

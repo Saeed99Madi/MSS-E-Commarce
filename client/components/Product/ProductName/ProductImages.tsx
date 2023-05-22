@@ -21,18 +21,12 @@ const ProductImages = ({ product }: { product: IProduct }) => {
     setImageLink(image);
   };
   useEffect(() => {
-    console.log(product, ' form product images ');
-
     if (!product.cover) {
-      console.log('product cover not ger');
-
       return;
     }
     setImageLink(product.cover);
   }, [product]);
-  useEffect(() => {
-    console.log(imageLink);
-  }, [imageLink]);
+
   return (
     <ProductImagesWrapper>
       <ImagesWrapper image={imageLink}>

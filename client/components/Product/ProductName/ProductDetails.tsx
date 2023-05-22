@@ -14,8 +14,6 @@ import {
 const ProductDetails = ({ product }: { product: IProduct }) => {
   const [categoryName, setCategoryName] = useState('');
   useEffect(() => {
-    console.log(product, product.CategoryId, 'hello');
-
     if (product) {
       (async () => {
         const { data } = await Axios.get(

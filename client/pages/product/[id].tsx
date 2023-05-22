@@ -22,6 +22,7 @@ const Product = () => {
         const { data } = await Axios.get(`product/${id}`);
         setProduct(data.data[0]);
       } catch (err) {
+        // eslint-disable-next-line no-console
         console.log(err, 'the error');
       }
     })();

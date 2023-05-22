@@ -58,6 +58,7 @@ const ContactByForm = ({
   seOpenWhatsApp,
 }: Props) => {
   const { values, onChange, setValues } = useForm(initialState);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [error, setError] = useState<boolean>(false);
 
   const handelSubmitBtn = () => {
@@ -71,8 +72,6 @@ const ContactByForm = ({
       setError(true);
     } else {
       setError(false);
-      console.log('clicked');
-      console.log(values);
       setValues({ ...initialState });
     }
   };

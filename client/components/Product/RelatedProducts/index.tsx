@@ -43,6 +43,7 @@ const settings = {
   nextArrow: <ArrowsLeft />,
   prevArrow: <ArrowsRight />,
 };
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const RelatedProducts = ({ product }: { product: IProduct }) => {
   return (
     <RelatedProductWrapper>

@@ -35,14 +35,13 @@ const ContactForm = ({
     setMessage(prev => {
       return { ...prev, [e.target.name]: e.target.value };
     });
-    console.log(message);
   };
   const handleClose = () => {
     setOpen(false);
   };
   const handleSendMessage = async () => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { data } = await Axios.post('contacts', { ...message });
-    console.log(data);
   };
   return (
     <div>

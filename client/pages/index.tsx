@@ -37,7 +37,6 @@ const Home = (props: Props) => {
 export const getServerSideProps: GetServerSideProps = async context => {
   try {
     const { data } = await Axios.get('products/published');
-    console.log(data);
 
     return {
       props: {

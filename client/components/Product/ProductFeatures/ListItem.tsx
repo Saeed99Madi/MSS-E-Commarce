@@ -25,7 +25,7 @@ const ListItem = ({ feature }: Props) => {
     setOpen(!open);
   };
   return (
-    <FeaturesList component="nav" aria-labelledby="nested-list-subheader">
+    <FeaturesList aria-labelledby="nested-list-subheader">
       <ListItemButton onClick={handleClick}>
         <ListItemText primary={`${feature.title}`} />
         {open ? <ExpandLess /> : <ExpandMore />}
